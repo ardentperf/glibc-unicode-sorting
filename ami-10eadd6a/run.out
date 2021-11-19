@@ -1,0 +1,66 @@
+Script started on 2021-11-19 05:27:46+0000
++ dirname glibc-unicode-sorting/run.sh
++ cd glibc-unicode-sorting
++ pwd
+/home/ubuntu/glibc-unicode-sorting
++ dpkg -l libc6
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name           Version      Architecture Description
++++-==============-============-============-=================================
+ii  libc6:amd64    2.26-0ubuntu amd64        GNU C Library: Shared libraries
++ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-10eadd6a
++ cat /etc/issue
++ OS_VERS=Ubuntu 17.10 \n \l
++ UNICODE_VERS=14
++ awk /libc6/{print$3}
++ dpkg -l libc6
++ GLIBC_VERS=2.26-0ubuntu2.1
++ time curl -kO https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 1853k  100 1853k    0     0  1853k      0  0:00:01 --:--:--  0:00:01 4788k
+0.02user 0.00system 0:00.39elapsed 5%CPU (0avgtext+0avgdata 12088maxresident)k
+0inputs+3712outputs (0major+838minor)pagefaults 0swaps
++ time perl -naF; -CO -e
+  sub pr {print "0".chr($_[0]).chr($_[0]).chr($_[0]).chr($_[0])."0 ";printf("%08d\n",$_[0])}
+  if(/<control>/){next}; # skip control characters
+  if($F[2] eq "Cs"){next}; # skip surrogates
+  if(/ First>/){$fi=hex("0x".$F[0]);next}; # generate blocks
+  if(/ Last>/){$la=hex("0x".$F[0]);for($fi..$la){pr($_)};next};
+  pr(hex("0x".$F[0])) # generate individual characters
+ UnicodeData.txt
+0.33user 0.00system 0:00.34elapsed 99%CPU (0avgtext+0avgdata 4612maxresident)k
+0inputs+14936outputs (0major+211minor)pagefaults 0swaps
++ locale
+LANG=C.UTF-8
+LANGUAGE=
+LC_CTYPE="C.UTF-8"
+LC_NUMERIC="C.UTF-8"
+LC_TIME="C.UTF-8"
+LC_COLLATE="C.UTF-8"
+LC_MONETARY="C.UTF-8"
+LC_MESSAGES="C.UTF-8"
+LC_PAPER="C.UTF-8"
+LC_NAME="C.UTF-8"
+LC_ADDRESS="C.UTF-8"
+LC_TELEPHONE="C.UTF-8"
+LC_MEASUREMENT="C.UTF-8"
+LC_IDENTIFICATION="C.UTF-8"
+LC_ALL=
++ time sort base-characters.txt
+1.87user 0.01system 0:02.05elapsed 91%CPU (0avgtext+0avgdata 23076maxresident)k
+832inputs+14936outputs (5major+5274minor)pagefaults 0swaps
++ ls -ltr
+total 16796
+-rw-r--r-- 1 ubuntu ubuntu     909 Nov 19 05:27 run.sh
+-rw-rw-r-- 1 ubuntu ubuntu       0 Nov 19 05:27 run.out
+-rw-rw-r-- 1 ubuntu ubuntu 1897793 Nov 19 05:27 UnicodeData.txt
+-rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 05:27 base-characters.txt
+-rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 05:27 unicode-14-chars-sorted-glibc-2.26-0ubuntu2.1.txt
++ file unicode-14-chars-sorted-glibc-2.26-0ubuntu2.1.txt
+unicode-14-chars-sorted-glibc-2.26-0ubuntu2.1.txt: UTF-8 Unicode text
+
+Script done on 2021-11-19 05:27:50+0000
