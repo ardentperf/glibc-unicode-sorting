@@ -7,11 +7,7 @@ A simple perl snippit is used to generate a text file containing one line with e
 
 ## Caveats
 
-This is probably not comprehensive. Its unclear whether Unicode collation includes
-a capability to change the sort order based on combinations of characters. (Some
-languages have letters which modify the letter before or after that letter.)
-Nonetheless, this is helpful because it gives a little more perspective on how
-collation is changing over multiple versions of glibc. 
+This is not comprehensive. Unicode collation includes a capability to change the sort order based on combinations of characters. (Some languages have characters which modify the letter before or after that letter.) Nonetheless, while not comprehensive, this is still helpful because it gives a little more perspective on how collation is changing over multiple versions of glibc.
 
 Example:
 ```
