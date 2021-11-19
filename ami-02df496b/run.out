@@ -1,15 +1,17 @@
-Script started on Fri 19 Nov 2021 05:06:11 AM UTC
+Script started on Fri 19 Nov 2021 09:46:22 AM UTC
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 + dirname glibc-unicode-sorting/run.sh
 + cd glibc-unicode-sorting
 + pwd
 /home/ubuntu/glibc-unicode-sorting
-+ dpkg -l libc6
++ dpkg -l libc6 locales
 Desired=Unknown/Install/Remove/Purge/Hold
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
 ||/ Name           Version      Architecture Description
 +++-==============-============-============-=================================
 ii  libc6:amd64    2.15-0ubuntu amd64        Embedded GNU C Library: Shared li
+ii  locales        2.13+git2012 all          common files for locale support
 + curl -s http://169.254.169.254/latest/meta-data/ami-id
 + SOURCE_AMI=ami-02df496b
 + cat /etc/issue
@@ -21,9 +23,9 @@ ii  libc6:amd64    2.15-0ubuntu amd64        Embedded GNU C Library: Shared li
 + time curl -kO https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 1853k  100 1853k    0     0  2332k      0 --:--:-- --:--:-- --:--:-- 2511k
-0.01user 0.00system 0:00.79elapsed 2%CPU (0avgtext+0avgdata 4648maxresident)k
-8inputs+3712outputs (0major+1261minor)pagefaults 0swaps
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 1853k  100 1853k    0     0  2069k      0 --:--:-- --:--:-- --:--:-- 2206k
+0.00user 0.01system 0:00.90elapsed 1%CPU (0avgtext+0avgdata 4648maxresident)k
+0inputs+3712outputs (0major+1261minor)pagefaults 0swaps
 + time perl -naF; -CO -e
   sub pr {print "0".chr($_[0]).chr($_[0]).chr($_[0]).chr($_[0])."0 ";printf("%08d\n",$_[0])}
   if(/<control>/){next}; # skip control characters
@@ -32,8 +34,8 @@ ii  libc6:amd64    2.15-0ubuntu amd64        Embedded GNU C Library: Shared li
   if(/ Last>/){$la=hex("0x".$F[0]);for($fi..$la){pr($_)};next};
   pr(hex("0x".$F[0])) # generate individual characters
  UnicodeData.txt
-0.41user 0.00system 0:00.41elapsed 99%CPU (0avgtext+0avgdata 2060maxresident)k
-0inputs+14936outputs (0major+563minor)pagefaults 0swaps
+0.42user 0.00system 0:00.43elapsed 99%CPU (0avgtext+0avgdata 2052maxresident)k
+0inputs+14936outputs (0major+561minor)pagefaults 0swaps
 + locale
 LANG=en_US.UTF-8
 LANGUAGE=
@@ -49,18 +51,23 @@ LC_ADDRESS="en_US.UTF-8"
 LC_TELEPHONE="en_US.UTF-8"
 LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
-LC_ALL=
+LC_ALL=en_US.UTF-8
 + time sort base-characters.txt
-2.25user 0.01system 0:02.27elapsed 99%CPU (0avgtext+0avgdata 21604maxresident)k
-0inputs+14936outputs (0major+5511minor)pagefaults 0swaps
+2.24user 0.02system 0:02.26elapsed 99%CPU (0avgtext+0avgdata 21608maxresident)k
+0inputs+14936outputs (0major+5513minor)pagefaults 0swaps
 + ls -ltr
 total 16796
--rw-r--r-- 1 ubuntu ubuntu     909 Nov 19 05:06 run.sh
--rw-rw-r-- 1 ubuntu ubuntu       0 Nov 19 05:06 run.out
--rw-rw-r-- 1 ubuntu ubuntu 1897793 Nov 19 05:06 UnicodeData.txt
--rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 05:06 base-characters.txt
--rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 05:06 unicode-14-chars-sorted-glibc-2.15-0ubuntu20.txt
+-rw-r--r-- 1 ubuntu ubuntu    1017 Nov 19 09:46 run.sh
+-rw-rw-r-- 1 ubuntu ubuntu       0 Nov 19 09:46 run.out
+-rw-rw-r-- 1 ubuntu ubuntu 1897793 Nov 19 09:46 UnicodeData.txt
+-rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 09:46 base-characters.txt
+-rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 09:46 unicode-14-chars-sorted-glibc-2.15-0ubuntu20.txt
 + file unicode-14-chars-sorted-glibc-2.15-0ubuntu20.txt
 unicode-14-chars-sorted-glibc-2.15-0ubuntu20.txt: UTF-8 Unicode text
++ LC_COLLATE=en_US.UTF-8 sort
++ echo 1-1
++ echo 11
+11
+1-1
 
-Script done on Fri 19 Nov 2021 05:06:14 AM UTC
+Script done on Fri 19 Nov 2021 09:46:26 AM UTC

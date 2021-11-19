@@ -1,7 +1,8 @@
 set -x -e
+export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 cd $(dirname $0)
 pwd
-dpkg -l libc6
+dpkg -l libc6 locales
 SOURCE_AMI=$(curl -s http://169.254.169.254/latest/meta-data/ami-id)
 OS_VERS=$(cat /etc/issue)
 UNICODE_VERS="14"
@@ -24,4 +25,6 @@ time sort base-characters.txt >unicode-${UNICODE_VERS}-chars-sorted-glibc-${GLIB
 
 ls -ltr
 file unicode-${UNICODE_VERS}-chars-sorted-glibc-${GLIBC_VERS}.txt
+
+( echo "1-1"; echo "11" ) | LC_COLLATE=en_US.UTF-8 sort
 

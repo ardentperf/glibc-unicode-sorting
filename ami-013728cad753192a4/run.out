@@ -1,17 +1,20 @@
-Script started on 2021-11-19 05:41:05+00:00 [<not executed on terminal>]
+Script started on 2021-11-19 10:01:02+00:00 [<not executed on terminal>]
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 + dirname glibc-unicode-sorting/run.sh
+ssh ubuntu@$HOST cat glibc-unicode-sorting/run.out|grep SOURCE_AMI
 + cd glibc-unicode-sorting
 + pwd
 /home/ubuntu/glibc-unicode-sorting
-+ dpkg -l libc6
++ dpkg -l libc6 locales
 WARNING: terminal is not fully functional
--  (press RETURN)Desired=Unknown/Install/Remove/Purge/Hold[m
+-  (press RETURN)-log file: sshh  uubbuunnttuu@@$$HHOOSSTT  ccaatt  gglliibbcc--uunniiccooddee--ssoorrttiinngg//rruunn..oouutt||ggrreepp  SSOOUURRCCEE__AAMMIICannot write to "sh ubuntu@$HOST cat glibc-unicode-sorting/run.out|grep SOURCE_AMI"  (press RETURN)Desired=Unknown/Install/Remove/Purge/Hold[m
 | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend[m
 |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)[m
 ||/ Name           Version         Architecture Description[m
 +++-==============-===============-============-================================[m
 ii  libc6:amd64    2.30-0ubuntu2.1 amd64        GNU C Library: Shared libraries[m
-lines 1-6/6 (END)+ curl -s http://169.254.169.254/latest/meta-data/ami-id
+ii  locales        2.30-0ubuntu2.1 all          GNU C Library: National Language[m
+lines 1-7/7 (END)lines 1-7/7 (END)+ curl -s http://169.254.169.254/latest/meta-data/ami-id
 + SOURCE_AMI=ami-013728cad753192a4
 + cat /etc/issue
 + OS_VERS=Ubuntu 19.10 \n \l
@@ -22,9 +25,9 @@ lines 1-6/6 (END)+ curl -s http://169.254.169.254/latest/meta-data/ami-id
 + time curl -kO https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 16 1853k   16  304k    0     0   871k      0  0:00:02 --:--:--  0:00:02  868k 87 1853k   87 1616k    0     0  1153k      0  0:00:01  0:00:01 --:--:-- 1152k100 1853k  100 1853k    0     0  1109k      0  0:00:01  0:00:01 --:--:-- 1108k
-0.01user 0.01system 0:01.68elapsed 1%CPU (0avgtext+0avgdata 12740maxresident)k
-0inputs+3712outputs (0major+705minor)pagefaults 0swaps
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100 1853k  100 1853k    0     0  5310k      0 --:--:-- --:--:-- --:--:-- 5310k
+0.01user 0.00system 0:00.35elapsed 5%CPU (0avgtext+0avgdata 12608maxresident)k
+0inputs+3712outputs (0major+693minor)pagefaults 0swaps
 + time perl -naF; -CO -e
   sub pr {print "0".chr($_[0]).chr($_[0]).chr($_[0]).chr($_[0])."0 ";printf("%08d\n",$_[0])}
   if(/<control>/){next}; # skip control characters
@@ -33,35 +36,40 @@ lines 1-6/6 (END)+ curl -s http://169.254.169.254/latest/meta-data/ami-id
   if(/ Last>/){$la=hex("0x".$F[0]);for($fi..$la){pr($_)};next};
   pr(hex("0x".$F[0])) # generate individual characters
  UnicodeData.txt
-0.28user 0.00system 0:00.85elapsed 32%CPU (0avgtext+0avgdata 5176maxresident)k
-0inputs+14936outputs (0major+241minor)pagefaults 0swaps
+0.27user 0.00system 0:00.42elapsed 63%CPU (0avgtext+0avgdata 5156maxresident)k
+256inputs+14936outputs (1major+227minor)pagefaults 0swaps
 + locale
-LANG=C.UTF-8
+LANG=en_US.UTF-8
 LANGUAGE=
-LC_CTYPE="C.UTF-8"
-LC_NUMERIC="C.UTF-8"
-LC_TIME="C.UTF-8"
-LC_COLLATE="C.UTF-8"
-LC_MONETARY="C.UTF-8"
-LC_MESSAGES="C.UTF-8"
-LC_PAPER="C.UTF-8"
-LC_NAME="C.UTF-8"
-LC_ADDRESS="C.UTF-8"
-LC_TELEPHONE="C.UTF-8"
-LC_MEASUREMENT="C.UTF-8"
-LC_IDENTIFICATION="C.UTF-8"
-LC_ALL=
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=en_US.UTF-8
 + time sort base-characters.txt
-1.81user 0.01system 0:03.51elapsed 52%CPU (0avgtext+0avgdata 23152maxresident)k
-832inputs+14936outputs (4major+5282minor)pagefaults 0swaps
+13.75user 0.04system 0:13.86elapsed 99%CPU (0avgtext+0avgdata 23328maxresident)k
+1136inputs+14936outputs (5major+5272minor)pagefaults 0swaps
 + ls -ltr
 total 16796
--rw-r--r-- 1 ubuntu ubuntu     909 Nov 19 05:41 run.sh
--rw-rw-r-- 1 ubuntu ubuntu       0 Nov 19 05:41 run.out
--rw-rw-r-- 1 ubuntu ubuntu 1897793 Nov 19 05:41 UnicodeData.txt
--rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 05:41 base-characters.txt
--rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 05:41 unicode-14-chars-sorted-glibc-2.30-0ubuntu2.1.txt
+-rw-r--r-- 1 ubuntu ubuntu    1017 Nov 19 10:01 run.sh
+-rw-rw-r-- 1 ubuntu ubuntu       0 Nov 19 10:01 run.out
+-rw-rw-r-- 1 ubuntu ubuntu 1897793 Nov 19 10:01 UnicodeData.txt
+-rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 10:01 base-characters.txt
+-rw-rw-r-- 1 ubuntu ubuntu 7644668 Nov 19 10:01 unicode-14-chars-sorted-glibc-2.30-0ubuntu2.1.txt
 + file unicode-14-chars-sorted-glibc-2.30-0ubuntu2.1.txt
 unicode-14-chars-sorted-glibc-2.30-0ubuntu2.1.txt: UTF-8 Unicode text
++ LC_COLLATE=en_US.UTF-8 sort
++ echo 1-1
++ echo 11
+1-1
+11
 
-Script done on 2021-11-19 05:41:17+00:00 [COMMAND_EXIT_CODE="0"]
+Script done on 2021-11-19 10:01:23+00:00 [COMMAND_EXIT_CODE="0"]
