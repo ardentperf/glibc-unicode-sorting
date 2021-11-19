@@ -5,6 +5,14 @@
 
 A simple perl snippit is used to generate a text file containing one line with every legal unicode character. The unix "sort" utility processes this file with the locale configured to en_US for collation. This process is repeated on each Ubuntu release from the past 10 years, and then the unix "diff" utility is used to compare the sorted output files and count how many characters have different positions after sorting.
 
+## Caveats
+
+This is probably not comprehensive. Its unclear whether Unicode collation includes
+a capability to change the sort order based on combinations of characters. (Some
+languages have letters which modify the letter before or after that letter.)
+Nonetheless, this is helpful because it gives a little more perspective on how
+collation is changing over multiple versions of glibc. 
+
 ## Results
 
 | GLIBC Version | Total Changes Detected | Unicode Blocks of Detected Changes | Operating System  | AMI |
