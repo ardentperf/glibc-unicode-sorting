@@ -1,0 +1,2 @@
+Only in _ubuntu/ami-02df496b/LC_COLLATE: la_AU
+Only in _ubuntu/ami-02df496b/LC_COLLATE: tlh_GB

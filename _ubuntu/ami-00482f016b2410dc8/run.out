@@ -1,0 +1,130 @@
+Script started on 2021-11-24 21:44:51+00:00 [<not executed on terminal>]
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
++ date
+Wed Nov 24 09:44:51 PM UTC 2021
++ dirname glibc-unicode-sorting/run.sh
++ cd glibc-unicode-sorting
++ pwd
+/home/ubuntu/glibc-unicode-sorting
++ dpkg -l libc6 locales
+WARNING: terminal is not fully functional
+-  (press RETURN)Desired=Unknown/Install/Remove/Purge/Hold[m
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend[m
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)[m
+||/ Name           Version       Architecture Description[m
++++-==============-=============-============-=================================[m>
+ii  libc6:amd64    2.34-0ubuntu3 amd64        GNU C Library: Shared libraries[m
+ii  locales        2.34-0ubuntu3 all          GNU C Library: National Language [m>
+lines 1-7/7 (END)+ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-00482f016b2410dc8
++ cat /etc/issue
++ OS_VERS=Ubuntu 21.10 \n \l
++ UNICODE_VERS=14
++ awk /libc6/{print$3}
++ dpkg -l libc6
++ GLIBC_VERS=2.34-0ubuntu3
++ time curl -kO https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 53 1853k   53  992k    0     0  1656k      0  0:00:01 --:--:--  0:00:01 1653k100 1853k  100 1853k    0     0  2766k      0 --:--:-- --:--:-- --:--:-- 2762k
+0.01user 0.01system 0:00.67elapsed 3%CPU (0avgtext+0avgdata 11608maxresident)k
+0inputs+3712outputs (0major+785minor)pagefaults 0swaps
++ split -l500000 - _base-characters
++ time perl -naF; -CO -e
+  sub pr3 {printf("%s        %08d\n",$_[1],$_[0])}
+  sub pr2 {pr3($_[0],"B".$_[1]."B");pr3($_[0],"D".$_[1]."D");pr3($_[0],$_[1]);pr3($_[0],$_[1]."B");pr3($_[0],$_[1]."BB");pr3($_[0],$_[1]."D");pr3($_[0],$_[1]."DD")}
+  sub pr {pr2($_[0],$_[1].chr($_[0]));pr2($_[0],$_[1].chr($_[0]).chr($_[0]))}
+  if(/<control>/){next}; # skip control characters
+  if($F[2] eq "Cs"){next}; # skip surrogates
+  if(/ First>/){$fi=hex("0x".$F[0]);next}; # generate blocks
+  if(/ Last>/){$la=hex("0x".$F[0]);for($fi..$la){pr($_)};next};
+  pr(hex("0x".$F[0])) # generate individual characters
+ UnicodeData.txt
+3.68user 0.05system 0:04.04elapsed 92%CPU (0avgtext+0avgdata 5820maxresident)k
+280inputs+0outputs (3major+274minor)pagefaults 0swaps
++ wc _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah
+  500000   999846 11421838 _base-charactersaa
+  500000   999184 11662974 _base-charactersab
+  500000   999338 12214293 _base-charactersac
+  500000   999988 12214287 _base-charactersad
+  500000  1000000 12214276 _base-charactersae
+  500000  1000000 12214290 _base-charactersaf
+  500000  1000000 12214294 _base-charactersag
+  450310   900620 11000430 _base-charactersah
+ 3950310  7898976 95156682 total
++ locale
+LANG=en_US.UTF-8
+LANGUAGE=
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=en_US.UTF-8
++ date
+Wed Nov 24 09:44:58 PM UTC 2021
++ ls -1 _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah
++ jobs
+[8] + Running                    
+[7] - Running                    
+[6]   Running                    
+[5]   Running                    
+[4]   Running                    
+[3]   Running                    
+[2]   Running                    
+[1]   Running                    
++ wait
++ + sortsort _base-charactersah -o _s_base-charactersah _base-charactersag
+ -o _s_base-charactersag
++ sort _base-charactersaf -o _s_base-charactersaf
++ sort _base-charactersae -o _s_base-charactersae
++ sort _base-charactersad -o _s_base-charactersad
++ sort _base-charactersac -o _s_base-charactersac
++ sort _base-charactersab -o _s_base-charactersab
++ sort _base-charactersaa -o _s_base-charactersaa
++ date
+Wed Nov 24 09:47:55 PM UTC 2021
++ time sort -m _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah -o unicode-14-chars-sorted-glibc-2.34-0ubuntu3.txt
+9.98user 0.11system 0:10.23elapsed 98%CPU (0avgtext+0avgdata 4732maxresident)k
+8inputs+185856outputs (1major+632minor)pagefaults 0swaps
++ rm -v _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah UnicodeData.txt
+removed '_base-charactersaa'
+removed '_base-charactersab'
+removed '_base-charactersac'
+removed '_base-charactersad'
+removed '_base-charactersae'
+removed '_base-charactersaf'
+removed '_base-charactersag'
+removed '_base-charactersah'
+removed '_s_base-charactersaa'
+removed '_s_base-charactersab'
+removed '_s_base-charactersac'
+removed '_s_base-charactersad'
+removed '_s_base-charactersae'
+removed '_s_base-charactersaf'
+removed '_s_base-charactersag'
+removed '_s_base-charactersah'
+removed 'UnicodeData.txt'
++ ls -ltr
+total 92936
+-rw-r--r-- 1 ubuntu ubuntu     1421 Nov 24 21:44 run.sh
+-rw-rw-r-- 1 ubuntu ubuntu     4096 Nov 24 21:44 run.out
+-rw-rw-r-- 1 ubuntu ubuntu 95156682 Nov 24 21:48 unicode-14-chars-sorted-glibc-2.34-0ubuntu3.txt
++ wc unicode-14-chars-sorted-glibc-2.34-0ubuntu3.txt
+ 3950310  7898976 95156682 unicode-14-chars-sorted-glibc-2.34-0ubuntu3.txt
++ LC_COLLATE=en_US.UTF-8 sort
++ echo 1-1
++ echo 11
+1-1
+11
++ date
+Wed Nov 24 09:48:06 PM UTC 2021
+
+Script done on 2021-11-24 21:48:06+00:00 [COMMAND_EXIT_CODE="0"]

@@ -1,0 +1,129 @@
+Script started on Wed 24 Nov 2021 09:21:42 PM UTC
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
++ date
+Wed Nov 24 21:21:42 UTC 2021
++ dirname glibc-unicode-sorting/run.sh
++ cd glibc-unicode-sorting
++ pwd
+/home/ubuntu/glibc-unicode-sorting
++ dpkg -l libc6 locales
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name           Version        Description
++++-==============-==============-============================================
+ii  libc6          2.11.1-0ubuntu Embedded GNU C Library: Shared libraries
+ii  locales        2.11+git201003 common files for locale support
++ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-0baf7662
++ cat /etc/issue
++ OS_VERS=Ubuntu 10.04.4 LTS \n \l
++ UNICODE_VERS=14
++ dpkg -l libc6
++ awk /libc6/{print$3}
++ GLIBC_VERS=2.11.1-0ubuntu7.10
++ time curl -kO https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 53 1853k   53  992k    0     0  2039k      0 --:--:-- --:--:-- --:--:-- 2961k100 1853k  100 1853k    0     0  2993k      0 --:--:-- --:--:-- --:--:-- 3968k
+0.01user 0.01system 0:00.62elapsed 3%CPU (0avgtext+0avgdata 14832maxresident)k
+0inputs+3712outputs (0major+1009minor)pagefaults 0swaps
++ split -l500000 - _base-characters
++ time perl -naF; -CO -e
+  sub pr3 {printf("%s        %08d\n",$_[1],$_[0])}
+  sub pr2 {pr3($_[0],"B".$_[1]."B");pr3($_[0],"D".$_[1]."D");pr3($_[0],$_[1]);pr3($_[0],$_[1]."B");pr3($_[0],$_[1]."BB");pr3($_[0],$_[1]."D");pr3($_[0],$_[1]."DD")}
+  sub pr {pr2($_[0],$_[1].chr($_[0]));pr2($_[0],$_[1].chr($_[0]).chr($_[0]))}
+  if(/<control>/){next}; # skip control characters
+  if($F[2] eq "Cs"){next}; # skip surrogates
+  if(/ First>/){$fi=hex("0x".$F[0]);next}; # generate blocks
+  if(/ Last>/){$la=hex("0x".$F[0]);for($fi..$la){pr($_)};next};
+  pr(hex("0x".$F[0])) # generate individual characters
+ UnicodeData.txt
+5.43user 0.17system 0:05.96elapsed 93%CPU (0avgtext+0avgdata 8304maxresident)k
+0inputs+0outputs (0major+563minor)pagefaults 0swaps
++ wc _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah
+  500000   997448 11421838 _base-charactersaa
+  500000   982969 11662974 _base-charactersab
+  500000   976521 12214293 _base-charactersac
+  500000   969606 12214287 _base-charactersad
+  500000   985278 12214276 _base-charactersae
+  500000  1000000 12214290 _base-charactersaf
+  500000  1000000 12214294 _base-charactersag
+  450310   900620 11000430 _base-charactersah
+ 3950310  7812442 95156682 total
++ locale
+LANG=en_US.UTF-8
+LANGUAGE=
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=en_US.UTF-8
++ date
+Wed Nov 24 21:21:50 UTC 2021
++ ls -1 _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah
++ jobs
+[8] + Running                    
+[7] - Running                    
+[6]   Running                    
+[5]   Running                    
+[4]   Running                    
+[3]   Running                    
+[2]   Running                    
+[1]   Running                    
++ wait
++ sort _base-charactersad -o _s_base-charactersad
++ sort _base-charactersae -o _s_base-charactersae
++ sort _base-charactersaf -o _s_base-charactersaf
++ sort _base-charactersag -o _s_base-charactersag
++ sort _base-charactersah -o _s_base-charactersah
++ sort _base-charactersac -o _s_base-charactersac
++ sort _base-charactersab -o _s_base-charactersab
++ sort _base-charactersaa -o _s_base-charactersaa
++ date
+Wed Nov 24 21:22:24 UTC 2021
++ time sort -m _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah -o unicode-14-chars-sorted-glibc-2.11.1-0ubuntu7.10.txt
+1.88user 0.30system 0:02.23elapsed 97%CPU (0avgtext+0avgdata 13024maxresident)k
+8inputs+185856outputs (0major+856minor)pagefaults 0swaps
++ rm -v _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah UnicodeData.txt
+removed `_base-charactersaa'
+removed `_base-charactersab'
+removed `_base-charactersac'
+removed `_base-charactersad'
+removed `_base-charactersae'
+removed `_base-charactersaf'
+removed `_base-charactersag'
+removed `_base-charactersah'
+removed `_s_base-charactersaa'
+removed `_s_base-charactersab'
+removed `_s_base-charactersac'
+removed `_s_base-charactersad'
+removed `_s_base-charactersae'
+removed `_s_base-charactersaf'
+removed `_s_base-charactersag'
+removed `_s_base-charactersah'
+removed `UnicodeData.txt'
++ ls -ltr
+total 93032
+-rw-r--r-- 1 ubuntu ubuntu     1421 2021-11-24 21:21 run.sh
+-rw-r--r-- 1 ubuntu ubuntu     4096 2021-11-24 21:21 run.out
+-rw-r--r-- 1 ubuntu ubuntu 95156682 2021-11-24 21:22 unicode-14-chars-sorted-glibc-2.11.1-0ubuntu7.10.txt
++ wc unicode-14-chars-sorted-glibc-2.11.1-0ubuntu7.10.txt
+ 3950310  7812442 95156682 unicode-14-chars-sorted-glibc-2.11.1-0ubuntu7.10.txt
++ LC_COLLATE=en_US.UTF-8 sort
++ echo 1-1
++ echo 11
+11
+1-1
++ date
+Wed Nov 24 21:22:27 UTC 2021
+
+Script done on Wed 24 Nov 2021 09:22:27 PM UTC

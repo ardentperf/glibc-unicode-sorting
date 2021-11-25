@@ -1,0 +1,253 @@
+Only in _ubuntu/ami-024a2614/LC_COLLATE: bho_IN
+Only in _ubuntu/ami-024a2614/LC_COLLATE: brx_IN
+Only in _ubuntu/ami-024a2614/LC_COLLATE: es_CU
+diff -yt --suppress-common-lines _ubuntu/ami-4fad7426/LC_COLLATE/hu_HU _ubuntu/ami-024a2614/LC_COLLATE/hu_HU
+                                                                >  collating-symbol  <c_or_cs>
+                                                                >  collating-symbol  <d_or_dz>
+                                                                >  collating-symbol  <d_or_dzs>
+                                                                >  collating-symbol  <g_or_gy>
+                                                                >  collating-symbol  <l_or_ly>
+                                                                >  collating-symbol  <n_or_ny>
+                                                                >  collating-symbol  <s_or_sz>
+                                                                >  collating-symbol  <t_or_ty>
+                                                                >  collating-symbol  <z_or_zs>
+                                                                >  <c_or_cs>
+                                                                >  <d_or_dz>
+                                                                >  <d_or_dzs>
+                                                                >  <g_or_gy>
+                                                                >  <l_or_ly>
+                                                                >  <n_or_ny>
+                                                                >  <s_or_sz>
+                                                                >  <t_or_ty>
+                                                                >  <z_or_zs>
+<C-C-S>         "<cs><cs>";"<BAS><BAS>";"<CAP><CAP>";IGNORE     |  <C-C-S>         "<c_or_cs><cs>";"<BAS><BAS>";"<CAP><CAP>";IGNOR
+<C-C-s>         "<cs><cs>";"<BAS><BAS>";"<CAP><CAP-MIN>";IGNORE |  <C-C-s>         "<c_or_cs><cs>";"<BAS><BAS>";"<CAP><CAP-MIN>";I
+<C-c-S>         "<cs><cs>";"<BAS><BAS>";"<CAP><MIN-CAP>";IGNORE |  <C-c-S>         "<c_or_cs><cs>";"<BAS><BAS>";"<CAP><MIN-CAP>";I
+<C-c-s>         "<cs><cs>";"<BAS><BAS>";"<CAP><MIN>";IGNORE     |  <C-c-s>         "<c_or_cs><cs>";"<BAS><BAS>";"<CAP><MIN>";IGNOR
+<c-C-S>         "<cs><cs>";"<BAS><BAS>";"<MIN><CAP>";IGNORE     |  <c-C-S>         "<c_or_cs><cs>";"<BAS><BAS>";"<MIN><CAP>";IGNOR
+<c-C-s>         "<cs><cs>";"<BAS><BAS>";"<MIN><CAP-MIN>";IGNORE |  <c-C-s>         "<c_or_cs><cs>";"<BAS><BAS>";"<MIN><CAP-MIN>";I
+<c-c-S>         "<cs><cs>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <c-c-S>         "<c_or_cs><cs>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
+<c-c-s>         "<cs><cs>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <c-c-s>         "<c_or_cs><cs>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
+<D-D-Z>         "<dz><dz>";"<BAS><BAS>";"<CAP><CAP>";IGNORE     |  <D-D-Z>         "<d_or_dz><dz>";"<BAS><BAS>";"<CAP><CAP>";IGNOR
+<D-D-z>         "<dz><dz>";"<BAS><BAS>";"<CAP><CAP-MIN>";IGNORE |  <D-D-z>         "<d_or_dz><dz>";"<BAS><BAS>";"<CAP><CAP-MIN>";I
+<D-d-Z>         "<dz><dz>";"<BAS><BAS>";"<CAP><MIN-CAP>";IGNORE |  <D-d-Z>         "<d_or_dz><dz>";"<BAS><BAS>";"<CAP><MIN-CAP>";I
+<D-d-z>         "<dz><dz>";"<BAS><BAS>";"<CAP><MIN>";IGNORE     |  <D-d-z>         "<d_or_dz><dz>";"<BAS><BAS>";"<CAP><MIN>";IGNOR
+<d-D-Z>         "<dz><dz>";"<BAS><BAS>";"<MIN><CAP>";IGNORE     |  <d-D-Z>         "<d_or_dz><dz>";"<BAS><BAS>";"<MIN><CAP>";IGNOR
+<d-D-z>         "<dz><dz>";"<BAS><BAS>";"<MIN><CAP-MIN>";IGNORE |  <d-D-z>         "<d_or_dz><dz>";"<BAS><BAS>";"<MIN><CAP-MIN>";I
+<d-d-Z>         "<dz><dz>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <d-d-Z>         "<d_or_dz><dz>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
+<d-d-z>         "<dz><dz>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <d-d-z>         "<d_or_dz><dz>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
+<D-D-Z-S>       "<dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-CAP>"; |  <D-D-Z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-C
+<D-D-Z-s>       "<dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-MIN>"; |  <D-D-Z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-M
+<D-D-z-S>       "<dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-CAP>"; |  <D-D-z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-C
+<D-D-z-s>       "<dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-MIN>"; |  <D-D-z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-M
+<D-d-Z-S>       "<dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-CAP>"; |  <D-d-Z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-C
+<D-d-Z-s>       "<dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-MIN>"; |  <D-d-Z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-M
+<D-d-z-S>       "<dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-CAP>"; |  <D-d-z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-C
+<D-d-z-s>       "<dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-MIN>"; |  <D-d-z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-M
+<d-D-Z-S>       "<dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-CAP>"; |  <d-D-Z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-C
+<d-D-Z-s>       "<dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-MIN>"; |  <d-D-Z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-M
+<d-D-z-S>       "<dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-CAP>"; |  <d-D-z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-C
+<d-D-z-s>       "<dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-MIN>"; |  <d-D-z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-M
+<d-d-Z-S>       "<dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-CAP>"; |  <d-d-Z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-C
+<d-d-Z-s>       "<dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-MIN>"; |  <d-d-Z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-M
+<d-d-z-S>       "<dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-CAP>"; |  <d-d-z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-C
+<d-d-z-s>       "<dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-MIN>"; |  <d-d-z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-M
+<G-G-Y>         "<gy><gy>";"<BAS><BAS>";"<CAP><CAP>";IGNORE     |  <G-G-Y>         "<g_or_gy><gy>";"<BAS><BAS>";"<CAP><CAP>";IGNOR
+<G-G-y>         "<gy><gy>";"<BAS><BAS>";"<CAP><CAP-MIN>";IGNORE |  <G-G-y>         "<g_or_gy><gy>";"<BAS><BAS>";"<CAP><CAP-MIN>";I
+<G-g-Y>         "<gy><gy>";"<BAS><BAS>";"<CAP><MIN-CAP>";IGNORE |  <G-g-Y>         "<g_or_gy><gy>";"<BAS><BAS>";"<CAP><MIN-CAP>";I
+<G-g-y>         "<gy><gy>";"<BAS><BAS>";"<CAP><MIN>";IGNORE     |  <G-g-y>         "<g_or_gy><gy>";"<BAS><BAS>";"<CAP><MIN>";IGNOR
+<g-G-Y>         "<gy><gy>";"<BAS><BAS>";"<MIN><CAP>";IGNORE     |  <g-G-Y>         "<g_or_gy><gy>";"<BAS><BAS>";"<MIN><CAP>";IGNOR
+<g-G-y>         "<gy><gy>";"<BAS><BAS>";"<MIN><CAP-MIN>";IGNORE |  <g-G-y>         "<g_or_gy><gy>";"<BAS><BAS>";"<MIN><CAP-MIN>";I
+<g-g-Y>         "<gy><gy>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <g-g-Y>         "<g_or_gy><gy>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
+<g-g-y>         "<gy><gy>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <g-g-y>         "<g_or_gy><gy>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
+<L-L-Y>         "<ly><ly>";"<BAS><BAS>";"<CAP><CAP>";IGNORE     |  <L-L-Y>         "<l_or_ly><ly>";"<BAS><BAS>";"<CAP><CAP>";IGNOR
+<L-L-y>         "<ly><ly>";"<BAS><BAS>";"<CAP><CAP-MIN>";IGNORE |  <L-L-y>         "<l_or_ly><ly>";"<BAS><BAS>";"<CAP><CAP-MIN>";I
+<L-l-Y>         "<ly><ly>";"<BAS><BAS>";"<CAP><MIN-CAP>";IGNORE |  <L-l-Y>         "<l_or_ly><ly>";"<BAS><BAS>";"<CAP><MIN-CAP>";I
+<L-l-y>         "<ly><ly>";"<BAS><BAS>";"<CAP><MIN>";IGNORE     |  <L-l-y>         "<l_or_ly><ly>";"<BAS><BAS>";"<CAP><MIN>";IGNOR
+<l-L-Y>         "<ly><ly>";"<BAS><BAS>";"<MIN><CAP>";IGNORE     |  <l-L-Y>         "<l_or_ly><ly>";"<BAS><BAS>";"<MIN><CAP>";IGNOR
+<l-L-y>         "<ly><ly>";"<BAS><BAS>";"<MIN><CAP-MIN>";IGNORE |  <l-L-y>         "<l_or_ly><ly>";"<BAS><BAS>";"<MIN><CAP-MIN>";I
+<l-l-Y>         "<ly><ly>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <l-l-Y>         "<l_or_ly><ly>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
+<l-l-y>         "<ly><ly>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <l-l-y>         "<l_or_ly><ly>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
+<N-N-Y>         "<ny><ny>";"<BAS><BAS>";"<CAP><CAP>";IGNORE     |  <N-N-Y>         "<n_or_ny><ny>";"<BAS><BAS>";"<CAP><CAP>";IGNOR
+<N-N-y>         "<ny><ny>";"<BAS><BAS>";"<CAP><CAP-MIN>";IGNORE |  <N-N-y>         "<n_or_ny><ny>";"<BAS><BAS>";"<CAP><CAP-MIN>";I
+<N-n-Y>         "<ny><ny>";"<BAS><BAS>";"<CAP><MIN-CAP>";IGNORE |  <N-n-Y>         "<n_or_ny><ny>";"<BAS><BAS>";"<CAP><MIN-CAP>";I
+<N-n-y>         "<ny><ny>";"<BAS><BAS>";"<CAP><MIN>";IGNORE     |  <N-n-y>         "<n_or_ny><ny>";"<BAS><BAS>";"<CAP><MIN>";IGNOR
+<n-N-Y>         "<ny><ny>";"<BAS><BAS>";"<MIN><CAP>";IGNORE     |  <n-N-Y>         "<n_or_ny><ny>";"<BAS><BAS>";"<MIN><CAP>";IGNOR
+<n-N-y>         "<ny><ny>";"<BAS><BAS>";"<MIN><CAP-MIN>";IGNORE |  <n-N-y>         "<n_or_ny><ny>";"<BAS><BAS>";"<MIN><CAP-MIN>";I
+<n-n-Y>         "<ny><ny>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <n-n-Y>         "<n_or_ny><ny>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
+<n-n-y>         "<ny><ny>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <n-n-y>         "<n_or_ny><ny>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
+<S-S-Z>         "<sz><sz>";"<BAS><BAS>";"<CAP><CAP>";IGNORE     |  <S-S-Z>         "<s_or_sz><sz>";"<BAS><BAS>";"<CAP><CAP>";IGNOR
+<S-S-z>         "<sz><sz>";"<BAS><BAS>";"<CAP><CAP-MIN>";IGNORE |  <S-S-z>         "<s_or_sz><sz>";"<BAS><BAS>";"<CAP><CAP-MIN>";I
+<S-s-Z>         "<sz><sz>";"<BAS><BAS>";"<CAP><MIN-CAP>";IGNORE |  <S-s-Z>         "<s_or_sz><sz>";"<BAS><BAS>";"<CAP><MIN-CAP>";I
+<S-s-z>         "<sz><sz>";"<BAS><BAS>";"<CAP><MIN>";IGNORE     |  <S-s-z>         "<s_or_sz><sz>";"<BAS><BAS>";"<CAP><MIN>";IGNOR
+<s-S-Z>         "<sz><sz>";"<BAS><BAS>";"<MIN><CAP>";IGNORE     |  <s-S-Z>         "<s_or_sz><sz>";"<BAS><BAS>";"<MIN><CAP>";IGNOR
+<s-S-z>         "<sz><sz>";"<BAS><BAS>";"<MIN><CAP-MIN>";IGNORE |  <s-S-z>         "<s_or_sz><sz>";"<BAS><BAS>";"<MIN><CAP-MIN>";I
+<s-s-Z>         "<sz><sz>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <s-s-Z>         "<s_or_sz><sz>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
+<s-s-z>         "<sz><sz>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <s-s-z>         "<s_or_sz><sz>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
+<T-T-Y>         "<ty><ty>";"<BAS><BAS>";"<CAP><CAP>";IGNORE     |  <T-T-Y>         "<t_or_ty><ty>";"<BAS><BAS>";"<CAP><CAP>";IGNOR
+<T-T-y>         "<ty><ty>";"<BAS><BAS>";"<CAP><CAP-MIN>";IGNORE |  <T-T-y>         "<t_or_ty><ty>";"<BAS><BAS>";"<CAP><CAP-MIN>";I
+<T-t-Y>         "<ty><ty>";"<BAS><BAS>";"<CAP><MIN-CAP>";IGNORE |  <T-t-Y>         "<t_or_ty><ty>";"<BAS><BAS>";"<CAP><MIN-CAP>";I
+<T-t-y>         "<ty><ty>";"<BAS><BAS>";"<CAP><MIN>";IGNORE     |  <T-t-y>         "<t_or_ty><ty>";"<BAS><BAS>";"<CAP><MIN>";IGNOR
+<t-T-Y>         "<ty><ty>";"<BAS><BAS>";"<MIN><CAP>";IGNORE     |  <t-T-Y>         "<t_or_ty><ty>";"<BAS><BAS>";"<MIN><CAP>";IGNOR
+<t-T-y>         "<ty><ty>";"<BAS><BAS>";"<MIN><CAP-MIN>";IGNORE |  <t-T-y>         "<t_or_ty><ty>";"<BAS><BAS>";"<MIN><CAP-MIN>";I
+<t-t-Y>         "<ty><ty>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <t-t-Y>         "<t_or_ty><ty>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
+<t-t-y>         "<ty><ty>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <t-t-y>         "<t_or_ty><ty>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
+<Z-Z-S>         "<zs><zs>";"<BAS><BAS>";"<CAP><CAP>";IGNORE     |  <Z-Z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<CAP><CAP>";IGNOR
+<Z-Z-s>         "<zs><zs>";"<BAS><BAS>";"<CAP><CAP-MIN>";IGNORE |  <Z-Z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<CAP><CAP-MIN>";I
+<Z-z-S>         "<zs><zs>";"<BAS><BAS>";"<CAP><MIN-CAP>";IGNORE |  <Z-z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<CAP><MIN-CAP>";I
+<Z-z-s>         "<zs><zs>";"<BAS><BAS>";"<CAP><MIN>";IGNORE     |  <Z-z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<CAP><MIN>";IGNOR
+<z-Z-S>         "<zs><zs>";"<BAS><BAS>";"<MIN><CAP>";IGNORE     |  <z-Z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><CAP>";IGNOR
+<z-Z-s>         "<zs><zs>";"<BAS><BAS>";"<MIN><CAP-MIN>";IGNORE |  <z-Z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><CAP-MIN>";I
+<z-z-S>         "<zs><zs>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <z-z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
+<z-z-s>         "<zs><zs>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <z-z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
+Only in _ubuntu/ami-024a2614/LC_COLLATE: ta_LK
+diff -yt --suppress-common-lines _ubuntu/ami-4fad7426/LC_COLLATE/ug_CN _ubuntu/ami-024a2614/LC_COLLATE/ug_CN
+collating-symbol  <schwa>                                       |  collating-symbol  <ARA_ywha_alef>
+collating-symbol  <gh>                                          |  collating-symbol  <ARA_ywha_ae>
+collating-symbol  <ng>                                          |  collating-symbol  <ARA_ae>
+collating-symbol  <ccedilla>                                    |  collating-symbol  <ARA_ng>
+collating-symbol  <scedilla>                                    |  collating-symbol  <ARA_hehd>
+collating-symbol  <htail>                                       |  collating-symbol  <ARA_ywha_waw>
+collating-symbol  <ktail>                                       |  collating-symbol  <ARA_ywha_u>
+collating-symbol  <ztail>                                       |  collating-symbol  <ARA_u>
+collating-symbol  <obar>                                        |  collating-symbol  <ARA_ywha_oe>
+collating-symbol  <udiaeresis>                                  |  collating-symbol  <ARA_oe>
+collating-element <h,> from "<U0068><U0321>"                    |  collating-symbol  <ARA_ywha_yu>
+collating-element <H,> from "<U0048><U0321>"                    |  collating-symbol  <ARA_yu>
+collating-element <k,> from "<U006B><U0321>"                    |  collating-symbol  <ARA_ve>
+collating-element <K,> from "<U004B><U0321>"                    |  collating-symbol  <ARA_ywha_e>
+collating-element <z,> from "<U007A><U0321>"                    |  collating-symbol  <ARA_e>
+collating-element <Z,> from "<U005A><U0321>"                    |  collating-symbol  <ARA_ywha_alma>
+collating-symbol  <ar_ae>                                       |  collating-symbol  <ARA_yeh>
+collating-symbol  <ar_ng>                                       |  collating-symbol  <ARA_ywha>
+collating-symbol  <ar_u>                                        |  collating-element <ara_h_alef> from "<U0626><U0627>" % ئا
+collating-symbol  <ar_oe>                                       |  collating-element <ara_h_ae>   from "<U0626><U06D5>" % ئە
+collating-symbol  <ar_yu>                                       |  collating-element <ara_h_waw>  from "<U0626><U0648>" % ئو
+collating-symbol  <ar_ve>                                       |  collating-element <ara_h_u>    from "<U0626><U06C7>" % ئۇ
+collating-symbol  <ar_e>                                        |  collating-element <ara_h_oe>   from "<U0626><U06C6>" % ئۆ
+collating-symbol  <ar_i>                                        |  collating-element <ara_h_yu>   from "<U0626><U06C8>" % ئۈ
+collating-symbol  <ar_y>                                        |  collating-element <ara_h_e>    from "<U0626><U06D0>" % ئې 
+reorder-after <a>                                               |  collating-element <ara_h_alma> from "<U0626><U0649>" % ئى
+<schwa>                                                         <
+reorder-after <c>                                               <
+<ccedilla>                                                      <
+reorder-after <g>                                               <
+<gh>                                                            <
+reorder-after <h>                                               <
+<htail>                                                         <
+reorder-after <k>                                               <
+<ktail>                                                         <
+reorder-after <n>                                               <
+<ng>                                                            <
+reorder-after <o>                                               <
+<obar>                                                          <
+reorder-after <s>                                               <
+<scedilla>                                                      <
+reorder-after <u>                                               <
+<udiaeresis>                                                    <
+reorder-after <z>                                               <
+<ztail>                                                         <
+reorder-after <U0061>                                           <
+<U0259>   <schwa>;<PCL>;<MIN>;IGNORE                            <
+<U00E4>   <schwa>;<REU>;<MIN>;IGNORE                            <
+reorder-after <U0041>                                           <
+<U018F>   <schwa>;<PCL>;<CAP>;IGNORE                            <
+<U00C4>   <schwa>;<REU>;<CAP>;IGNORE                            <
+reorder-after <U0063>                                           <
+<U00E7> <ccedilla>;<CDI>;<MIN>;IGNORE                           <
+reorder-after <U0043>                                           <
+<U00C7> <ccedilla>;<CDI>;<CAP>;IGNORE                           <
+reorder-after <U0067>                                           <
+<U01A3>   <gh>;<PCL>;<MIN>;IGNORE                               <
+<U011F>   <gh>;<BRE>;<MIN>;IGNORE                               <
+reorder-after <U0047>                                           <
+<U01A2>   <gh>;<PCL>;<CAP>;IGNORE                               <
+<U011E>   <gh>;<BRE>;<CAP>;IGNORE                               <
+reorder-after <U0068>                                           <
+<U2C68> <htail>;<PCL>;<MIN>;IGNORE                              <
+<h,>    <htail>;<PCL>;<MIN>;IGNORE                              <
+reorder-after <U0048>                                           <
+<U2C67> <htail>;<PCL>;<CAP>;IGNORE                              <
+<H,>    <htail>;<PCL>;<CAP>;IGNORE                              <
+reorder-after <U006B>                                           <
+<U2C6A> <ktail>;<PCL>;<MIN>;IGNORE                              <
+<k,>    <ktail>;<PCL>;<MIN>;IGNORE                              <
+reorder-after <U004B>                                           <
+<U2C69> <ktail>;<PCL>;<CAP>;IGNORE                              <
+<K,>    <ktail>;<PCL>;<CAP>;IGNORE                              <
+reorder-after <U006E>                                           <
+<U00F1> <ng>;<TIL>;<MIN>;IGNORE                                 <
+reorder-after <U004E>                                           <
+<U00D1> <ng>;<TIL>;<CAP>;IGNORE                                 <
+reorder-after <U006F>                                           <
+<U0275> <obar>;<PCL>;<MIN>;IGNORE                               <
+<U00F6> <obar>;<REU>;<MIN>;IGNORE                               <
+reorder-after <U004F>                                           <
+<U019F> <obar>;<PCL>;<CAP>;IGNORE                               <
+<U00D6> <obar>;<REU>;<CAP>;IGNORE                               <
+reorder-after <U0073>                                           <
+<U015F> <scedilla>;<CDI>;<MIN>;IGNORE                           <
+reorder-after <U0053>                                           <
+<U015E> <scedilla>;<CDI>;<CAP>;IGNORE                           <
+reorder-after <U0075>                                           <
+<U00FC> <udiaeresis>;<REU>;<MIN>;IGNORE                         <
+reorder-after <U0055>                                           <
+<U00DC> <udiaeresis>;<REU>;<CAP>;IGNORE                         <
+reorder-after <U007A>                                           <
+<U2C6C> <ztail>;<PCL>;<MIN>;IGNORE                              <
+<z,>    <ztail>;<PCL>;<MIN>;IGNORE                              <
+<U0225> <ztail>;<PCL>;<MIN>;IGNORE                              <
+reorder-after <U005A>                                           <
+<U2C6B> <ztail>;<PCL>;<CAP>;IGNORE                              <
+<Z,>    <ztail>;<PCL>;<CAP>;IGNORE                              <
+<U0224> <ztail>;<PCL>;<CAP>;IGNORE                              <
+<ar_ae>                                                         |  <ARA_ywha_alef>
+reorder-after <keheh>                                           |  <alef>
+<ar_ng>                                                         |  <ARA_ywha_ae>
+                                                                >  <ARA_ae>
+                                                                >  reorder-after <gaf>
+                                                                >  <ARA_ng>
+                                                                >  reorder-after <noon>
+                                                                >  <ARA_hehd>
+<ar_u>                                                          |  <ARA_ywha_waw>
+<ar_oe>                                                         |  <waw>
+<ar_yu>                                                         |  <ARA_ywha_u>
+<ar_ve>                                                         |  <ARA_u>
+<ar_e>                                                          |  <ARA_ywha_oe>
+<ar_i>                                                          |  <ARA_oe>
+<ar_y>                                                          |  <ARA_ywha_yu>
+reorder-after <U0627>                                           |  <ARA_yu>
+<U06D5> <ar_ae>;<BAS>;<MIN>;IGNORE                              |  <ARA_ve>
+reorder-after <U06A9>                                           |  <ARA_ywha_e>
+<U06AD> <ar_ng>;<BAS>;<MIN>;IGNORE                              |  <ARA_e>
+reorder-after <U0648>                                           |  <ARA_ywha_alma>
+<U06C7> <ar_u>;<BAS>;<MIN>;IGNORE                               |  <alef_maksura>
+<U06C6> <ar_oe>;<BAS>;<MIN>;IGNORE                              |  <ARA_yeh>
+<U06C8> <ar_yu>;<BAS>;<MIN>;IGNORE                              |  <ARA_ywha>
+<U06CB> <ar_ve>;<BAS>;<MIN>;IGNORE                              |  reorder-after   <U0627>
+<U06D0> <ar_e>;<BAS>;<MIN>;IGNORE                               |  <ara_h_alef>    <ARA_ywha_alef>;<BAS>;<MIN>;IGNORE
+<U06CC> <ar_i>;<BAS>;<MIN>;IGNORE                               |  <U0627>         <alef>;<BAS>;<MIN>;IGNORE
+<U064A> <ar_y>;<BAS>;<MIN>;IGNORE                               |  <ara_h_ae>      <ARA_ywha_ae>;<BAS>;<MIN>;IGNORE
+                                                                >  <U06D5>         <ARA_ae>;<BAS>;<MIN>;IGNORE
+                                                                >  reorder-after   <U06AF>
+                                                                >  <U06AD>         <ARA_ng>;<BAS>;<MIN>;IGNORE
+                                                                >  reorder-after   <U0646>
+                                                                >  <U06BE>         <ARA_hehd>;<BAS>;<MIN>;IGNORE
+                                                                >  reorder-after   <U0648>
+                                                                >  <ara_ywha_waw>  <ARA_ywha_waw>;<BAS>;<MIN>;IGNORE
+                                                                >  <U0648>         <waw>;<BAS>;<MIN>;IGNORE
+                                                                >  <ara_ywha_u>    <ARA_ywha_u>;<BAS>;<MIN>;IGNORE
+                                                                >  <U06C7>         <ARA_u>;<BAS>;<MIN>;IGNORE
+                                                                >  <ara_ywha_oe>   <ARA_ywha_oe>;<BAS>;<MIN>;IGNORE
+                                                                >  <U06C6>         <ARA_oe>;<BAS>;<MIN>;IGNORE
+                                                                >  <ara_ywha_yu>   <ARA_ywha_yu>;<BAS>;<MIN>;IGNORE
+                                                                >  <U06C8>         <ARA_yu>;<BAS>;<MIN>;IGNORE
+                                                                >  <U06CB>         <ARA_ve>;<BAS>;<MIN>;IGNORE
+                                                                >  <ara_ywha_e>    <ARA_ywha_e>;<BAS>;<MIN>;IGNORE
+                                                                >  <U06D0>         <ARA_e>;<BAS>;<MIN>;IGNORE
+                                                                >  <ara_ywha_alma> <ARA_ywha_alma>;<BAS>;<MIN>;IGNORE
+                                                                >  <U0649>         <alef_maksura>;<BAS>;<MIN>;IGNORE
+                                                                >  <U064A>         <ARA_yeh>;<BAS>;<MIN>;IGNORE
+                                                                >  <U0626>         <ARA_ywha>;<BAS>;<MIN>;IGNORE
+Only in _ubuntu/ami-024a2614/LC_COLLATE: ug_CN@latin
+Only in _ubuntu/ami-024a2614/LC_COLLATE: unm_US

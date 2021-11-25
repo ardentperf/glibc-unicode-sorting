@@ -1,0 +1,187 @@
+Only in _ubuntu/ami-10eadd6a/LC_COLLATE: agr_PE
+Only in _ubuntu/ami-10eadd6a/LC_COLLATE: az_IR
+Only in _ubuntu/ami-10eadd6a/LC_COLLATE: bi_VU
+Only in _ubuntu/ami-10eadd6a/LC_COLLATE: hif_FJ
+diff -yt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/hu_HU _ubuntu/ami-10eadd6a/LC_COLLATE/hu_HU
+                                                                >  define DIACRIT_FORWARD
+collating-symbol  <c_or_cs>                                     |  collating-symbol  <SINGLE-OR-COMPOUND>
+                                                                >  collating-symbol  <COMPOUND>
+collating-symbol  <d_or_dz>                                     <
+collating-symbol  <d_or_dzs>                                    <
+collating-symbol  <g_or_gy>                                     <
+collating-symbol  <l_or_ly>                                     <
+collating-symbol  <n_or_ny>                                     <
+collating-symbol  <s_or_sz>                                     <
+collating-symbol  <t_or_ty>                                     <
+collating-symbol  <z_or_zs>                                     <
+                                                                >  collating-symbol <CAP-CAP>
+                                                                >  collating-symbol <MIN-MIN>
+                                                                >  <MIN-MIN>
+                                                                >  <CAP-CAP>
+<c_or_cs>                                                       <
+<d_or_dz>                                                       <
+<d_or_dzs>                                                      <
+<g_or_gy>                                                       <
+<l_or_ly>                                                       <
+<n_or_ny>                                                       <
+<s_or_sz>                                                       <
+<t_or_ty>                                                       <
+<z_or_zs>                                                       <
+                                                                >  reorder-after <BAS>
+                                                                >  <SINGLE-OR-COMPOUND>
+                                                                >  <COMPOUND>
+                                                                >  reorder-after <BAS>
+                                                                >  <ACA>
+                                                                >  <REU>
+                                                                >  <DAC>
+<C-S>           <cs>;<BAS>;<CAP>;IGNORE                         |  <C-S>           <cs>;<COMPOUND>;<CAP-CAP>;IGNORE
+<C-s>           <cs>;<BAS>;<CAP-MIN>;IGNORE                     |  <C-s>           <cs>;<COMPOUND>;<CAP-MIN>;IGNORE
+<C-C-S>         "<c_or_cs><cs>";"<BAS><BAS>";"<CAP><CAP>";IGNOR |  <C-C-S>         "<cs><cs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<C-C-s>         "<c_or_cs><cs>";"<BAS><BAS>";"<CAP><CAP-MIN>";I |  <C-C-s>         "<cs><cs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<C-c-S>         "<c_or_cs><cs>";"<BAS><BAS>";"<CAP><MIN-CAP>";I |  <C-c-S>         "<cs><cs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<C-c-s>         "<c_or_cs><cs>";"<BAS><BAS>";"<CAP><MIN>";IGNOR |  <C-c-s>         "<cs><cs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<c-S>           <cs>;<BAS>;<MIN-CAP>;IGNORE                     |  <c-S>           <cs>;<COMPOUND>;<MIN-CAP>;IGNORE
+<c-s>           <cs>;<BAS>;<MIN>;IGNORE                         |  <c-s>           <cs>;<COMPOUND>;<MIN-MIN>;IGNORE
+<c-C-S>         "<c_or_cs><cs>";"<BAS><BAS>";"<MIN><CAP>";IGNOR |  <c-C-S>         "<cs><cs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<c-C-s>         "<c_or_cs><cs>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <c-C-s>         "<cs><cs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<c-c-S>         "<c_or_cs><cs>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <c-c-S>         "<cs><cs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<c-c-s>         "<c_or_cs><cs>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <c-c-s>         "<cs><cs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<D-Z>           <dz>;<BAS>;<CAP>;IGNORE                         |  <D-Z>           <dz>;<COMPOUND>;<CAP-CAP>;IGNORE
+<D-z>           <dz>;<BAS>;<CAP-MIN>;IGNORE                     |  <D-z>           <dz>;<COMPOUND>;<CAP-MIN>;IGNORE
+<D-D-Z>         "<d_or_dz><dz>";"<BAS><BAS>";"<CAP><CAP>";IGNOR |  <D-D-Z>         "<dz><dz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<D-D-z>         "<d_or_dz><dz>";"<BAS><BAS>";"<CAP><CAP-MIN>";I |  <D-D-z>         "<dz><dz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<D-d-Z>         "<d_or_dz><dz>";"<BAS><BAS>";"<CAP><MIN-CAP>";I |  <D-d-Z>         "<dz><dz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<D-d-z>         "<d_or_dz><dz>";"<BAS><BAS>";"<CAP><MIN>";IGNOR |  <D-d-z>         "<dz><dz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<d-Z>           <dz>;<BAS>;<MIN-CAP>;IGNORE                     |  <d-Z>           <dz>;<COMPOUND>;<MIN-CAP>;IGNORE
+<d-z>           <dz>;<BAS>;<MIN>;IGNORE                         |  <d-z>           <dz>;<COMPOUND>;<MIN-MIN>;IGNORE
+<d-D-Z>         "<d_or_dz><dz>";"<BAS><BAS>";"<MIN><CAP>";IGNOR |  <d-D-Z>         "<dz><dz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<d-D-z>         "<d_or_dz><dz>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <d-D-z>         "<dz><dz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<d-d-Z>         "<d_or_dz><dz>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <d-d-Z>         "<dz><dz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<d-d-z>         "<d_or_dz><dz>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <d-d-z>         "<dz><dz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<D-Z-S>         <dzs>;<BAS>;<CAP-CAP-CAP>;IGNORE                |  <D-Z-S>         <dzs>;<COMPOUND>;<CAP-CAP-CAP>;IGNORE
+<D-Z-s>         <dzs>;<BAS>;<CAP-CAP-MIN>;IGNORE                |  <D-Z-s>         <dzs>;<COMPOUND>;<CAP-CAP-MIN>;IGNORE
+<D-z-S>         <dzs>;<BAS>;<CAP-MIN-CAP>;IGNORE                |  <D-z-S>         <dzs>;<COMPOUND>;<CAP-MIN-CAP>;IGNORE
+<D-z-s>         <dzs>;<BAS>;<CAP-MIN-MIN>;IGNORE                |  <D-z-s>         <dzs>;<COMPOUND>;<CAP-MIN-MIN>;IGNORE
+<D-D-Z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-C |  <D-D-Z-S>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<D-D-Z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-M |  <D-D-Z-s>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<D-D-z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-C |  <D-D-z-S>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<D-D-z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-M |  <D-D-z-s>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<D-d-Z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-C |  <D-d-Z-S>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<D-d-Z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-CAP-M |  <D-d-Z-s>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<D-d-z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-C |  <D-d-z-S>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<D-d-z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<CAP><CAP-MIN-M |  <D-d-z-s>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<d-Z-S>         <dzs>;<BAS>;<MIN-CAP-CAP>;IGNORE                |  <d-Z-S>         <dzs>;<COMPOUND>;<MIN-CAP-CAP>;IGNORE
+<d-Z-s>         <dzs>;<BAS>;<MIN-CAP-MIN>;IGNORE                |  <d-Z-s>         <dzs>;<COMPOUND>;<MIN-CAP-MIN>;IGNORE
+<d-z-S>         <dzs>;<BAS>;<MIN-MIN-CAP>;IGNORE                |  <d-z-S>         <dzs>;<COMPOUND>;<MIN-MIN-CAP>;IGNORE
+<d-z-s>         <dzs>;<BAS>;<MIN-MIN-MIN>;IGNORE                |  <d-z-s>         <dzs>;<COMPOUND>;<MIN-MIN-MIN>;IGNORE
+<d-D-Z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-C |  <d-D-Z-S>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<d-D-Z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-M |  <d-D-Z-s>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<d-D-z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-C |  <d-D-z-S>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<d-D-z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-M |  <d-D-z-s>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<d-d-Z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-C |  <d-d-Z-S>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<d-d-Z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-CAP-M |  <d-d-Z-s>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<d-d-z-S>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-C |  <d-d-z-S>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<d-d-z-s>       "<d_or_dzs><dzs>";"<BAS><BAS>";"<MIN><CAP-MIN-M |  <d-d-z-s>       "<dzs><dzs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"
+<G-Y>           <gy>;<BAS>;<CAP>;IGNORE                         |  <G-Y>           <gy>;<COMPOUND>;<CAP-CAP>;IGNORE
+<G-y>           <gy>;<BAS>;<CAP-MIN>;IGNORE                     |  <G-y>           <gy>;<COMPOUND>;<CAP-MIN>;IGNORE
+<G-G-Y>         "<g_or_gy><gy>";"<BAS><BAS>";"<CAP><CAP>";IGNOR |  <G-G-Y>         "<gy><gy>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<G-G-y>         "<g_or_gy><gy>";"<BAS><BAS>";"<CAP><CAP-MIN>";I |  <G-G-y>         "<gy><gy>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<G-g-Y>         "<g_or_gy><gy>";"<BAS><BAS>";"<CAP><MIN-CAP>";I |  <G-g-Y>         "<gy><gy>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<G-g-y>         "<g_or_gy><gy>";"<BAS><BAS>";"<CAP><MIN>";IGNOR |  <G-g-y>         "<gy><gy>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<g-y>           <gy>;<BAS>;<MIN>;IGNORE                         |  <g-Y>           <gy>;<COMPOUND>;<MIN-CAP>;IGNORE
+<g-Y>           <gy>;<BAS>;<MIN-CAP>;IGNORE                     |  <g-y>           <gy>;<COMPOUND>;<MIN-MIN>;IGNORE
+<g-G-Y>         "<g_or_gy><gy>";"<BAS><BAS>";"<MIN><CAP>";IGNOR |  <g-G-Y>         "<gy><gy>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<g-G-y>         "<g_or_gy><gy>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <g-G-y>         "<gy><gy>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<g-g-Y>         "<g_or_gy><gy>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <g-g-Y>         "<gy><gy>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<g-g-y>         "<g_or_gy><gy>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <g-g-y>         "<gy><gy>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<L-Y>           <ly>;<BAS>;<CAP>;IGNORE                         |  <L-Y>           <ly>;<COMPOUND>;<CAP-CAP>;IGNORE
+<L-y>           <ly>;<BAS>;<CAP-MIN>;IGNORE                     |  <L-y>           <ly>;<COMPOUND>;<CAP-MIN>;IGNORE
+<L-L-Y>         "<l_or_ly><ly>";"<BAS><BAS>";"<CAP><CAP>";IGNOR |  <L-L-Y>         "<ly><ly>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<L-L-y>         "<l_or_ly><ly>";"<BAS><BAS>";"<CAP><CAP-MIN>";I |  <L-L-y>         "<ly><ly>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<L-l-Y>         "<l_or_ly><ly>";"<BAS><BAS>";"<CAP><MIN-CAP>";I |  <L-l-Y>         "<ly><ly>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<L-l-y>         "<l_or_ly><ly>";"<BAS><BAS>";"<CAP><MIN>";IGNOR |  <L-l-y>         "<ly><ly>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<l-y>           <ly>;<BAS>;<MIN>;IGNORE                         |  <l-Y>           <ly>;<COMPOUND>;<MIN-CAP>;IGNORE
+<l-Y>           <ly>;<BAS>;<MIN-CAP>;IGNORE                     |  <l-y>           <ly>;<COMPOUND>;<MIN-MIN>;IGNORE
+<l-L-Y>         "<l_or_ly><ly>";"<BAS><BAS>";"<MIN><CAP>";IGNOR |  <l-L-Y>         "<ly><ly>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<l-L-y>         "<l_or_ly><ly>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <l-L-y>         "<ly><ly>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<l-l-Y>         "<l_or_ly><ly>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <l-l-Y>         "<ly><ly>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<l-l-y>         "<l_or_ly><ly>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <l-l-y>         "<ly><ly>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<N-Y>           <ny>;<BAS>;<CAP>;IGNORE                         |  <N-Y>           <ny>;<COMPOUND>;<CAP-CAP>;IGNORE
+<N-y>           <ny>;<BAS>;<CAP-MIN>;IGNORE                     |  <N-y>           <ny>;<COMPOUND>;<CAP-MIN>;IGNORE
+<N-N-Y>         "<n_or_ny><ny>";"<BAS><BAS>";"<CAP><CAP>";IGNOR |  <N-N-Y>         "<ny><ny>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<N-N-y>         "<n_or_ny><ny>";"<BAS><BAS>";"<CAP><CAP-MIN>";I |  <N-N-y>         "<ny><ny>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<N-n-Y>         "<n_or_ny><ny>";"<BAS><BAS>";"<CAP><MIN-CAP>";I |  <N-n-Y>         "<ny><ny>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<N-n-y>         "<n_or_ny><ny>";"<BAS><BAS>";"<CAP><MIN>";IGNOR |  <N-n-y>         "<ny><ny>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<n-y>           <ny>;<BAS>;<MIN>;IGNORE                         |  <n-Y>           <ny>;<COMPOUND>;<MIN-CAP>;IGNORE
+<n-Y>           <ny>;<BAS>;<MIN-CAP>;IGNORE                     |  <n-y>           <ny>;<COMPOUND>;<MIN-MIN>;IGNORE
+<n-N-Y>         "<n_or_ny><ny>";"<BAS><BAS>";"<MIN><CAP>";IGNOR |  <n-N-Y>         "<ny><ny>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<n-N-y>         "<n_or_ny><ny>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <n-N-y>         "<ny><ny>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<n-n-Y>         "<n_or_ny><ny>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <n-n-Y>         "<ny><ny>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<n-n-y>         "<n_or_ny><ny>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <n-n-y>         "<ny><ny>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<S-Z>           <sz>;<BAS>;<CAP>;IGNORE                         |  <S-Z>           <sz>;<COMPOUND>;<CAP-CAP>;IGNORE
+<S-z>           <sz>;<BAS>;<CAP-MIN>;IGNORE                     |  <S-z>           <sz>;<COMPOUND>;<CAP-MIN>;IGNORE
+<S-S-Z>         "<s_or_sz><sz>";"<BAS><BAS>";"<CAP><CAP>";IGNOR |  <S-S-Z>         "<sz><sz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<S-S-z>         "<s_or_sz><sz>";"<BAS><BAS>";"<CAP><CAP-MIN>";I |  <S-S-z>         "<sz><sz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<S-s-Z>         "<s_or_sz><sz>";"<BAS><BAS>";"<CAP><MIN-CAP>";I |  <S-s-Z>         "<sz><sz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<S-s-z>         "<s_or_sz><sz>";"<BAS><BAS>";"<CAP><MIN>";IGNOR |  <S-s-z>         "<sz><sz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<s-Z>           <sz>;<BAS>;<MIN-CAP>;IGNORE                     |  <s-Z>           <sz>;<COMPOUND>;<MIN-CAP>;IGNORE
+<s-z>           <sz>;<BAS>;<MIN>;IGNORE                         |  <s-z>           <sz>;<COMPOUND>;<MIN-MIN>;IGNORE
+<s-S-Z>         "<s_or_sz><sz>";"<BAS><BAS>";"<MIN><CAP>";IGNOR |  <s-S-Z>         "<sz><sz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<s-S-z>         "<s_or_sz><sz>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <s-S-z>         "<sz><sz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<s-s-Z>         "<s_or_sz><sz>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <s-s-Z>         "<sz><sz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<s-s-z>         "<s_or_sz><sz>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <s-s-z>         "<sz><sz>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<T-Y>           <ty>;<BAS>;<CAP>;IGNORE                         |  <T-Y>           <ty>;<COMPOUND>;<CAP-CAP>;IGNORE
+<T-y>           <ty>;<BAS>;<CAP-MIN>;IGNORE                     |  <T-y>           <ty>;<COMPOUND>;<CAP-MIN>;IGNORE
+<T-T-Y>         "<t_or_ty><ty>";"<BAS><BAS>";"<CAP><CAP>";IGNOR |  <T-T-Y>         "<ty><ty>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<T-T-y>         "<t_or_ty><ty>";"<BAS><BAS>";"<CAP><CAP-MIN>";I |  <T-T-y>         "<ty><ty>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<T-t-Y>         "<t_or_ty><ty>";"<BAS><BAS>";"<CAP><MIN-CAP>";I |  <T-t-Y>         "<ty><ty>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<T-t-y>         "<t_or_ty><ty>";"<BAS><BAS>";"<CAP><MIN>";IGNOR |  <T-t-y>         "<ty><ty>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<t-Y>           <ty>;<BAS>;<MIN-CAP>;IGNORE                     |  <t-Y>           <ty>;<COMPOUND>;<MIN-CAP>;IGNORE
+<t-y>           <ty>;<BAS>;<MIN>;IGNORE                         |  <t-y>           <ty>;<COMPOUND>;<MIN-MIN>;IGNORE
+<t-T-Y>         "<t_or_ty><ty>";"<BAS><BAS>";"<MIN><CAP>";IGNOR |  <t-T-Y>         "<ty><ty>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<t-T-y>         "<t_or_ty><ty>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <t-T-y>         "<ty><ty>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<t-t-Y>         "<t_or_ty><ty>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <t-t-Y>         "<ty><ty>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<t-t-y>         "<t_or_ty><ty>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <t-t-y>         "<ty><ty>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<Z-S>           <zs>;<BAS>;<CAP>;IGNORE                         |  <Z-S>           <zs>;<COMPOUND>;<CAP-CAP>;IGNORE
+<Z-s>           <zs>;<BAS>;<CAP-MIN>;IGNORE                     |  <Z-s>           <zs>;<COMPOUND>;<CAP-MIN>;IGNORE
+<Z-Z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<CAP><CAP>";IGNOR |  <Z-Z-S>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<Z-Z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<CAP><CAP-MIN>";I |  <Z-Z-s>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<Z-z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<CAP><MIN-CAP>";I |  <Z-z-S>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<Z-z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<CAP><MIN>";IGNOR |  <Z-z-s>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<C
+<z-S>           <zs>;<BAS>;<MIN-CAP>;IGNORE                     |  <z-S>           <zs>;<COMPOUND>;<MIN-CAP>;IGNORE
+<z-s>           <zs>;<BAS>;<MIN>;IGNORE                         |  <z-s>           <zs>;<COMPOUND>;<MIN-MIN>;IGNORE
+<z-Z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><CAP>";IGNOR |  <z-Z-S>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<z-Z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <z-Z-s>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<z-z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <z-z-S>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+<z-z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <z-z-s>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
+diff -yt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/iso14651_t1_common _ubuntu/ami-10eadd6a/LC_COLLATE/iso14651_t1_common
+collating-element <ml-s> from "<U0D38><U0D4D>"                  <
+                                                                >  collating-element <ml-s> from "<U0D38><U0D4D>"
+collating-symbol <ml-sha>                                       <
+                                                                >  collating-symbol <ml-sha>
+                                                                >  collating-symbol <ml-atomic-chillu-k>
+                                                                >  collating-symbol <ml-atomic-chillu-n>
+                                                                >  collating-symbol <ml-atomic-chillu-nn>
+                                                                >  collating-symbol <ml-atomic-chillu-l>
+                                                                >  collating-symbol <ml-atomic-chillu-ll>
+                                                                >  collating-symbol <ml-atomic-chillu-r>
+                                                                >  <ml-atomic-chillu-k>
+                                                                >  <ml-atomic-chillu-n>
+                                                                >  <ml-atomic-chillu-nn>
+                                                                >  <ml-atomic-chillu-l>
+                                                                >  <ml-atomic-chillu-ll>
+                                                                >  <ml-atomic-chillu-r>
+                                                                >  <U0D7F> "<ml-ka><ml-virama>";<ml-atomic-chillu-k>;<MIN>;IGNORE
+                                                                >  <U0D7A> "<ml-nna><ml-virama>";<ml-atomic-chillu-nn>;<MIN>;IGNOR
+                                                                >  <U0D7B> "<ml-na><ml-virama>";<ml-atomic-chillu-n>;<MIN>;IGNORE
+                                                                >  <U0D7C> "<ml-ra><ml-virama>";<ml-atomic-chillu-r>;<MIN>;IGNORE
+                                                                >  <U0D7D> "<ml-la><ml-virama>";<ml-atomic-chillu-l>;<MIN>;IGNORE
+<U0D37> "<ml-ssa><ml-virama><mlvw-shorta>";<BAS>;<MIN>;IGNORE   |  <U0D36> "<ml-ssa><ml-virama><mlvw-shorta>";<BAS>;<MIN>;IGNORE
+<U0D36> "<ml-sha><ml-virama><mlvw-shorta>";<BAS>;<MIN>;IGNORE   |  <U0D37> "<ml-sha><ml-virama><mlvw-shorta>";<BAS>;<MIN>;IGNORE
+                                                                >  <U0D7E> "<ml-lla><ml-virama>";<ml-atomic-chillu-ll>;<MIN>;IGNOR
+Only in _ubuntu/ami-10eadd6a/LC_COLLATE: mai_NP
+Only in _ubuntu/ami-10eadd6a/LC_COLLATE: sm_WS
+diff -yt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/the_NP _ubuntu/ami-10eadd6a/LC_COLLATE/the_NP
+copy "iso14651_t1"                                              |  copy "ne_NP"
+Only in _ubuntu/ami-10eadd6a/LC_COLLATE: to_TO
+Only in _ubuntu/ami-10eadd6a/LC_COLLATE: tpi_PG

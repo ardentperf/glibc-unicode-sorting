@@ -1,0 +1,3 @@
+diff -yt --suppress-common-lines _ubuntu/ami-02bd521ab3d72d1c6/LC_COLLATE/sv_SE _ubuntu/ami-00482f016b2410dc8/LC_COLLATE/sv_SE
+<U0057> <S0076>;"<BASE><VRNT1>";"<CAP><MIN>";IGNORE % W         <
+<U0077> <S0076>;"<BASE><VRNT1>";"<MIN><MIN>";IGNORE % w         <
