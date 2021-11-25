@@ -22,56 +22,6 @@ The Operating System locale data files are compared directly. The results show
 the total number of lines in the data files that are changed, and which locales
 contain the changes.
 
-## Caveats
-
-This is fairly thorough but may not be completely comprehensive. Unicode
-collation includes a capability to change the sort order based on combinations
-of characters. For example, some languages have characters which modify the
-letter before or after that letter. Nonetheless, while not comprehensive, this
-is still helpful because it gives a little more perspective on how collation is
-changing over multiple versions of glibc.
-
-Example:
-```
-$ dpkg -l libc6
-Desired=Unknown/Install/Remove/Purge/Hold
-| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
-|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
-||/ Name                   Version          Architecture     Description
-+++-======================-================-================-==================================================
-ii  libc6:amd64            2.27-3ubuntu1.4  amd64            GNU C Library: Shared libraries
-
-$ ( echo 1-; echo 11; echo 1-1; echo 111; echo 1a; echo 1b; echo 1-aa; echo 1-a) | LC_COLLATE=en_US.UTF-8 sort
-1-
-11
-1-1
-111
-1a
-1-a
-1-aa
-1b
-```
-
-From a different version:
-```
-$ dpkg -l libc6
-Desired=Unknown/Install/Remove/Purge/Hold
-| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
-|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
-||/ Name                   Version          Architecture     Description
-+++-======================-================-================-==================================================
-ii  libc6:amd64            2.28-0ubuntu1    amd64            GNU C Library: Shared libraries
-
-$ ( echo 1-; echo 11; echo 1-1; echo 111; echo 1a; echo 1b; echo 1-aa; echo 1-a) | LC_COLLATE=en_US.UTF-8 sort
-1-
-1-1
-11
-111
-1-a
-1a
-1-aa
-1b
-```
 
 ## Results
 
@@ -127,6 +77,58 @@ D🍷D
 Note that the string patterns are listed above in correctly sorted order. This
 alone should give some sense about the sophistication of collation rules, and
 the difficulty of writing a test to catch changes.
+
+
+## Caveats
+
+This is fairly thorough but may not be completely comprehensive. Unicode
+collation includes a capability to change the sort order based on combinations
+of characters. For example, some languages have characters which modify the
+letter before or after that letter. Nonetheless, while not comprehensive, this
+is still helpful because it gives a little more perspective on how collation is
+changing over multiple versions of glibc.
+
+Example:
+```
+$ dpkg -l libc6
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                   Version          Architecture     Description
++++-======================-================-================-==================================================
+ii  libc6:amd64            2.27-3ubuntu1.4  amd64            GNU C Library: Shared libraries
+
+$ ( echo 1-; echo 11; echo 1-1; echo 111; echo 1a; echo 1b; echo 1-aa; echo 1-a) | LC_COLLATE=en_US.UTF-8 sort
+1-
+11
+1-1
+111
+1a
+1-a
+1-aa
+1b
+```
+
+From a different version:
+```
+$ dpkg -l libc6
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                   Version          Architecture     Description
++++-======================-================-================-==================================================
+ii  libc6:amd64            2.28-0ubuntu1    amd64            GNU C Library: Shared libraries
+
+$ ( echo 1-; echo 11; echo 1-1; echo 111; echo 1a; echo 1b; echo 1-aa; echo 1-a) | LC_COLLATE=en_US.UTF-8 sort
+1-
+1-1
+11
+111
+1-a
+1a
+1-aa
+1b
+```
 
 
 ## Detailed Instructions
