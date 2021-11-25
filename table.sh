@@ -56,7 +56,7 @@ do
     LC_CHANGECOUNT_STR="0"; (( LC_CHANGECOUNT > 0 )) && LC_CHANGECOUNT_STR="[$LC_CHANGECOUNT]($LC_CHANGELIST)"
     (( `stat --printf="%s" $CHANGELIST` > 50000000 )) && echo "File too large (over 50 GB) - removed to preserve version control sanity" >$CHANGELIST
   fi
-  echo "| $GLIBC_VERS | $CHANGECOUNT_STR | $(<blocks.tmp) | $LC_CHANGECOUNT_STR | $(paste -sd, langs.tmp) | $OS_VERS | $AMI |"
+  echo "| $GLIBC_VERS | $CHANGECOUNT_STR | $(<blocks.tmp) | $LC_CHANGECOUNT_STR | $(paste -sd, langs.tmp) | $OS_VERS | [$AMI]($PREFIX/$AMI) |"
   PREV_AMI="$AMI"
   PREV_GLIBC_VERS="$GLIBC_VERS"
 done 
