@@ -1,2 +1,0 @@
-Only in _ubuntu/ami-002f0f6a/LC_COLLATE: ckb_IQ
-Only in _ubuntu/ami-002f0f6a/LC_COLLATE: ln_CD
