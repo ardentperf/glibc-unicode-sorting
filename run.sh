@@ -3,18 +3,23 @@ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 date
 cd $(dirname $0)
 pwd
-dpkg -l libc6 locales
+which dpkg && dpkg -l libc6 locales
+which rpm && rpm -qa|grep -E '(glibc|langpack)'
 SOURCE_AMI=$(curl -s http://169.254.169.254/latest/meta-data/ami-id)
 OS_VERS=$(cat /etc/issue)
 UNICODE_VERS="14"
-GLIBC_VERS="$(dpkg -l libc6|awk '/libc6/{print$3}')"
+which dpkg && GLIBC_VERS="$(dpkg -l libc6|awk '/libc6/{print$3}')"
+which rpm && GLIBC_VERS="$(rpm -q glibc --queryformat '%{version}-%{release}')"
+[ -f /etc/os-release ] && cat /etc/os-release
+[ -f /etc/system-release ] && cat /etc/system-release
+[ -f /etc/system-release-cpe ] && cat /etc/system-release-cpe
 
 time curl -kO https://www.unicode.org/Public/${UNICODE_VERS}.0.0/ucd/UnicodeData.txt
 
 time perl -naF';' -CO -e'
-  sub pr3 {printf("%s        %08d\n",$_[1],$_[0])}
+  sub pr3 {printf("%s%08x\n",$_[1],$_[0])}
   sub pr2 {pr3($_[0],"B".$_[1]."B");pr3($_[0],"D".$_[1]."D");pr3($_[0],$_[1]);pr3($_[0],$_[1]."B");pr3($_[0],$_[1]."BB");pr3($_[0],$_[1]."D");pr3($_[0],$_[1]."DD")}
-  sub pr {pr2($_[0],$_[1].chr($_[0]));pr2($_[0],$_[1].chr($_[0]).chr($_[0]))}
+  sub pr {pr2($_[0],$_[1].chr($_[0]));pr2($_[0],$_[1].chr($_[0]).chr($_[0]));pr3($_[0],"1B".chr($_[0])."B");pr3($_[0],"1B-".chr($_[0])."B")}
   if(/<control>/){next}; # skip control characters
   if($F[2] eq "Cs"){next}; # skip surrogates
   if(/ First>/){$fi=hex("0x".$F[0]);next}; # generate blocks

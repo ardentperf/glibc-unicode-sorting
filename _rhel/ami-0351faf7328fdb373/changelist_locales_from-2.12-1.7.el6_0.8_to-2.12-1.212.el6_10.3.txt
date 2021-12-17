@@ -1,0 +1,43 @@
+diff -byt --suppress-common-lines _rhel/ami-09680160/LC_COLLATE/fi_FI _rhel/ami-0351faf7328fdb373/LC_COLLATE/fi_FI
+reorder-after <U005A>                                           |  reorder-after <U007A>
+<U00C5> <a-ring>;<BAS>;<CAP>;IGNORE                             <
+<U01FA> <a-ring>;<ACA>;<CAP>;IGNORE                             <
+<U00C4> <a-diaerisis>;<BAS>;<CAP>;IGNORE                        <
+<U00C6> <a-diaerisis>;<REU>;<CAP>;IGNORE                        <
+<U01FC> <a-diaerisis>;<U01FD>;<CAP>;IGNORE                      <
+<U01E2> <a-diaerisis>;<MAC>;<CAP>;IGNORE                        <
+<U00D6> <o-diaerisis>;<BAS>;<CAP>;IGNORE                        <
+<U00D8> <o-diaerisis>;<U00D8>;<CAP>;IGNORE                      <
+<U01FE> <o-diaerisis>;<U01FF>;<CAP>;IGNORE                      <
+                                                                >  reorder-after <U005A>
+                                                                >  <U00C5> <a-ring>;<BAS>;<CAP>;IGNORE
+                                                                >  <U01FA> <a-ring>;<ACA>;<CAP>;IGNORE
+                                                                >  <U00C4> <a-diaerisis>;<BAS>;<CAP>;IGNORE
+                                                                >  <U00C6> <a-diaerisis>;<REU>;<CAP>;IGNORE
+                                                                >  <U01FC> <a-diaerisis>;<U01FD>;<CAP>;IGNORE
+                                                                >  <U01E2> <a-diaerisis>;<MAC>;<CAP>;IGNORE
+                                                                >  <U00D6> <o-diaerisis>;<BAS>;<CAP>;IGNORE
+                                                                >  <U00D8> <o-diaerisis>;<U00D8>;<CAP>;IGNORE
+                                                                >  <U01FE> <o-diaerisis>;<U01FF>;<CAP>;IGNORE
+reorder-after <U016A>                                           |  reorder-after <U016B>
+<U0056> <v>;<U0056>;<BAS>;<CAP>                                 <
+<U1E7C> <v>;<U0056>;<TIL>;<CAP>                                 <
+<U0057> <w>;<U0057>;<BAS>;<CAP>                                 <
+<U1E82> <w>;<U0057>;<ACA>;<CAP>                                 <
+<U1E80> <w>;<U0057>;<GRA>;<CAP>                                 <
+<U0174> <w>;<U0057>;<CIR>;<CAP>                                 <
+<U1E84> <w>;<U0057>;<REU>;<CAP>                                 <
+                                                                >  reorder-after <U016A>
+                                                                >  <U0056> <v>;<U0056>;<BAS>;<CAP>
+                                                                >  <U1E7C> <v>;<U0056>;<TIL>;<CAP>
+                                                                >  <U0057> <w>;<U0057>;<BAS>;<CAP>
+                                                                >  <U1E82> <w>;<U0057>;<ACA>;<CAP>
+                                                                >  <U1E80> <w>;<U0057>;<GRA>;<CAP>
+                                                                >  <U0174> <w>;<U0057>;<CIR>;<CAP>
+                                                                >  <U1E84> <w>;<U0057>;<REU>;<CAP>
+                                                                >  reorder-after <U0178>
+reorder-after <U0162>                                           |  reorder-after <U0163>
+                                                                >  reorder-after <U0162>
+<U00D0> <d>;<PCL>;<CAP>;IGNORE                                  <
+                                                                >  reorder-after <U0044>
+                                                                >  <U00D0> <d>;<PCL>;<CAP>;IGNORE

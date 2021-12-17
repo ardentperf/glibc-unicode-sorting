@@ -1,5 +1,5 @@
 
-# Collation Changes Across Ubuntu Versions
+# Collation Changes Across Linux Versions
 
 ## Methodology
 
@@ -9,21 +9,25 @@ locale data files.
 
 Comparing the results of actual sorts should catch any changes to default
 sorting which is not defined in the OS collation data. A simple perl script is
-used to generate a text file containing 14 different strings for every legal
+used to generate a text file containing 16 different strings for every legal
 unicode character. The unix "sort" utility processes this file with the locale
-configured to en_US for collation. This process is repeated on each Ubuntu
+configured to en_US for collation. This process is repeated on each
 release from the past 10 years, and then the unix "diff" utility is used to
 compare the sorted output files and count how many characters have different
 positions after sorting. The results show how many individual code points have
 changed positions in the sorted data across different Operating System releases
 and which Unicode Blocks contain the changed code points.
 
-The Operating System locale data files are compared directly. The results show
-the total number of lines in the data files that are changed, and which locales
-contain the changes.
+The Operating System locale data files from `/usr/share/i18n/locales` are
+compared directly. The results show the total number of lines in the data files
+that are changed, and which locales contain the changes.
 
 
 ## Results
+
+### Ubuntu
+
+*Note: Generated with an older version of scripts; not yet updated. This Ubuntu table may be missing some changes.*
 
 | GLIBC Version | Total Detected en_US Sort Order Changes | Unicode Blocks of Detected en_US Sort Order Changes | Total Detected Collation Data File Changes | Locales of Detected Data File Changes | Operating System  | AMI | 
 | ---- | ---- | ---- | ----  | ---- | ---- | ---- |
@@ -53,13 +57,30 @@ contain the changes.
 | 2.34-0ubuntu3 | 0 |  | [2](_ubuntu/ami-00482f016b2410dc8/changelist_locales_from-2.33-0ubuntu5_to-2.34-0ubuntu3.txt) |  sv_SE | Ubuntu 21.10  | [ami-00482f016b2410dc8](_ubuntu/ami-00482f016b2410dc8) |
 
 
+### Red Hat Enterprise Linux
+
+| GLIBC Version | Total Detected en_US Sort Order Changes | Unicode Blocks of Detected en_US Sort Order Changes | Total Detected Collation Data File Changes | Locales of Detected Data File Changes | Number of Locales | Operating System  | AMI |
+| ---- | ---- | ---- | ----  | ---- | ---- | ---- | ---- |
+| 2.5-49.el5_5.7 |  |  |  |  | 231 | Red Hat Enterprise Linux Server release 5.5 (Tikanga) | [ami-eb84ed82](_rhel/ami-eb84ed82) |
+| 2.5-1232.5-123 | 0 |  | 0 |  | 231 | Red Hat Enterprise Linux Server release 5.11 (Tikanga) | [ami-3268da5a](_rhel/ami-3268da5a) |
+| 2.12-1.7.el6_0.8 | [22908](_rhel/ami-09680160/changelist_en-US_from-2.5-1232.5-123_to-2.12-1.7.el6_0.8.txt) |       4 Basic Latin,     10 Latin-1 Supplement,     18 Latin Extended-A,    131 Latin Extended-B,      9 IPA Extensions,    206 Cyrillic,     16 Cyrillic Supplement,     76 Armenian,     26 Hebrew,     45 Arabic,    108 Devanagari,     86 Bengali,     79 Gurmukhi,     82 Gujarati,     58 Tamil,     93 Telugu,     86 Kannada,     82 Malayalam,     80 Sinhala,    130 Myanmar,     82 Georgian,    246 Latin Extended Additional,      1 Miscellaneous Symbols,     38 Georgian Supplement,     55 Tifinagh,  20902 CJK Unified Ideographs,     34 Arabic Presentation Forms-A,    125 Arabic Presentation Forms-B | [16282](_rhel/ami-09680160/changelist_locales_from-2.5-1232.5-123_to-2.12-1.7.el6_0.8.txt) | (More than 20 languages) | 275 | Red Hat Enterprise Linux Server release 6.0 (Santiago) | [ami-09680160](_rhel/ami-09680160) |
+| 2.12-1.212.el6_10.3 | 0 |  | [42](_rhel/ami-0351faf7328fdb373/changelist_locales_from-2.12-1.7.el6_0.8_to-2.12-1.212.el6_10.3.txt) |  fi_FI | 275 | Red Hat Enterprise Linux Server release 6.10 (Santiago) | [ami-0351faf7328fdb373](_rhel/ami-0351faf7328fdb373) |
+| 2.17-55.el7_0.5 | [107](_rhel/ami-60a1e808/changelist_en-US_from-2.12-1.212.el6_10.3_to-2.17-55.el7_0.5.txt) |     107 Tibetan | [2168](_rhel/ami-60a1e808/changelist_locales_from-2.12-1.212.el6_10.3_to-2.17-55.el7_0.5.txt) |  dz_BT, hu_HU, iso14651_t1_common, se_NO, ug_CN, no_NO (removed) | 300 | Red Hat Enterprise Linux Server release 7.0 (Maipo) | [ami-60a1e808](_rhel/ami-60a1e808) |
+| 2.17-317.el7 | 0 |  | 0 |  | 300 | Red Hat Enterprise Linux Server release 7.9 (Maipo) | [ami-005b7876121b7244d](_rhel/ami-005b7876121b7244d) |
+| 2.28-42.el8_0.1 | [282167](_rhel/ami-043fbed28a389c721/changelist_en-US_from-2.17-317.el7_to-2.28-42.el8_0.1.txt) | (Blocks not listed for this many en_US sort order changes) | [112164](_rhel/ami-043fbed28a389c721/changelist_locales_from-2.17-317.el7_to-2.28-42.el8_0.1.txt) | (More than 20 languages) | 341 | Red Hat Enterprise Linux release 8.0 (Ootpa) | [ami-043fbed28a389c721](_rhel/ami-043fbed28a389c721) |
+| 2.28-164.el8 | 0 |  | [10](_rhel/ami-06644055bed38ebd9/changelist_locales_from-2.28-42.el8_0.1_to-2.28-164.el8.txt) |  C | 341 | Red Hat Enterprise Linux release 8.5 (Ootpa) | [ami-06644055bed38ebd9](_rhel/ami-06644055bed38ebd9) |
+| 2.34-7.el9_b | 0 |  | [543](_rhel/ami-0fb33ec3ead0b8e3f/changelist_locales_from-2.28-164.el8_to-2.34-7.el9_b.txt) |  C, or_IN, sv_SE | 343 | Red Hat Enterprise Linux release 9.0 Beta (Plow) | [ami-0fb33ec3ead0b8e3f](_rhel/ami-0fb33ec3ead0b8e3f) |
+
+
 ## Generated Strings for en_US Sort Order Comparison
 
-For every legal unicode code point, the following 14 string patterns are generated:
+For every legal unicode code point, the following 16 string patterns are generated:
 
 ```
 🍷
 🍷🍷
+1B-🍷B
+1B🍷B
 🍷🍷B
 🍷B
 🍷🍷BB
@@ -74,9 +95,9 @@ D🍷🍷D
 D🍷D
 ```
 
-Note that the string patterns are listed above in correctly sorted order. This
-alone should give some sense about the sophistication of collation rules, and
-the difficulty of writing a test to catch changes.
+Note that the string patterns are listed above in Red Hat Enterprise Linux 8
+correctly sorted order. This alone should give some sense about the sophistication
+of collation rules, and the difficulty of writing a test to catch changes.
 
 
 ## Caveats
@@ -136,9 +157,20 @@ $ ( echo 1-; echo 11; echo 1-1; echo 111; echo 1a; echo 1b; echo 1-aa; echo 1-a)
 The script `table.sh` generates the table above.
 
 The data is generated by running the following command using the DNS or IP of a
-ubuntu server:
+linux server:
 
 ```
-ubuntu.sh $HOST
+test-host.sh [ubuntu|rhel] $USER@$HOST
+```
+
+I searched public community AMIs on AWS to find old versions of linux. Older
+versions of RHEL might not have an ec2-user account (I just used root), and
+newer versions of RHEL might not come with perl or glibc-locale-source installed
+by default. Newer versions of Ubuntu require keyboard input when running some
+dpkg commands (a warning about this appears when running the `test-host.sh` script).
+
+```
+sudo yum install perl
+sudo yum install glibc-locale-source-$(rpm -q glibc --queryformat '%{version}-%{release}')
 ```
 

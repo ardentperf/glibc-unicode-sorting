@@ -1,0 +1,167 @@
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
++ LANG=en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ date
+Thu Dec 16 20:34:54 EST 2021
+++ dirname glibc-unicode-sorting/run.sh
++ cd glibc-unicode-sorting
++ pwd
+/root/glibc-unicode-sorting
++ which dpkg
+which: no dpkg in (/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin)
++ which rpm
+/bin/rpm
++ grep -E '(glibc|langpack)'
++ rpm -qa
+glibc-common-2.12-1.7.el6_0.8.x86_64
+glibc-devel-2.12-1.7.el6_0.8.x86_64
+glibc-2.12-1.7.el6_0.8.x86_64
+glibc-headers-2.12-1.7.el6_0.8.x86_64
+++ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-09680160
+++ cat /etc/issue
++ OS_VERS='Red Hat Enterprise Linux Server release 6.0 (Santiago)
+Kernel \r on an \m'
++ UNICODE_VERS=14
++ which dpkg
+which: no dpkg in (/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin)
++ which rpm
+/bin/rpm
+++ rpm -q glibc --queryformat '%{version}-%{release}'
++ GLIBC_VERS=2.12-1.7.el6_0.8
++ '[' -f /etc/os-release ']'
++ '[' -f /etc/system-release ']'
++ cat /etc/system-release
+Red Hat Enterprise Linux Server release 6.0 (Santiago)
++ '[' -f /etc/system-release-cpe ']'
++ cat /etc/system-release-cpe
+cpe:/o:redhat:enterprise_linux:6server:ga:server
++ curl -kO https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 50 1853k   50  928k    0     0  1640k      0  0:00:01 --:--:--  0:00:01 2461k100 1853k  100 1853k    0     0  2624k      0 --:--:-- --:--:-- --:--:-- 3577k
+
+real	0m0.727s
+user	0m0.039s
+sys	0m0.086s
++ split -l500000 - _base-characters
++ perl '-naF;' -CO '-e
+  sub pr3 {printf("%s%08x\n",$_[1],$_[0])}
+  sub pr2 {pr3($_[0],"B".$_[1]."B");pr3($_[0],"D".$_[1]."D");pr3($_[0],$_[1]);pr3($_[0],$_[1]."B");pr3($_[0],$_[1]."BB");pr3($_[0],$_[1]."D");pr3($_[0],$_[1]."DD")}
+  sub pr {pr2($_[0],$_[1].chr($_[0]));pr2($_[0],$_[1].chr($_[0]).chr($_[0]));pr3($_[0],"1B".chr($_[0])."B");pr3($_[0],"1B-".chr($_[0])."B")}
+  if(/<control>/){next}; # skip control characters
+  if($F[2] eq "Cs"){next}; # skip surrogates
+  if(/ First>/){$fi=hex("0x".$F[0]);next}; # generate blocks
+  if(/ Last>/){$la=hex("0x".$F[0]);for($fi..$la){pr($_)};next};
+  pr(hex("0x".$F[0])) # generate individual characters
+' UnicodeData.txt
+
+real	0m7.252s
+user	0m6.104s
+sys	0m1.009s
++ wc _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj
+  500000   500090  7453517 _base-charactersaa
+  500000   500000  7512259 _base-charactersab
+  500000   500000  8218750 _base-charactersac
+  500000   500000  8218750 _base-charactersad
+  500000   500000  8218750 _base-charactersae
+  500000   500000  8218750 _base-charactersaf
+  500000   500000  8218750 _base-charactersag
+  500000   500000  8218750 _base-charactersah
+  500000   500000  8218750 _base-charactersai
+   14640    14640   240645 _base-charactersaj
+ 4514640  4514730 72737671 total
++ locale
+LANG=en_US.UTF-8
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=en_US.UTF-8
++ date
+Thu Dec 16 20:35:04 EST 2021
+++ ls -1 _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj
++ for FILE in '$(ls -1 _base-characters*)'
++ for FILE in '$(ls -1 _base-characters*)'
++ for FILE in '$(ls -1 _base-characters*)'
++ for FILE in '$(ls -1 _base-characters*)'
++ for FILE in '$(ls -1 _base-characters*)'
++ for FILE in '$(ls -1 _base-characters*)'
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersad -o _s_base-charactersad
++ for FILE in '$(ls -1 _base-characters*)'
++ for FILE in '$(ls -1 _base-characters*)'
++ for FILE in '$(ls -1 _base-characters*)'
++ jobs
++ sort _base-charactersab -o _s_base-charactersab
++ sort _base-charactersae -o _s_base-charactersae
++ sort _base-charactersaf -o _s_base-charactersaf
++ sort _base-charactersac -o _s_base-charactersac
+[1]   Running                 sort $FILE -o _s$FILE &
+[2]   Running                 sort $FILE -o _s$FILE &
+[3]   Running                 sort $FILE -o _s$FILE &
+[4]   Running                 sort $FILE -o _s$FILE &
+[5]   Running                 sort $FILE -o _s$FILE &
+[6]   Running                 sort $FILE -o _s$FILE &
+[7]   Running                 sort $FILE -o _s$FILE &
+[8]   Running                 sort $FILE -o _s$FILE &
+[9]-  Running                 sort $FILE -o _s$FILE &
+[10]+  Running                 sort $FILE -o _s$FILE &
++ wait
++ sort _base-charactersah -o _s_base-charactersah
++ sort _base-charactersai -o _s_base-charactersai
++ sort _base-charactersaj -o _s_base-charactersaj
++ sort _base-charactersaa -o _s_base-charactersaa
++ sort _base-charactersag -o _s_base-charactersag
++ date
+Thu Dec 16 20:35:36 EST 2021
++ sort -m _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah _s_base-charactersai _s_base-charactersaj -o unicode-14-chars-sorted-glibc-2.12-1.7.el6_0.8.txt
+
+real	0m2.384s
+user	0m1.837s
+sys	0m0.375s
++ rm -v _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah _s_base-charactersai _s_base-charactersaj UnicodeData.txt
+removed `_base-charactersaa'
+removed `_base-charactersab'
+removed `_base-charactersac'
+removed `_base-charactersad'
+removed `_base-charactersae'
+removed `_base-charactersaf'
+removed `_base-charactersag'
+removed `_base-charactersah'
+removed `_base-charactersai'
+removed `_base-charactersaj'
+removed `_s_base-charactersaa'
+removed `_s_base-charactersab'
+removed `_s_base-charactersac'
+removed `_s_base-charactersad'
+removed `_s_base-charactersae'
+removed `_s_base-charactersaf'
+removed `_s_base-charactersag'
+removed `_s_base-charactersah'
+removed `_s_base-charactersai'
+removed `_s_base-charactersaj'
+removed `UnicodeData.txt'
++ ls -ltr
+total 71048
+-rw-r--r--. 1 root root     1794 Dec 16 20:34 run.sh
+-rw-r--r--. 1 root root 72737671 Dec 16 20:35 unicode-14-chars-sorted-glibc-2.12-1.7.el6_0.8.txt
+-rw-r--r--. 1 root root     6602 Dec 16 20:35 run.out
++ wc unicode-14-chars-sorted-glibc-2.12-1.7.el6_0.8.txt
+ 4514640  4514730 72737671 unicode-14-chars-sorted-glibc-2.12-1.7.el6_0.8.txt
++ LC_COLLATE=en_US.UTF-8
++ sort
++ echo 1-1
++ echo 11
+11
+1-1
++ date
+Thu Dec 16 20:35:40 EST 2021

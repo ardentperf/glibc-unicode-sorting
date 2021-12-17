@@ -1,0 +1,11 @@
+diff -byt --suppress-common-lines _rhel/ami-043fbed28a389c721/LC_COLLATE/C _rhel/ami-06644055bed38ebd9/LC_COLLATE/C
+<U10000>                                                        |  <U00010000>
+<U1FFFF>                                                        |  <U0001FFFF>
+<U20000>                                                        |  <U00020000>
+<U2FFFF>                                                        |  <U0002FFFF>
+<UE0000>                                                        |  <U000E0000>
+<UEFFFF>                                                        |  <U000EFFFF>
+<UF0000>                                                        |  <U000F0000>
+<UFFFFF>                                                        |  <U000FFFFF>
+<U100000>                                                       |  <U00100000>
+<U10FFFF>                                                       |  <U0010FFFF>

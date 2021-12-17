@@ -1,0 +1,164 @@
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
++ LANG=en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ date
+Thu Dec 16 20:32:35 EST 2021
+++ dirname glibc-unicode-sorting/run.sh
++ cd glibc-unicode-sorting
++ pwd
+/root/glibc-unicode-sorting
++ which dpkg
+which: no dpkg in (/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin)
++ which rpm
+/bin/rpm
++ rpm -qa
++ grep -E '(glibc|langpack)'
+glibc-2.5-123
+glibc-headers-2.5-123
+glibc-common-2.5-123
+glibc-devel-2.5-123
+glibc-2.5-123
+++ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-3268da5a
+++ cat /etc/issue
++ OS_VERS='Red Hat Enterprise Linux Server release 5.11 (Tikanga)
+Kernel \r on an \m'
++ UNICODE_VERS=14
++ which dpkg
+which: no dpkg in (/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin)
++ which rpm
+/bin/rpm
+++ rpm -q glibc --queryformat '%{version}-%{release}'
++ GLIBC_VERS=2.5-1232.5-123
++ '[' -f /etc/os-release ']'
++ '[' -f /etc/system-release ']'
++ '[' -f /etc/system-release-cpe ']'
++ curl -kO https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0 1853k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 87 1853k   87 1616k    0     0  2757k      0 --:--:-- --:--:-- --:--:-- 4060k100 1853k  100 1853k    0     0  2976k      0 --:--:-- --:--:-- --:--:-- 4260k
+
+real	0m0.634s
+user	0m0.008s
+sys	0m0.004s
++ perl '-naF;' -CO '-e
+  sub pr3 {printf("%s%08x\n",$_[1],$_[0])}
+  sub pr2 {pr3($_[0],"B".$_[1]."B");pr3($_[0],"D".$_[1]."D");pr3($_[0],$_[1]);pr3($_[0],$_[1]."B");pr3($_[0],$_[1]."BB");pr3($_[0],$_[1]."D");pr3($_[0],$_[1]."DD")}
+  sub pr {pr2($_[0],$_[1].chr($_[0]));pr2($_[0],$_[1].chr($_[0]).chr($_[0]));pr3($_[0],"1B".chr($_[0])."B");pr3($_[0],"1B-".chr($_[0])."B")}
+  if(/<control>/){next}; # skip control characters
+  if($F[2] eq "Cs"){next}; # skip surrogates
+  if(/ First>/){$fi=hex("0x".$F[0]);next}; # generate blocks
+  if(/ Last>/){$la=hex("0x".$F[0]);for($fi..$la){pr($_)};next};
+  pr(hex("0x".$F[0])) # generate individual characters
+' UnicodeData.txt
++ split -l500000 - _base-characters
+
+real	0m6.778s
+user	0m5.932s
+sys	0m0.744s
++ wc _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj
+  500000   500090  7453517 _base-charactersaa
+  500000   500000  7512259 _base-charactersab
+  500000   500000  8218750 _base-charactersac
+  500000   500000  8218750 _base-charactersad
+  500000   500000  8218750 _base-charactersae
+  500000   500000  8218750 _base-charactersaf
+  500000   500000  8218750 _base-charactersag
+  500000   500000  8218750 _base-charactersah
+  500000   500000  8218750 _base-charactersai
+   14640    14640   240645 _base-charactersaj
+ 4514640  4514730 72737671 total
++ locale
+LANG=en_US.UTF-8
+LC_CTYPE="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_PAPER="en_US.UTF-8"
+LC_NAME="en_US.UTF-8"
+LC_ADDRESS="en_US.UTF-8"
+LC_TELEPHONE="en_US.UTF-8"
+LC_MEASUREMENT="en_US.UTF-8"
+LC_IDENTIFICATION="en_US.UTF-8"
+LC_ALL=en_US.UTF-8
++ date
+Thu Dec 16 20:32:46 EST 2021
+++ ls -1 _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersaa -o _s_base-charactersaa
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersab -o _s_base-charactersab
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersac -o _s_base-charactersac
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersad -o _s_base-charactersad
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersae -o _s_base-charactersae
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersaf -o _s_base-charactersaf
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersag -o _s_base-charactersag
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersah -o _s_base-charactersah
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersai -o _s_base-charactersai
++ for FILE in '$(ls -1 _base-characters*)'
++ sort _base-charactersaj -o _s_base-charactersaj
++ jobs
+[1]   Running                 sort $FILE -o _s$FILE &
+[2]   Running                 sort $FILE -o _s$FILE &
+[3]   Running                 sort $FILE -o _s$FILE &
+[4]   Running                 sort $FILE -o _s$FILE &
+[5]   Running                 sort $FILE -o _s$FILE &
+[6]   Running                 sort $FILE -o _s$FILE &
+[7]   Running                 sort $FILE -o _s$FILE &
+[8]   Running                 sort $FILE -o _s$FILE &
+[9]-  Running                 sort $FILE -o _s$FILE &
+[10]+  Done                    sort $FILE -o _s$FILE
++ wait
++ date
+Thu Dec 16 20:33:08 EST 2021
++ sort -m _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah _s_base-charactersai _s_base-charactersaj -o unicode-14-chars-sorted-glibc-2.5-1232.5-123.txt
+
+real	0m1.839s
+user	0m1.508s
+sys	0m0.204s
++ rm -v _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah _s_base-charactersai _s_base-charactersaj UnicodeData.txt
+removed `_base-charactersaa'
+removed `_base-charactersab'
+removed `_base-charactersac'
+removed `_base-charactersad'
+removed `_base-charactersae'
+removed `_base-charactersaf'
+removed `_base-charactersag'
+removed `_base-charactersah'
+removed `_base-charactersai'
+removed `_base-charactersaj'
+removed `_s_base-charactersaa'
+removed `_s_base-charactersab'
+removed `_s_base-charactersac'
+removed `_s_base-charactersad'
+removed `_s_base-charactersae'
+removed `_s_base-charactersaf'
+removed `_s_base-charactersag'
+removed `_s_base-charactersah'
+removed `_s_base-charactersai'
+removed `_s_base-charactersaj'
+removed `UnicodeData.txt'
++ ls -ltr
+total 71136
+-rw-r--r-- 1 root root     1794 Dec 16 20:32 run.sh
+-rw-r--r-- 1 root root 72737671 Dec 16 20:33 unicode-14-chars-sorted-glibc-2.5-1232.5-123.txt
+-rw-r--r-- 1 root root     6460 Dec 16 20:33 run.out
++ wc unicode-14-chars-sorted-glibc-2.5-1232.5-123.txt
+ 4514640  4514730 72737671 unicode-14-chars-sorted-glibc-2.5-1232.5-123.txt
++ echo 1-1
++ echo 11
++ LC_COLLATE=en_US.UTF-8
++ sort
+11
+1-1
++ date
+Thu Dec 16 20:33:12 EST 2021
