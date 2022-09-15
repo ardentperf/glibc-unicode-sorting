@@ -9,7 +9,7 @@ locale data files.
 
 Comparing the results of actual sorts should catch any changes to default
 sorting which is not defined in the OS collation data. A simple perl script is
-used to generate a text file containing 87 different strings for every legal
+used to generate a text file containing 91 different strings for every legal
 unicode character. The unix "sort" utility processes this file with the locale
 configured to en_US for collation. This process is repeated on each
 release from the past 10 years, and then the unix "diff" utility is used to
@@ -74,7 +74,7 @@ that are changed, and which locales contain the changes.
 
 ## Generated Strings for en_US Sort Order Comparison
 
-For every legal unicode code point, the following 87 string patterns are generated:
+For every legal unicode code point, the following 91 string patterns are generated:
 
 *(Each unicode character is substituted for the wine glass in the strings below.)*
 
@@ -139,6 +139,7 @@ For every legal unicode code point, the following 87 string patterns are generat
 354:  🍷🍷
 355: 様🍷🍷
 356: ク🍷🍷
+380: 3B🍷
 399: 🍷🍷🍷
 
 400: 🍷🍷BB
@@ -162,6 +163,8 @@ For every legal unicode code point, the following 87 string patterns are generat
 424:   🍷🍷
 425: 様様🍷🍷
 426: クク🍷🍷
+480: 3B🍷B
+481: 3B-🍷
 499: 🍷🍷🍷🍷
 
 580: BB🍷🍷[tab]
@@ -169,6 +172,7 @@ For every legal unicode code point, the following 87 string patterns are generat
 582: BB-🍷🍷
 583: 🙂👍🍷❤️™
 584: 🍷🍷.33
+585: 3B-🍷B
 599: 🍷🍷🍷🍷🍷
 ```
 

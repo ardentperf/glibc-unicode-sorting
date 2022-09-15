@@ -52,6 +52,9 @@ time curl -kO https://www.unicode.org/Public/${UNICODE_VERS}.0.0/ucd/UnicodeData
 # in the main README. note that the output is split into multiple files of 500k
 # strings each. those files can be sorted in parallel to leverage multiple CPUs for
 # increased performance.
+#
+# IMPORTANT: make sure to keep this block in sync with README and table.sh
+#
 time perl -naF';' -CO -e'
   use utf8;
   sub pr {
@@ -115,6 +118,7 @@ time perl -naF';' -CO -e'
     print " " . chr($_[0]) . chr($_[0]) . "\n";         # 354
     print "様" . chr($_[0]) . chr($_[0]) . "\n";         # 355
     print "ク" . chr($_[0]) . chr($_[0]) . "\n";         # 356
+    print "3B" . chr($_[0]) . "\n";                     # 380
     print chr($_[0]) . chr($_[0]) . chr($_[0]) . "\n";  # 399
 
     print chr($_[0]) . chr($_[0]) . "BB\n";       # 400
@@ -138,6 +142,8 @@ time perl -naF';' -CO -e'
     print "  " . chr($_[0]) . chr($_[0]) . "\n";  # 424
     print "様様" . chr($_[0]) . chr($_[0]) . "\n";  # 425
     print "クク" . chr($_[0]) . chr($_[0]) . "\n";  # 426
+    print "3B" . chr($_[0]) . "B\n";                     # 480
+    print "3B-" . chr($_[0]) . "\n";                     # 481
     print chr($_[0]) . chr($_[0]) . chr($_[0]) . chr($_[0]) . "\n";  # 499
 
     print "BB" . chr($_[0]) . chr($_[0]) . "\t\n";   # 580
@@ -145,6 +151,7 @@ time perl -naF';' -CO -e'
     print "BB-" . chr($_[0]) . chr($_[0]) . "\n";    # 582
     print "🙂👍" . chr($_[0]) . "❤️™\n";                # 583
     print chr($_[0]) . chr($_[0]) . ".33\n";         # 584
+    print "3B-" . chr($_[0]) . "B\n";                # 585
     print chr($_[0]) . chr($_[0]) . chr($_[0]) . chr($_[0]) . chr($_[0]) . "\n";  # 599
   }
   if(/<control>/){next}; # skip control characters
