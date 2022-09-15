@@ -19,8 +19,14 @@
 #   aws ec2 describe-instances --region=us-east-1 |jq -r '.Reservations[].Instances[] |
 #     select(.Tags[].Value | startswith("ubuntu-")) | [ .Tags[].Value,
 #     .PublicDnsName ] | @tsv' | sort  >hosts
+#   wc hosts ; split -l7 hosts hostpart
 #   NN=0; for HOST in $(awk '{print$2}' hosts); do date; echo $((NN++)) $HOST;
 #     sh test-host.sh ubuntu ubuntu@$HOST; done
+#
+# finding AMIs for specific OS releases:
+#   aws ec2 describe-images --region us-east-1 --image-ids ami-00482f016b2410dc8
+#   aws ec2 describe-images --region us-east-1 --filters "Name=description,\
+#     Values='Canonical, Ubuntu, 22.04 LTS, amd64*'"|egrep '(ImageId|Description|CreationDate|OwnerId)'
 #
 [ -z "$2" ] && echo "ERROR: pass user@hostname as parameter" && exit 1
 case $1 in (ubuntu|rhel) ;; (*) echo "ERROR: first parameter must be a recognized OS" && exit 1 ;; esac
