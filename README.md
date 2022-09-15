@@ -182,8 +182,10 @@ changes in past versions of glibc. For example: we intentionally generate
 interactions between character classes like consonants, vowels, numbers, 
 punctuation and whitespace; we generate similar strings of different 
 lengths; we generate some strings with CJK characters only; and we 
-include a few miscellaneous strings at the end to add some specific extra 
-patterns. While not nearly comprehensive, this set of strings has caught 
+include a few miscellaneous strings to add some specific extra patterns
+based on known past corner case changes. Some characters may behave
+differently when doubled so we also include combinations with letters
+twice in a row. While not comprehensive, this set of strings has caught
 a very high number of changes across many versions of glibc going back 
 more than 10 years.
 
