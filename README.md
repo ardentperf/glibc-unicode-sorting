@@ -183,9 +183,9 @@ patterns. While not nearly comprehensive, this set of strings has caught
 a very high number of changes across many versions of glibc going back 
 more than 10 years.
 
-The test suite will generatea sorted list of all strings (around 25 
+The test suite will generate a sorted list of all strings (around 25
 million) on various systems. It will then use the unix "diff" utility 
-to look for a minimal set of differences between the two sorted lists
+to look for a minimal set of differences between the sorted lists
 and create reports summarizing those differences.
 
 Each pattern is numbered, and the pattern numbers are referenced in the
