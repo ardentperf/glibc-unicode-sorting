@@ -9,7 +9,7 @@ locale data files.
 
 Comparing the results of actual sorts should catch any changes to default
 sorting which is not defined in the OS collation data. A simple perl script is
-used to generate a text file containing 16 different strings for every legal
+used to generate a text file containing 87 different strings for every legal
 unicode character. The unix "sort" utility processes this file with the locale
 configured to en_US for collation. This process is repeated on each
 release from the past 10 years, and then the unix "diff" utility is used to
@@ -74,31 +74,124 @@ that are changed, and which locales contain the changes.
 
 ## Generated Strings for en_US Sort Order Comparison
 
-For every legal unicode code point, the following 16 string patterns are generated:
+For every legal unicode code point, the following 87 string patterns are generated:
+
+*(Each unicode character is substituted for the wine glass in the strings below.)*
 
 ```
-🍷
-🍷🍷
-1B-🍷B
-1B🍷B
-🍷🍷B
-🍷B
-🍷🍷BB
-🍷BB
-B🍷🍷B
-B🍷B
-🍷🍷D
-🍷D
-🍷🍷DD
-🍷DD
-D🍷🍷D
-D🍷D
+199: 🍷
+
+200: 🍷B
+201: 🍷O
+202: 🍷3
+203: 🍷.
+204: 🍷 
+205: 🍷様
+206: 🍷ク
+210: B🍷
+211: O🍷
+212: 3🍷
+213: .🍷
+214:  🍷
+215: 様🍷
+216: ク🍷
+299: 🍷🍷
+
+300: 🍷BB
+301: 🍷OO
+302: 🍷33
+303: 🍷..
+304: 🍷  
+305: 🍷様様
+306: 🍷クク
+310: B🍷B
+311: O🍷O
+312: 3🍷3
+313: .🍷.
+314:  🍷 
+315: 様🍷様
+316: ク🍷ク
+320: BB🍷
+321: OO🍷
+322: 33🍷
+323: ..🍷
+324:   🍷
+325: 様様🍷
+326: クク🍷
+330: 🍷🍷B
+331: 🍷🍷O
+332: 🍷🍷3
+333: 🍷🍷.
+334: 🍷🍷 
+335: 🍷🍷様
+336: 🍷🍷ク
+340: 🍷B🍷
+341: 🍷O🍷
+342: 🍷3🍷
+343: 🍷.🍷
+344: 🍷 🍷
+345: 🍷様🍷
+346: 🍷ク🍷
+350: B🍷🍷
+351: O🍷🍷
+352: 3🍷🍷
+353: .🍷🍷
+354:  🍷🍷
+355: 様🍷🍷
+356: ク🍷🍷
+399: 🍷🍷🍷
+
+400: 🍷🍷BB
+401: 🍷🍷OO
+402: 🍷🍷33
+403: 🍷🍷..
+404: 🍷🍷  
+405: 🍷🍷様様
+406: 🍷🍷クク
+410: B🍷🍷B
+411: O🍷🍷O
+412: 3🍷🍷3
+413: .🍷🍷.
+414:  🍷🍷 
+415: 様🍷🍷様
+416: ク🍷🍷ク
+420: BB🍷🍷
+421: OO🍷🍷
+422: 33🍷🍷
+423: ..🍷🍷
+424:   🍷🍷
+425: 様様🍷🍷
+426: クク🍷🍷
+499: 🍷🍷🍷🍷
+
+580: BB🍷🍷[tab]
+581: [tab]BB🍷🍷
+582: BB-🍷🍷
+583: 🙂👍🍷❤️™
+584: 🍷🍷.33
+599: 🍷🍷🍷🍷🍷
 ```
 
-Note that the string patterns are listed above in Red Hat Enterprise Linux 8
-correctly sorted order. This alone should give some sense about the sophistication
-of collation rules, and the difficulty of writing a test to catch changes.
+These patterns are based on some knowledge of collation algorithms and 
+areas where change is common or likely, informed by a review of actual 
+changes in past versions of glibc. For example: we intentionally generate 
+interactions between character classes like consonants, vowels, numbers, 
+punctuation and whitespace; we generate similar strings of different 
+lengths; we generate some strings with CJK characters only; and we 
+include a few miscellaneous strings at the end to add some specific extra 
+patterns. While not nearly comprehensive, this set of strings has caught 
+a very high number of changes across many versions of glibc going back 
+more than 10 years.
 
+The test suite will generatea sorted list of all strings (around 25 
+million) on various systems. It will then use the unix "diff" utility 
+to look for a minimal set of differences between the two sorted lists
+and create reports summarizing those differences.
+
+Each pattern is numbered, and the pattern numbers are referenced in the
+report produced by this code. You can see lists of exactly which strings 
+changed, as well as summaries of which patterns appeared in which unicode 
+blocks.
 
 ## Caveats
 
