@@ -247,7 +247,7 @@ do
             if(/BB..[\t]/)    { $pattern=580; $codepoint=ord(substr($_,2,1)); goto PR; };
             if(/[\t]BB../)      { $pattern=581; $codepoint=ord(substr($_,3,1)); goto PR; };
             if(/BB-../)      { $pattern=582; $codepoint=ord(substr($_,3,1)); goto PR; };
-            if(/🙂👍.❤️™/)      { $pattern=583; $codepoint=ord(substr($_,2,1)); goto PR; };
+            if(/🙂👍.❤™/)      { $pattern=583; $codepoint=ord(substr($_,2,1)); goto PR; };
             if(/..[.]33/)    { $pattern=584; $codepoint=ord(substr($_,0,1)); goto PR; };
             if(/3B-.B/)      { $pattern=585; $codepoint=ord(substr($_,3,1)); goto PR; };
                             $pattern=599; $codepoint=ord(substr($_,2,1)); goto PR;

@@ -170,7 +170,7 @@ For every legal unicode code point, the following 91 string patterns are generat
 580: BB🍷🍷[tab]
 581: [tab]BB🍷🍷
 582: BB-🍷🍷
-583: 🙂👍🍷❤️™
+583: 🙂👍🍷❤™
 584: 🍷🍷.33
 585: 3B-🍷B
 599: 🍷🍷🍷🍷🍷

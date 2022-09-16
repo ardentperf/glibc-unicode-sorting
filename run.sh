@@ -149,7 +149,7 @@ time perl -naF';' -CO -e'
     print "BB" . chr($_[0]) . chr($_[0]) . "\t\n";   # 580
     print "\tBB" . chr($_[0]) . chr($_[0]) . "\n";   # 581
     print "BB-" . chr($_[0]) . chr($_[0]) . "\n";    # 582
-    print "🙂👍" . chr($_[0]) . "❤️™\n";                # 583
+    print "🙂👍" . chr($_[0]) . "❤™\n";                # 583
     print chr($_[0]) . chr($_[0]) . ".33\n";         # 584
     print "3B-" . chr($_[0]) . "B\n";                # 585
     print chr($_[0]) . chr($_[0]) . chr($_[0]) . chr($_[0]) . chr($_[0]) . "\n";  # 599
