@@ -148,9 +148,14 @@ do
           #
           # IMPORTANT: make sure to keep this block in sync with README and run.sh
           #
-          my $pattern=99;
-          my $codepoint=0;
-          my $unicodeblock=0;
+
+          # the initialization values are important, because they will appear in the output
+          # data if there are no matches. it should be a value that stands out as clearly
+          # not a "normal" value, so its obvious something went wrong.
+          my $pattern=999;
+          my $codepoint=0xFFFFFF;
+          my $unicodeblock="FFFFFF";
+
           if(length()==1) {
                             $pattern=199; $codepoint=ord($_); goto PR;
           }
