@@ -449,7 +449,24 @@ do
     # string for count of changed locales (includes markdown link to data)
     LC_CHANGECOUNT_STR="0"; (( LC_CHANGECOUNT > 0 )) && LC_CHANGECOUNT_STR="[$LC_CHANGECOUNT]($LC_CHANGELIST)"
     # don't upload a data file bigger than 50GB to git
-    (( `stat --printf="%s" $CHANGELIST` > 50000000 )) && echo "File too large (over 50 GB) - removed to preserve version control sanity" >$CHANGELIST
+    CHANGELIST_SIZE=$(stat --printf="%s" $CHANGELIST)
+    if (( CHANGELIST_SIZE > 40000000 )); then
+      mv $CHANGELIST changelist2.tmp
+      echo "File size $CHANGELIST_SIZE too large - truncating at 40MB to preserve version control sanity" >$CHANGELIST
+      echo "" >>$CHANGELIST
+      head -c40000000 changelist2.tmp >>$CHANGELIST
+      rm changelist2.tmp
+    fi
+    # upload a copy of the diff to git, unless it's bigger than 50GB
+    #   (using a copy so that the original can be left as a local working file)
+    SORTDIFF="$PREFIX/$AMI/diff_en-US_from-${PREV_GLIBC_VERS}_to-${GLIBC_VERS}.txt"
+    cp $PREFIX/$AMI/diff.tmp $SORTDIFF
+    SORTDIFF_SIZE=$(stat --printf="%s" $SORTDIFF)
+    if (( SORTDIFF_SIZE > 40000000 )); then
+      echo "File size $SORTDIFF_SIZE too large - truncating at 40MB to preserve version control sanity" >$SORTDIFF
+      echo "" >>$SORTDIFF
+      head -c40000000 $PREFIX/$AMI/diff.tmp >>$SORTDIFF
+    fi
   fi
   echo "| $GLIBC_VERS | $SUMMARY_STR | $CHANGECOUNT_STR | $LC_CHANGECOUNT_STR | $(paste -sd, langs.tmp) | $LOCALE_COUNT | $OS_VERS | [$AMI]($PREFIX/$AMI) |"
   PREV_AMI="$AMI"
