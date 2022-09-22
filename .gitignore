@@ -2,3 +2,5 @@ unicode-*-chars-sorted-*
 locales
 LC_COLLATE
 hosts*
+diff.tmp
+changelist1.tmp
