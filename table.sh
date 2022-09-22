@@ -140,7 +140,7 @@ do
 
         # match lines of the diff with actual strings
         if(/^[-+]/) {
-          # remove first two characters from string (diff prefixes each line eg. "> ")
+          # remove first character from string (unified diff prefixes each line with + or -)
           substr($_,0,1)="";
 
           # find the first matching pattern, using length then chars, and determine code point 
