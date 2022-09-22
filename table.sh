@@ -16,6 +16,8 @@ set -e
 UNICODE_VERS="14"
 curl -kO https://www.unicode.org/Public/${UNICODE_VERS}.0.0/ucd/Blocks.txt
 
+date
+
 for PREFIX in _ubuntu _rhel; do
 [ -n "$1" ] && [ "_$1" != "$PREFIX" ] && continue
 echo ""
@@ -461,3 +463,4 @@ rm blocks.tmp
 rm Blocks.txt
 
 done
+date
