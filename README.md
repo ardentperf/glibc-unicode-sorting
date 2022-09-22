@@ -27,7 +27,7 @@ that are changed, and which locales contain the changes.
 
 ### Ubuntu
 
-| GLIBC Version | Unicode Blocks of Detected en_US Sort Order Changes | Total Detected en_US Sort Order Changes | Total Detected Collation Data File Changes | Locales of Detected Data File Changes | Number of Locales | Operating System  | AMI | 
+| GLIBC Version | Unicode Blocks in Diff of en_US Sort | Codepoints in Diff of en_US Sort | Lines in Diff of OS Collation Data | Locales in Diff of OS Collation Data | Number of Locales | Operating System  | AMI | 
 | ---- | ---- | ---- | ----  | ---- | ---- | ---- | ---- |
 | 2.11.1-0ubuntu7.10 |  |  |  |  | 281 | Ubuntu 10.04.4 LTS  | [ami-0baf7662](_ubuntu/ami-0baf7662) |
 | 2.12.1-0ubuntu10.4 | 0 | 0 | [1987](_ubuntu/ami-c412cead/changelist_locales_from-2.11.1-0ubuntu7.10_to-2.12.1-0ubuntu10.4.txt) |  et_EE | 284 | Ubuntu 10.10  | [ami-c412cead](_ubuntu/ami-c412cead) |
