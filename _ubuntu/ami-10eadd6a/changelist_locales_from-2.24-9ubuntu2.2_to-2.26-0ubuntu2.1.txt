@@ -2,7 +2,7 @@ Only in _ubuntu/ami-10eadd6a/LC_COLLATE: agr_PE
 Only in _ubuntu/ami-10eadd6a/LC_COLLATE: az_IR
 Only in _ubuntu/ami-10eadd6a/LC_COLLATE: bi_VU
 Only in _ubuntu/ami-10eadd6a/LC_COLLATE: hif_FJ
-diff -yt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/hu_HU _ubuntu/ami-10eadd6a/LC_COLLATE/hu_HU
+diff -byt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/hu_HU _ubuntu/ami-10eadd6a/LC_COLLATE/hu_HU
                                                                 >  define DIACRIT_FORWARD
 collating-symbol  <c_or_cs>                                     |  collating-symbol  <SINGLE-OR-COMPOUND>
                                                                 >  collating-symbol  <COMPOUND>
@@ -154,7 +154,7 @@ collating-symbol  <z_or_zs>                                     <
 <z-Z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><CAP-MIN>";I |  <z-Z-s>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
 <z-z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><MIN-CAP>";I |  <z-z-S>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
 <z-z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><MIN>";IGNOR |  <z-z-s>         "<zs><zs>";"<SINGLE-OR-COMPOUND><COMPOUND>";"<M
-diff -yt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/iso14651_t1_common _ubuntu/ami-10eadd6a/LC_COLLATE/iso14651_t1_common
+diff -byt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/iso14651_t1_common _ubuntu/ami-10eadd6a/LC_COLLATE/iso14651_t1_common
 collating-element <ml-s> from "<U0D38><U0D4D>"                  <
                                                                 >  collating-element <ml-s> from "<U0D38><U0D4D>"
 collating-symbol <ml-sha>                                       <
@@ -181,7 +181,7 @@ collating-symbol <ml-sha>                                       <
                                                                 >  <U0D7E> "<ml-lla><ml-virama>";<ml-atomic-chillu-ll>;<MIN>;IGNOR
 Only in _ubuntu/ami-10eadd6a/LC_COLLATE: mai_NP
 Only in _ubuntu/ami-10eadd6a/LC_COLLATE: sm_WS
-diff -yt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/the_NP _ubuntu/ami-10eadd6a/LC_COLLATE/the_NP
+diff -byt --suppress-common-lines _ubuntu/ami-10d4f76b/LC_COLLATE/the_NP _ubuntu/ami-10eadd6a/LC_COLLATE/the_NP
 copy "iso14651_t1"                                              |  copy "ne_NP"
 Only in _ubuntu/ami-10eadd6a/LC_COLLATE: to_TO
 Only in _ubuntu/ami-10eadd6a/LC_COLLATE: tpi_PG

@@ -1,57 +1,216 @@
-Script started on 2021-11-24 21:26:32+00:00 [<not executed on terminal>]
 + export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 + date
-Wed 24 Nov 2021 09:26:32 PM UTC
+Sat 17 Sep 2022 04:52:18 AM UTC
 + dirname glibc-unicode-sorting/run.sh
 + cd glibc-unicode-sorting
 + pwd
 /home/ubuntu/glibc-unicode-sorting
++ which dpkg
+/usr/bin/dpkg
 + dpkg -l libc6 locales
-WARNING: terminal is not fully functional
--  (press RETURN)Desired=Unknown/Install/Remove/Purge/Hold[m
-| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend[m
-|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)[m
-||/ Name           Version       Architecture Description[m
-+++-==============-=============-============-==================================[m
-ii  libc6:amd64    2.29-0ubuntu2 amd64        GNU C Library: Shared libraries[m
-ii  locales        2.29-0ubuntu2 all          GNU C Library: National Language ([m
-lines 1-7/7 (END)+ curl -s http://169.254.169.254/latest/meta-data/ami-id
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name           Version       Architecture Description
++++-==============-=============-============-========================================================
+ii  libc6:amd64    2.29-0ubuntu2 amd64        GNU C Library: Shared libraries
+ii  locales        2.29-0ubuntu2 all          GNU C Library: National Language (locale) data [support]
++ which rpm
++ curl -s http://169.254.169.254/latest/meta-data/ami-id
 + SOURCE_AMI=ami-001084c942f9e0391
 + cat /etc/issue
 + OS_VERS=Ubuntu 19.04 \n \l
-+ UNICODE_VERS=14
-+ awk /libc6/{print$3}
++ which dpkg
+/usr/bin/dpkg
 + dpkg -l libc6
++ awk /libc6/{print$3}
 + GLIBC_VERS=2.29-0ubuntu2
++ which rpm
++ [ -f /etc/os-release ]
++ cat /etc/os-release
+NAME="Ubuntu"
+VERSION="19.04 (Disco Dingo)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 19.04"
+VERSION_ID="19.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=disco
+UBUNTU_CODENAME=disco
++ [ -f /etc/system-release ]
++ [ -f /etc/system-release-cpe ]
++ UNICODE_VERS=14
 + time curl -kO https://www.unicode.org/Public/14.0.0/ucd/UnicodeData.txt
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 26 1853k   26  496k    0     0   955k      0  0:00:01 --:--:--  0:00:01  953k100 1853k  100 1853k    0     0  1599k      0  0:00:01  0:00:01 --:--:-- 1599k
-0.00user 0.01system 0:01.17elapsed 1%CPU (0avgtext+0avgdata 12440maxresident)k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 54 1853k   54 1008k    0     0  1421k      0  0:00:01 --:--:--  0:00:01 1421k100 1853k  100 1853k    0     0  1771k      0  0:00:01  0:00:01 --:--:-- 1771k
+0.00user 0.01system 0:01.05elapsed 1%CPU (0avgtext+0avgdata 12672maxresident)k
 0inputs+3712outputs (0major+690minor)pagefaults 0swaps
-+ split -l500000 - _base-characters
-+ time perl -naF; -CO -e
-  sub pr3 {printf("%s        %08d\n",$_[1],$_[0])}
-  sub pr2 {pr3($_[0],"B".$_[1]."B");pr3($_[0],"D".$_[1]."D");pr3($_[0],$_[1]);pr3($_[0],$_[1]."B");pr3($_[0],$_[1]."BB");pr3($_[0],$_[1]."D");pr3($_[0],$_[1]."DD")}
-  sub pr {pr2($_[0],$_[1].chr($_[0]));pr2($_[0],$_[1].chr($_[0]).chr($_[0]))}
++ + time perl -naF; -COsplit -l500000 - _base-characters
+ -e
+  use utf8;
+  sub pr {
+    print chr($_[0]) . "\n";  # 199
+
+    print chr($_[0]) . "B\n";              # 200
+    print chr($_[0]) . "O\n";              # 201
+    print chr($_[0]) . "3\n";              # 202
+    print chr($_[0]) . ".\n";              # 203
+    print chr($_[0]) . " \n";              # 204
+    print chr($_[0]) . "様\n";              # 205
+    print chr($_[0]) . "ク\n";              # 206
+    print "B" . chr($_[0]) . "\n";         # 210
+    print "O" . chr($_[0]) . "\n";         # 211
+    print "3" . chr($_[0]) . "\n";         # 212
+    print "." . chr($_[0]) . "\n";         # 213
+    print " " . chr($_[0]) . "\n";         # 214
+    print "様" . chr($_[0]) . "\n";         # 215
+    print "ク" . chr($_[0]) . "\n";         # 216
+    print chr($_[0]) . chr($_[0]) . "\n";  # 299
+
+    print chr($_[0]) . "BB\n";                          # 300
+    print chr($_[0]) . "OO\n";                          # 301
+    print chr($_[0]) . "33\n";                          # 302
+    print chr($_[0]) . "..\n";                          # 303
+    print chr($_[0]) . "  \n";                          # 304
+    print chr($_[0]) . "様様\n";                          # 305
+    print chr($_[0]) . "クク\n";                          # 306
+    print "B" . chr($_[0]) . "B\n";                     # 310
+    print "O" . chr($_[0]) . "O\n";                     # 311
+    print "3" . chr($_[0]) . "3\n";                     # 312
+    print "." . chr($_[0]) . ".\n";                     # 313
+    print " " . chr($_[0]) . " \n";                     # 314
+    print "様" . chr($_[0]) . "様\n";                     # 315
+    print "ク" . chr($_[0]) . "ク\n";                     # 316
+    print "BB" . chr($_[0]) . "\n";                     # 320
+    print "OO" . chr($_[0]) . "\n";                     # 321
+    print "33" . chr($_[0]) . "\n";                     # 322
+    print ".." . chr($_[0]) . "\n";                     # 323
+    print "  " . chr($_[0]) . "\n";                     # 324
+    print "様様" . chr($_[0]) . "\n";                     # 325
+    print "クク" . chr($_[0]) . "\n";                     # 326
+    print chr($_[0]) . chr($_[0]) . "B\n";              # 330
+    print chr($_[0]) . chr($_[0]) . "O\n";              # 331
+    print chr($_[0]) . chr($_[0]) . "3\n";              # 332
+    print chr($_[0]) . chr($_[0]) . ".\n";              # 333
+    print chr($_[0]) . chr($_[0]) . " \n";              # 334
+    print chr($_[0]) . chr($_[0]) . "様\n";              # 335
+    print chr($_[0]) . chr($_[0]) . "ク\n";              # 336
+    print chr($_[0]) . "B" . chr($_[0]) . "\n";         # 340
+    print chr($_[0]) . "O" . chr($_[0]) . "\n";         # 341
+    print chr($_[0]) . "3" . chr($_[0]) . "\n";         # 342
+    print chr($_[0]) . "." . chr($_[0]) . "\n";         # 343
+    print chr($_[0]) . " " . chr($_[0]) . "\n";         # 344
+    print chr($_[0]) . "様" . chr($_[0]) . "\n";         # 345
+    print chr($_[0]) . "ク" . chr($_[0]) . "\n";         # 346
+    print "B" . chr($_[0]) . chr($_[0]) . "\n";         # 350
+    print "O" . chr($_[0]) . chr($_[0]) . "\n";         # 351
+    print "3" . chr($_[0]) . chr($_[0]) . "\n";         # 352
+    print "." . chr($_[0]) . chr($_[0]) . "\n";         # 353
+    print " " . chr($_[0]) . chr($_[0]) . "\n";         # 354
+    print "様" . chr($_[0]) . chr($_[0]) . "\n";         # 355
+    print "ク" . chr($_[0]) . chr($_[0]) . "\n";         # 356
+    print "3B" . chr($_[0]) . "\n";                     # 380
+    print chr($_[0]) . chr($_[0]) . chr($_[0]) . "\n";  # 399
+
+    print chr($_[0]) . chr($_[0]) . "BB\n";       # 400
+    print chr($_[0]) . chr($_[0]) . "OO\n";       # 401
+    print chr($_[0]) . chr($_[0]) . "33\n";       # 402
+    print chr($_[0]) . chr($_[0]) . "..\n";       # 403
+    print chr($_[0]) . chr($_[0]) . "  \n";       # 404
+    print chr($_[0]) . chr($_[0]) . "様様\n";       # 405
+    print chr($_[0]) . chr($_[0]) . "クク\n";       # 406
+    print "B" . chr($_[0]) . chr($_[0]) . "B\n";  # 410
+    print "O" . chr($_[0]) . chr($_[0]) . "O\n";  # 411
+    print "3" . chr($_[0]) . chr($_[0]) . "3\n";  # 412
+    print "." . chr($_[0]) . chr($_[0]) . ".\n";  # 413
+    print " " . chr($_[0]) . chr($_[0]) . " \n";  # 414
+    print "様" . chr($_[0]) . chr($_[0]) . "様\n";  # 415
+    print "ク" . chr($_[0]) . chr($_[0]) . "ク\n";  # 416
+    print "BB" . chr($_[0]) . chr($_[0]) . "\n";  # 420
+    print "OO" . chr($_[0]) . chr($_[0]) . "\n";  # 421
+    print "33" . chr($_[0]) . chr($_[0]) . "\n";  # 422
+    print ".." . chr($_[0]) . chr($_[0]) . "\n";  # 423
+    print "  " . chr($_[0]) . chr($_[0]) . "\n";  # 424
+    print "様様" . chr($_[0]) . chr($_[0]) . "\n";  # 425
+    print "クク" . chr($_[0]) . chr($_[0]) . "\n";  # 426
+    print "3B" . chr($_[0]) . "B\n";                     # 480
+    print "3B-" . chr($_[0]) . "\n";                     # 481
+    print chr($_[0]) . chr($_[0]) . chr($_[0]) . chr($_[0]) . "\n";  # 499
+
+    print "BB" . chr($_[0]) . chr($_[0]) . "\t\n";   # 580
+    print "\tBB" . chr($_[0]) . chr($_[0]) . "\n";   # 581
+    print "BB-" . chr($_[0]) . chr($_[0]) . "\n";    # 582
+    print "🙂👍" . chr($_[0]) . "❤™\n";                # 583
+    print chr($_[0]) . chr($_[0]) . ".33\n";         # 584
+    print "3B-" . chr($_[0]) . "B\n";                # 585
+    print chr($_[0]) . chr($_[0]) . chr($_[0]) . chr($_[0]) . chr($_[0]) . "\n";  # 599
+  }
   if(/<control>/){next}; # skip control characters
   if($F[2] eq "Cs"){next}; # skip surrogates
   if(/ First>/){$fi=hex("0x".$F[0]);next}; # generate blocks
   if(/ Last>/){$la=hex("0x".$F[0]);for($fi..$la){pr($_)};next};
   pr(hex("0x".$F[0])) # generate individual characters
  UnicodeData.txt
-3.74user 0.03system 0:04.16elapsed 90%CPU (0avgtext+0avgdata 5188maxresident)k
-256inputs+0outputs (1major+283minor)pagefaults 0swaps
-+ wc _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah
-  500000   999728 11421838 _base-charactersaa
-  500000   998454 11662974 _base-charactersab
-  500000   997100 12214293 _base-charactersac
-  500000   999974 12214287 _base-charactersad
-  500000   990122 12214276 _base-charactersae
-  500000  1000000 12214290 _base-charactersaf
-  500000  1000000 12214294 _base-charactersag
-  450310   900620 11000430 _base-charactersah
- 3950310  7885998 95156682 total
+2.56user 0.09system 0:02.67elapsed 99%CPU (0avgtext+0avgdata 5476maxresident)k
+264inputs+0outputs (1major+271minor)pagefaults 0swaps
++ wc _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj _base-charactersak _base-charactersal _base-charactersam _base-charactersan _base-charactersao _base-charactersap _base-charactersaq _base-charactersar _base-charactersas _base-charactersat _base-charactersau _base-charactersav _base-charactersaw _base-charactersax _base-charactersay _base-charactersaz _base-charactersba _base-charactersbb _base-charactersbc _base-charactersbd _base-charactersbe _base-charactersbf _base-charactersbg _base-charactersbh _base-charactersbi _base-charactersbj _base-charactersbk _base-charactersbl _base-charactersbm _base-charactersbn _base-charactersbo _base-charactersbp _base-charactersbq _base-charactersbr _base-charactersbs _base-charactersbt _base-charactersbu _base-charactersbv _base-charactersbw _base-charactersbx _base-charactersby _base-charactersbz
+   500000    503960   3862186 _base-charactersaa
+   500000    504725   4159404 _base-charactersab
+   500000    505390   4159277 _base-charactersac
+   500000    505325   4159401 _base-charactersad
+   500000    505494   4159280 _base-charactersae
+   500000    505495   4159398 _base-charactersaf
+   500000    505495   4159283 _base-charactersag
+   500000    504593   4159395 _base-charactersah
+   500000    505495   4159288 _base-charactersai
+   500000    505494   4159390 _base-charactersaj
+   500000    505495   4159293 _base-charactersak
+   500000    500479   4742540 _base-charactersal
+   500000    498270   4966976 _base-charactersam
+   500000    505494   4967088 _base-charactersan
+   500000    488648   4966978 _base-charactersao
+   500000    497691   4967086 _base-charactersap
+   500000    505495   4966980 _base-charactersaq
+   500000    505494   4967082 _base-charactersar
+   500000    505495   4966984 _base-charactersas
+   500000    505494   4967078 _base-charactersat
+   500000    505495   4966988 _base-charactersau
+   500000    505494   4967074 _base-charactersav
+   500000    505495   4966994 _base-charactersaw
+   500000    505273   4967068 _base-charactersax
+   500000    505495   4967000 _base-charactersay
+   500000    505494   4967062 _base-charactersaz
+   500000    462474   4967001 _base-charactersba
+   500000    464552   4967063 _base-charactersbb
+   500000    505495   4967006 _base-charactersbc
+   500000    505494   4967058 _base-charactersbd
+   500000    505495   4967009 _base-charactersbe
+   500000    505494   4967056 _base-charactersbf
+   500000    505495   4967011 _base-charactersbg
+   500000    505494   4967052 _base-charactersbh
+   500000    505495   4967015 _base-charactersbi
+   500000    505494   4967048 _base-charactersbj
+   500000    505495   4967019 _base-charactersbk
+   500000    505494   4967044 _base-charactersbl
+   500000    505495   4967023 _base-charactersbm
+   500000    505494   4967040 _base-charactersbn
+   500000    505495   4967031 _base-charactersbo
+   500000    505494   4967032 _base-charactersbp
+   500000    505495   4967039 _base-charactersbq
+   500000    505494   4967028 _base-charactersbr
+   500000    505495   4967039 _base-charactersbs
+   500000    505494   4967028 _base-charactersbt
+   500000    505495   4967039 _base-charactersbu
+   500000    505494   4967024 _base-charactersbv
+   500000    505495   4967043 _base-charactersbw
+   500000    505494   4967020 _base-charactersbx
+   500000    505495   4967047 _base-charactersby
+   177015    178960   1758536 _base-charactersbz
+ 25677015  25834627 245670924 total
 + locale
 LANG=en_US.UTF-8
 LANGUAGE=
@@ -69,11 +228,70 @@ LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=en_US.UTF-8
 + date
-Wed 24 Nov 2021 09:26:46 PM UTC
-+ ls -1 _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah
+Sat 17 Sep 2022 04:52:24 AM UTC
++ ls -1 _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj _base-charactersak _base-charactersal _base-charactersam _base-charactersan _base-charactersao _base-charactersap _base-charactersaq _base-charactersar _base-charactersas _base-charactersat _base-charactersau _base-charactersav _base-charactersaw _base-charactersax _base-charactersay _base-charactersaz _base-charactersba _base-charactersbb _base-charactersbc _base-charactersbd _base-charactersbe _base-charactersbf _base-charactersbg _base-charactersbh _base-charactersbi _base-charactersbj _base-charactersbk _base-charactersbl _base-charactersbm _base-charactersbn _base-charactersbo _base-charactersbp _base-charactersbq _base-charactersbr _base-charactersbs _base-charactersbt _base-charactersbu _base-charactersbv _base-charactersbw _base-charactersbx _base-charactersby _base-charactersbz
++ sort _base-charactersaa -o _s_base-charactersaa
++ sort _base-charactersab -o _s_base-charactersab
++ sort _base-charactersac -o _s_base-charactersac
++ sort _base-charactersad -o _s_base-charactersad
++ sort _base-charactersae -o _s_base-charactersae
++ sort _base-charactersaf -o _s_base-charactersaf
++ sort _base-charactersag -o _s_base-charactersag
++ sort _base-charactersah -o _s_base-charactersah
++ sort _base-charactersai -o _s_base-charactersai
++ sort _base-charactersaj -o _s_base-charactersaj
++ sort _base-charactersak -o _s_base-charactersak
++ sort _base-charactersal -o _s_base-charactersal
++ + sortsort _base-charactersan -o _s_base-charactersan
+ _base-charactersam -o _s_base-charactersam
++ sort _base-charactersbs -o _s_base-charactersbs
 + jobs
-[8] + Running                    
-[7] - Running                    
+[52] + Running                   
+[51] - Running                   
+[50]   Running                   
+[49]   Running                   
+[48]   Running                   
+[47]   Running                   
+[46]   Running                   
+[45]   Running                   
+[44]   Running                   
+[43]   Running                   
+[42]   Running                   
+[41]   Running                   
+[40]   Running                   
+[39]   Running                   
+[38]   Running                   
+[37]   Running                   
+[36]   Running                   
+[35]   Running                   
+[34]   Running                   
+[33]   Running                   
+[32]   Running                   
+[31]   Running                   
+[30]   Running                   
+[29]   Running                   
+[28]   Running                   
+[27]   Running                   
+[26]   Running                   
+[25]   Running                   
+[24]   Running                   
+[23]   Running                   
+[22]   Running                   
+[21]   Running                   
+[20]   Running                   
+[19]   Running                   
+[18]   Running                   
+[17]   Running                   
+[16]   Running                   
+[15]   Running                   
+[14]   Running                   
+[13]   Running                   
+[12]   Running                   
+[11]   Running                   
+[10]   Running                   
+[9]   Running                    
+[8]   Running                    
+[7]   Running                    
 [6]   Running                    
 [5]   Running                    
 [4]   Running                    
@@ -81,20 +299,49 @@ Wed 24 Nov 2021 09:26:46 PM UTC
 [2]   Running                    
 [1]   Running                    
 + wait
-+ + sortsort _base-charactersah -o _s_base-charactersah _base-charactersag
- -o _s_base-charactersag
-+ sort _base-charactersaf -o _s_base-charactersaf
-+ sort _base-charactersae -o _s_base-charactersae
-+ sort _base-charactersad -o _s_base-charactersad
-+ sort _base-charactersac -o _s_base-charactersac
-+ sort _base-charactersab -o _s_base-charactersab
-+ sort _base-charactersaa -o _s_base-charactersaa
++ sort _base-charactersba -o _s_base-charactersba
++ sort _base-charactersaz -o _s_base-charactersaz
++ sort _base-charactersar -o _s_base-charactersar
++ + + sort _base-charactersbb -o _s_base-charactersbbsortsort
+ _base-charactersbh _base-charactersbc -o -o _s_base-charactersbh
+ _s_base-charactersbc
++ + + sortsortsort _base-charactersbd _base-charactersbn -o _base-charactersbi -o _s_base-charactersbd
+ -o _s_base-charactersbn _s_base-charactersbi
+
++ + sortsort _base-charactersbj _base-charactersbo -o -o _s_base-charactersbj _s_base-charactersbo
+
++ sort _base-charactersbp -o _s_base-charactersbp
++ + + + + sortsortsort _base-charactersbe _base-charactersbk _base-charactersbq -o -o -o _s_base-charactersbe _s_base-charactersbq
+ _s_base-charactersbk
+
++ sort _base-charactersbx -o+ sort _base-charactersbv -o _s_base-charactersbv
+sort _base-charactersas -o _s_base-charactersas
++ + + sort _base-charactersbl -o _s_base-charactersblsort
+ _base-charactersbf -o _s_base-charactersbf
+sort _base-charactersbr -o _s_base-charactersbr
+ _s_base-charactersbx
++ + sort _base-charactersat -o _s_base-charactersat
+sort _base-charactersbg -o _s_base-charactersbg
++ + + sort _base-charactersbusort -o _base-charactersbw _s_base-charactersbu -o
+ _s_base-charactersbw
++ sort _base-charactersaw -o _s_base-charactersawsort
++ sort _base-charactersbt -o _s_base-charactersbt
++ sort _base-charactersav -o+  _s_base-charactersav
+sort _base-charactersby -o _s_base-charactersby
++ sort _base-charactersap -o _s_base-charactersap
++ + sort _base-charactersao -o _s_base-charactersao
+sort _base-charactersbz -o+ + +  _s_base-charactersbz
+sortsort _base-charactersaysort _base-charactersau -o _base-charactersaq -o _s_base-charactersay -o
+ _s_base-charactersau _s_base-charactersaq
+
+ _base-charactersax -o _s_base-charactersax
+sort _base-charactersbm -o _s_base-charactersbm
 + date
-Wed 24 Nov 2021 09:29:30 PM UTC
-+ time sort -m _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah -o unicode-14-chars-sorted-glibc-2.29-0ubuntu2.txt
-9.24user 0.11system 0:09.54elapsed 98%CPU (0avgtext+0avgdata 4512maxresident)k
-0inputs+185856outputs (0major+620minor)pagefaults 0swaps
-+ rm -v _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah UnicodeData.txt
+Sat 17 Sep 2022 04:58:17 AM UTC
++ time sort -m _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah _s_base-charactersai _s_base-charactersaj _s_base-charactersak _s_base-charactersal _s_base-charactersam _s_base-charactersan _s_base-charactersao _s_base-charactersap _s_base-charactersaq _s_base-charactersar _s_base-charactersas _s_base-charactersat _s_base-charactersau _s_base-charactersav _s_base-charactersaw _s_base-charactersax _s_base-charactersay _s_base-charactersaz _s_base-charactersba _s_base-charactersbb _s_base-charactersbc _s_base-charactersbd _s_base-charactersbe _s_base-charactersbf _s_base-charactersbg _s_base-charactersbh _s_base-charactersbi _s_base-charactersbj _s_base-charactersbk _s_base-charactersbl _s_base-charactersbm _s_base-charactersbn _s_base-charactersbo _s_base-charactersbp _s_base-charactersbq _s_base-charactersbr _s_base-charactersbs _s_base-charactersbt _s_base-charactersbu _s_base-charactersbv _s_base-charactersbw _s_base-charactersbx _s_base-charactersby _s_base-charactersbz -o unicode-14-chars-sorted-glibc-2.29-0ubuntu2.txt
+499.89user 0.41system 8:20.32elapsed 99%CPU (0avgtext+0avgdata 7120maxresident)k
+0inputs+927136outputs (0major+3617minor)pagefaults 0swaps
++ rm -v _base-charactersaa _base-charactersab _base-charactersac _base-charactersad _base-charactersae _base-charactersaf _base-charactersag _base-charactersah _base-charactersai _base-charactersaj _base-charactersak _base-charactersal _base-charactersam _base-charactersan _base-charactersao _base-charactersap _base-charactersaq _base-charactersar _base-charactersas _base-charactersat _base-charactersau _base-charactersav _base-charactersaw _base-charactersax _base-charactersay _base-charactersaz _base-charactersba _base-charactersbb _base-charactersbc _base-charactersbd _base-charactersbe _base-charactersbf _base-charactersbg _base-charactersbh _base-charactersbi _base-charactersbj _base-charactersbk _base-charactersbl _base-charactersbm _base-charactersbn _base-charactersbo _base-charactersbp _base-charactersbq _base-charactersbr _base-charactersbs _base-charactersbt _base-charactersbu _base-charactersbv _base-charactersbw _base-charactersbx _base-charactersby _base-charactersbz _s_base-charactersaa _s_base-charactersab _s_base-charactersac _s_base-charactersad _s_base-charactersae _s_base-charactersaf _s_base-charactersag _s_base-charactersah _s_base-charactersai _s_base-charactersaj _s_base-charactersak _s_base-charactersal _s_base-charactersam _s_base-charactersan _s_base-charactersao _s_base-charactersap _s_base-charactersaq _s_base-charactersar _s_base-charactersas _s_base-charactersat _s_base-charactersau _s_base-charactersav _s_base-charactersaw _s_base-charactersax _s_base-charactersay _s_base-charactersaz _s_base-charactersba _s_base-charactersbb _s_base-charactersbc _s_base-charactersbd _s_base-charactersbe _s_base-charactersbf _s_base-charactersbg _s_base-charactersbh _s_base-charactersbi _s_base-charactersbj _s_base-charactersbk _s_base-charactersbl _s_base-charactersbm _s_base-charactersbn _s_base-charactersbo _s_base-charactersbp _s_base-charactersbq _s_base-charactersbr _s_base-charactersbs _s_base-charactersbt _s_base-charactersbu _s_base-charactersbv _s_base-charactersbw _s_base-charactersbx _s_base-charactersby _s_base-charactersbz UnicodeData.txt
 removed '_base-charactersaa'
 removed '_base-charactersab'
 removed '_base-charactersac'
@@ -103,6 +350,50 @@ removed '_base-charactersae'
 removed '_base-charactersaf'
 removed '_base-charactersag'
 removed '_base-charactersah'
+removed '_base-charactersai'
+removed '_base-charactersaj'
+removed '_base-charactersak'
+removed '_base-charactersal'
+removed '_base-charactersam'
+removed '_base-charactersan'
+removed '_base-charactersao'
+removed '_base-charactersap'
+removed '_base-charactersaq'
+removed '_base-charactersar'
+removed '_base-charactersas'
+removed '_base-charactersat'
+removed '_base-charactersau'
+removed '_base-charactersav'
+removed '_base-charactersaw'
+removed '_base-charactersax'
+removed '_base-charactersay'
+removed '_base-charactersaz'
+removed '_base-charactersba'
+removed '_base-charactersbb'
+removed '_base-charactersbc'
+removed '_base-charactersbd'
+removed '_base-charactersbe'
+removed '_base-charactersbf'
+removed '_base-charactersbg'
+removed '_base-charactersbh'
+removed '_base-charactersbi'
+removed '_base-charactersbj'
+removed '_base-charactersbk'
+removed '_base-charactersbl'
+removed '_base-charactersbm'
+removed '_base-charactersbn'
+removed '_base-charactersbo'
+removed '_base-charactersbp'
+removed '_base-charactersbq'
+removed '_base-charactersbr'
+removed '_base-charactersbs'
+removed '_base-charactersbt'
+removed '_base-charactersbu'
+removed '_base-charactersbv'
+removed '_base-charactersbw'
+removed '_base-charactersbx'
+removed '_base-charactersby'
+removed '_base-charactersbz'
 removed '_s_base-charactersaa'
 removed '_s_base-charactersab'
 removed '_s_base-charactersac'
@@ -111,20 +402,62 @@ removed '_s_base-charactersae'
 removed '_s_base-charactersaf'
 removed '_s_base-charactersag'
 removed '_s_base-charactersah'
+removed '_s_base-charactersai'
+removed '_s_base-charactersaj'
+removed '_s_base-charactersak'
+removed '_s_base-charactersal'
+removed '_s_base-charactersam'
+removed '_s_base-charactersan'
+removed '_s_base-charactersao'
+removed '_s_base-charactersap'
+removed '_s_base-charactersaq'
+removed '_s_base-charactersar'
+removed '_s_base-charactersas'
+removed '_s_base-charactersat'
+removed '_s_base-charactersau'
+removed '_s_base-charactersav'
+removed '_s_base-charactersaw'
+removed '_s_base-charactersax'
+removed '_s_base-charactersay'
+removed '_s_base-charactersaz'
+removed '_s_base-charactersba'
+removed '_s_base-charactersbb'
+removed '_s_base-charactersbc'
+removed '_s_base-charactersbd'
+removed '_s_base-charactersbe'
+removed '_s_base-charactersbf'
+removed '_s_base-charactersbg'
+removed '_s_base-charactersbh'
+removed '_s_base-charactersbi'
+removed '_s_base-charactersbj'
+removed '_s_base-charactersbk'
+removed '_s_base-charactersbl'
+removed '_s_base-charactersbm'
+removed '_s_base-charactersbn'
+removed '_s_base-charactersbo'
+removed '_s_base-charactersbp'
+removed '_s_base-charactersbq'
+removed '_s_base-charactersbr'
+removed '_s_base-charactersbs'
+removed '_s_base-charactersbt'
+removed '_s_base-charactersbu'
+removed '_s_base-charactersbv'
+removed '_s_base-charactersbw'
+removed '_s_base-charactersbx'
+removed '_s_base-charactersby'
+removed '_s_base-charactersbz'
 removed 'UnicodeData.txt'
 + ls -ltr
-total 92936
--rw-r--r-- 1 ubuntu ubuntu     1421 Nov 24 21:26 run.sh
--rw-rw-r-- 1 ubuntu ubuntu     4096 Nov 24 21:26 run.out
--rw-rw-r-- 1 ubuntu ubuntu 95156682 Nov 24 21:29 unicode-14-chars-sorted-glibc-2.29-0ubuntu2.txt
+total 239952
+-rw-r--r-- 1 ubuntu ubuntu      9356 Sep 17 04:52 run.sh
+-rw-rw-r-- 1 ubuntu ubuntu 245670924 Sep 17 05:06 unicode-14-chars-sorted-glibc-2.29-0ubuntu2.txt
+-rw-rw-r-- 1 ubuntu ubuntu     23984 Sep 17 05:06 run.out
 + wc unicode-14-chars-sorted-glibc-2.29-0ubuntu2.txt
- 3950310  7885998 95156682 unicode-14-chars-sorted-glibc-2.29-0ubuntu2.txt
-+ LC_COLLATE=en_US.UTF-8 sort
+ 25677015  25834627 245670924 unicode-14-chars-sorted-glibc-2.29-0ubuntu2.txt
 + echo 1-1
 + echo 11
++ LC_COLLATE=en_US.UTF-8 sort
 1-1
 11
 + date
-Wed 24 Nov 2021 09:29:40 PM UTC
-
-Script done on 2021-11-24 21:29:40+00:00 [COMMAND_EXIT_CODE="0"]
+Sat 17 Sep 2022 05:06:39 AM UTC

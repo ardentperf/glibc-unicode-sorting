@@ -1,4 +1,4 @@
-diff -yt --suppress-common-lines _ubuntu/ami-083654bd07b5da81d/LC_COLLATE/ckb_IQ _ubuntu/ami-00630aa67c689d2ab/LC_COLLATE/ckb_IQ
+diff -byt --suppress-common-lines _ubuntu/ami-083654bd07b5da81d/LC_COLLATE/ckb_IQ _ubuntu/ami-00630aa67c689d2ab/LC_COLLATE/ckb_IQ
 order_start             forward; forward                        |  copy "iso14651_t1"
 <U0660> <U0660>                                                 |  reorder-after <S0631> % ر
 <U0661> <U0661>                                                 |  <S0695> % ڕ
@@ -217,7 +217,7 @@ order_start             forward; forward                        |  copy "iso1465
                 <U007F> <U007F>                                 <
                 <U0640> IGNORE                                  <
 order_end                                                       <
-diff -yt --suppress-common-lines _ubuntu/ami-083654bd07b5da81d/LC_COLLATE/or_IN _ubuntu/ami-00630aa67c689d2ab/LC_COLLATE/or_IN
+diff -byt --suppress-common-lines _ubuntu/ami-083654bd07b5da81d/LC_COLLATE/or_IN _ubuntu/ami-00630aa67c689d2ab/LC_COLLATE/or_IN
 collating-element <ORIYA_LETTER_KA-ORIYA_SIGN_VIRAMA-ORIYA_LETT |  copy "iso14651_t1"
 collating-element <ORIYA_LETTER_DDA-ORIYA_SIGN_NUKTA> from "<U0 |  collating-symbol <anusvara>
 collating-element <ORIYA_LETTER_DDHA-ORIYA_SIGN_NUKTA> from "<U |  collating-symbol <candrabindu>

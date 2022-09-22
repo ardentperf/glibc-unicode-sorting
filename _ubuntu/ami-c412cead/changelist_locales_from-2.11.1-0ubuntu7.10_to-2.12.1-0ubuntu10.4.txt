@@ -1,5 +1,5 @@
 Only in _ubuntu/ami-c412cead/LC_COLLATE: cv_RU
-diff -yt --suppress-common-lines _ubuntu/ami-0baf7662/LC_COLLATE/et_EE _ubuntu/ami-c412cead/LC_COLLATE/et_EE
+diff -byt --suppress-common-lines _ubuntu/ami-0baf7662/LC_COLLATE/et_EE _ubuntu/ami-c412cead/LC_COLLATE/et_EE
 define UPPERCASE_FIRST                                          |  collating-symbol <CAPITAL>
 copy "iso14651_t1"                                              |  collating-symbol <CAPITAL-SMALL>
 collating-symbol <scaron>                                       |  collating-symbol <SMALL-CAPITAL>

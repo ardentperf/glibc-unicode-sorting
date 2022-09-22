@@ -5,32 +5,28 @@ Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: ayc_PE
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: bhb_IN
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: C
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: cmn_TW
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/cs_CZ _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/cs_CZ
-<DOT>           % TeËka                                         |  <DOT>           % Teƒçka
-<MACRON>        % Vodorovn· Ë·rka naho¯e                        |  <MACRON>        % Vodorovn√° ƒç√°rka naho≈ôe
-<ACUTE>         % »·rka ' (nap¯: ·)                             |  <ACUTE>         % ƒå√°rka ' (nap≈ô: √°)
-<GRAVE>         % ZpÏtn· Ë·rka `                                |  <GRAVE>         % Zpƒõtn√° ƒç√°rka `
-<CIRCUMFLEX>    % St¯Ìπka ^ (nap¯: ‚)                           |  <CIRCUMFLEX>    % St≈ô√≠≈°ka ^ (nap≈ô: √¢)
-<CARON>         % H·Ëek                                         |  <CARON>         % H√°ƒçek
-<BREVE>         % DolnÌ p˘lkrouæek (vypad· jako sjednocenÌ)     |  <BREVE>         % Doln√≠ p≈Ølkrou≈æek (vypad√° jako sjednocen√≠)
-<INVERTED-BREVE>% HornÌ p˘lkrouæek (vypad· jako pr˘nik)         |  <INVERTED-BREVE>% Horn√≠ p≈Ølkrou≈æek (vypad√° jako pr≈Ønik)
-<RING>          % Krouæek                                       |  <RING>          % Krou≈æek
-<HOOK>          % netuπÌm jakÈ diakritickÈ znamÈnko to je, p¯ed |  <HOOK>          % netu≈°√≠m jak√© diakritick√© znam√©nko to je, p≈ôed
-<HORN>          % netuπÌm jakÈ diakritickÈ znamÈnko to je, p¯ed |  <HORN>          % netu≈°√≠m jak√© diakritick√© znam√©nko to je, p≈ôed
-<DIAERESIS>     % DvÏ teËky                                     |  <DIAERESIS>     % Dvƒõ teƒçky
-<DOUBLE-ACUTE>  % DvÏ Ë·rky                                     |  <DOUBLE-ACUTE>  % Dvƒõ ƒç√°rky
-<DOUBLE-GRAVE>  % DvÏ zpÏtnÈ Ë·rky                              |  <DOUBLE-GRAVE>  % Dvƒõ zpƒõtn√© ƒç√°rky
-<DOT+DOT-BELOW>         % Zde si nejsem jist jak je to mÌnÏno,  |  <DOT+DOT-BELOW>         % Zde si nejsem jist jak je to m√≠nƒõno, 
-<MACRON+DOT-BELOW>      % nebo pouze to druhÈ
-                   |  <MACRON+DOT-BELOW>      % nebo pouze to druh√©
-<CEDILLA>       % Zob·Ëek pod pÌsmenem vypad· skoro jako s (∫)  |  <CEDILLA>       % Zob√°ƒçek pod p√≠smenem vypad√° skoro jako s (≈ü)
-<OGONEK>        % Zob·Ëek pod pÌsmenem obr·cen˝ k p¯edchozÌmu ( |  <OGONEK>        % Zob√°ƒçek pod p√≠smenem obr√°cen√Ω k p≈ôedchoz√≠mu (
-<STROKE>        % ©krtnutÌ pÌsmene v prost¯edku (polskÈ ≥)      |  <STROKE>        % ≈†krtnut√≠ p√≠smene v prost≈ôedku (polsk√© ≈Ç)
+diff -byt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/cs_CZ _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/cs_CZ
+<DOT>           % TeËka                                          |  <DOT>           % Teƒçka
+<MACRON>        % Vodorovn· Ë·rka naho¯e                            |  <MACRON>        % Vodorovn√° ƒç√°rka naho≈ôe
+<ACUTE>         % »·rka ' (nap¯: ·)                                 |  <ACUTE>         % ƒå√°rka ' (nap≈ô: √°)
+<GRAVE>         % ZpÏtn· Ë·rka `                                    |  <GRAVE>         % Zpƒõtn√° ƒç√°rka `
+<CIRCUMFLEX>    % St¯Ìπka ^ (nap¯: ‚)                                |  <CIRCUMFLEX>    % St≈ô√≠≈°ka ^ (nap≈ô: √¢)
+<CARON>         % H·Ëek                                           |  <CARON>         % H√°ƒçek
+<BREVE>         % DolnÌ p˘lkrouæek (vypad· jako sjednocenÌ)          |  <BREVE>         % Doln√≠ p≈Ølkrou≈æek (vypad√° jako sjednocen√≠)
+<INVERTED-BREVE>% HornÌ p˘lkrouæek (vypad· jako pr˘nik)              |  <INVERTED-BREVE>% Horn√≠ p≈Ølkrou≈æek (vypad√° jako pr≈Ønik)
+<RING>          % Krouæek                                        |  <RING>          % Krou≈æek
+<HOOK>          % netuπÌm jakÈ diakritickÈ znamÈnko to je, p¯edpokl·d·m |  <HOOK>          % netu≈°√≠m jak√© diakritick√© znam√©nko to je, p≈ôed
+<HORN>          % netuπÌm jakÈ diakritickÈ znamÈnko to je, p¯edpokl·d·m |  <HORN>          % netu≈°√≠m jak√© diakritick√© znam√©nko to je, p≈ôed
+<DIAERESIS>     % DvÏ teËky                                       |  <DIAERESIS>     % Dvƒõ teƒçky
+<DOUBLE-ACUTE>  % DvÏ Ë·rky                                        |  <DOUBLE-ACUTE>  % Dvƒõ ƒç√°rky
+<DOUBLE-GRAVE>  % DvÏ zpÏtnÈ Ë·rky                                   |  <DOUBLE-GRAVE>  % Dvƒõ zpƒõtn√© ƒç√°rky
+<DOT+DOT-BELOW>         % Zde si nejsem jist jak je to mÌnÏno, zd |  <DOT+DOT-BELOW>         % Zde si nejsem jist jak je to m√≠nƒõno, 
+<MACRON+DOT-BELOW>      % nebo pouze to druhÈ                    |  <MACRON+DOT-BELOW>      % nebo pouze to druh√©
+<CEDILLA>       % Zob·Ëek pod pÌsmenem vypad· skoro jako s (∫)       |  <CEDILLA>       % Zob√°ƒçek pod p√≠smenem vypad√° skoro jako s (≈ü)
+<OGONEK>        % Zob·Ëek pod pÌsmenem obr·cen˝ k p¯edchozÌmu (jako c) |  <OGONEK>        % Zob√°ƒçek pod p√≠smenem obr√°cen√Ω k p≈ôedchoz√≠mu (
+<STROKE>        % ©krtnutÌ pÌsmene v prost¯edku (polskÈ ≥)            |  <STROKE>        % ≈†krtnut√≠ p√≠smene v prost≈ôedku (polsk√© ≈Ç)
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: doi_IN
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/es_US _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/es_US
-reorder-after <U0043>                                           |  reorder-after <U0043>
-reorder-after <U004C>                                           |  reorder-after <U004C>
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/et_EE _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/et_EE
+diff -byt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/et_EE _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/et_EE
 collating-symbol <CAPITAL>                                      |  define UPPERCASE_FIRST
 collating-symbol <CAPITAL-SMALL>                                |  copy "iso14651_t1"
 collating-symbol <SMALL-CAPITAL>                                |  collating-symbol <scaron>
@@ -2018,14 +2014,10 @@ UNDEFINED       IGNORE;IGNORE;IGNORE                            <
 <U30F3> <U30F3>;<U30F3>;IGNORE;IGNORE                           <
 <U3093> <U30F3>;<U3093>;IGNORE;IGNORE                           <
 order_end                                                       <
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/fil_PH _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/fil_PH
-reorder-after <U004E>                                           |  reorder-after <U004E>
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/gd_GB _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/gd_GB
+diff -byt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/gd_GB _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/gd_GB
 copy "en_DK"                                                    |  copy "iso14651_t1"
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: hak_TW
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/ha_NG _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/ha_NG
-collating-symbol  <rtilde>                                      |  collating-symbol  <rtilde>
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/hsb_DE _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/hsb_DE
+diff -byt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/hsb_DE _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/hsb_DE
 collating-symbol <CAPITAL>                                      |  collating-symbol <ccaron>
 collating-symbol <CAPITAL-SMALL>                                |  collating-symbol <d-z-sh>
 collating-symbol <SMALL-CAPITAL>                                |  collating-symbol <ecaron>
@@ -4026,9 +4018,6 @@ Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: ia_FR
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: lzh_TW
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: mag_IN
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: mni_IN
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/mr_IN _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/mr_IN
-<dv_ksha> <d_ksha>;<BAS>;<MIN>;IGNORE                           |  <dv_ksha> <d_ksha>;<BAS>;<MIN>;IGNORE
-<dv_dnya> <d_dnya>;<BAS>;<MIN>;IGNORE                           |  <dv_dnya> <d_dnya>;<BAS>;<MIN>;IGNORE
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: nan_TW
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: nhn_MX
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: niu_NU
@@ -4038,37 +4027,23 @@ Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: pap_CW
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: quz_PE
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: raj_IN
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: sat_IN
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/sv_SE _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/sv_SE
-<U00E4> <ae>;<REU>;<MIN>;IGNORE % ‰
-                             |  <U00E4> <ae>;<REU>;<MIN>;IGNORE % √§
-<U00E5> <aring>;<RNE>;<MIN>;IGNORE % Â
-                          |  <U00E5> <aring>;<RNE>;<MIN>;IGNORE % √•
-<U00E6> <ae>;<LIG>;<MIN>;IGNORE % Ê
-                             |  <U00E6> <ae>;<LIG>;<MIN>;IGNORE % √¶
-<U00F6> <oumlaut>;<REU>;<MIN>;IGNORE % ˆ
-                        |  <U00F6> <oumlaut>;<REU>;<MIN>;IGNORE % √∂
-<U00F8> <oslash>;<OBL>;<MIN>;IGNORE % ¯
-                         |  <U00F8> <oslash>;<OBL>;<MIN>;IGNORE % √∏
-<U00C4> <ae>;<REU>;<CAP>;IGNORE % ƒ
-                             |  <U00C4> <ae>;<REU>;<CAP>;IGNORE % √Ñ
-<U00C5> <aring>;<RNE>;<CAP>;IGNORE % ≈
-                          |  <U00C5> <aring>;<RNE>;<CAP>;IGNORE % √Ö
-<U00C6> <ae>;<LIG>;<CAP>;IGNORE % ∆
-                             |  <U00C6> <ae>;<LIG>;<CAP>;IGNORE % √Ü
-<U00D6> <oumlaut>;<REU>;<CAP>;IGNORE % ÷
-                        |  <U00D6> <oumlaut>;<REU>;<CAP>;IGNORE % √ñ
-<U00D8> <oslash>;<OBL>;<CAP>;IGNORE % ÿ
-                         |  <U00D8> <oslash>;<OBL>;<CAP>;IGNORE % √ò
-<U00FC> <y>;<REU>;<MIN>;IGNORE % ¸
-                              |  <U00FC> <y>;<REU>;<MIN>;IGNORE % √º
-<U00DC> <y>;<REU>;<CAP>;IGNORE % ‹
-                              |  <U00DC> <y>;<REU>;<CAP>;IGNORE % √ú
+diff -byt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/sv_SE _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/sv_SE
+<U00E4> <ae>;<REU>;<MIN>;IGNORE % ‰                              |  <U00E4> <ae>;<REU>;<MIN>;IGNORE % √§
+<U00E5> <aring>;<RNE>;<MIN>;IGNORE % Â                           |  <U00E5> <aring>;<RNE>;<MIN>;IGNORE % √•
+<U00E6> <ae>;<LIG>;<MIN>;IGNORE % Ê                              |  <U00E6> <ae>;<LIG>;<MIN>;IGNORE % √¶
+<U00F6> <oumlaut>;<REU>;<MIN>;IGNORE % ˆ                         |  <U00F6> <oumlaut>;<REU>;<MIN>;IGNORE % √∂
+<U00F8> <oslash>;<OBL>;<MIN>;IGNORE % ¯                          |  <U00F8> <oslash>;<OBL>;<MIN>;IGNORE % √∏
+<U00C4> <ae>;<REU>;<CAP>;IGNORE % ƒ                              |  <U00C4> <ae>;<REU>;<CAP>;IGNORE % √Ñ
+<U00C5> <aring>;<RNE>;<CAP>;IGNORE % ≈                           |  <U00C5> <aring>;<RNE>;<CAP>;IGNORE % √Ö
+<U00C6> <ae>;<LIG>;<CAP>;IGNORE % ∆                              |  <U00C6> <ae>;<LIG>;<CAP>;IGNORE % √Ü
+<U00D6> <oumlaut>;<REU>;<CAP>;IGNORE % ÷                         |  <U00D6> <oumlaut>;<REU>;<CAP>;IGNORE % √ñ
+<U00D8> <oslash>;<OBL>;<CAP>;IGNORE % ÿ                          |  <U00D8> <oslash>;<OBL>;<CAP>;IGNORE % √ò
+<U00FC> <y>;<REU>;<MIN>;IGNORE % ¸                               |  <U00FC> <y>;<REU>;<MIN>;IGNORE % √º
+<U00DC> <y>;<REU>;<CAP>;IGNORE % ‹                               |  <U00DC> <y>;<REU>;<CAP>;IGNORE % √ú
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: szl_PL
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: tcy_IN
 Only in _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE: the_NP
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/ug_CN _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/ug_CN
-collating-element <ara_h_e>    from "<U0626><U06D0>" % ÿ¶€ê       |  collating-element <ara_h_e>    from "<U0626><U06D0>" % ÿ¶€ê
-diff -yt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/uk_UA _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/uk_UA
+diff -byt --suppress-common-lines _ubuntu/ami-002f0f6a/LC_COLLATE/uk_UA _ubuntu/ami-0b0ea68c435eb488d/LC_COLLATE/uk_UA
 collating-symbol <V+SS>                                         <
 collating-element <V-SS> from "<U0412><U042C>"                  <
 collating-element <V-ss> from "<U0412><U044C>"                  <

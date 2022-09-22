@@ -1,4 +1,4 @@
-diff -yt --suppress-common-lines _ubuntu/ami-055d7213/LC_COLLATE/C _ubuntu/ami-10d4f76b/LC_COLLATE/C
+diff -byt --suppress-common-lines _ubuntu/ami-055d7213/LC_COLLATE/C _ubuntu/ami-10d4f76b/LC_COLLATE/C
                                                                 >  <U1C80>
                                                                 >  ..
                                                                 >  <U1C8F>

@@ -1,5 +1,5 @@
 Only in _ubuntu/ami-4fad7426/LC_COLLATE: bem_ZM
-diff -yt --suppress-common-lines _ubuntu/ami-6d9f3604/LC_COLLATE/dz_BT _ubuntu/ami-4fad7426/LC_COLLATE/dz_BT
+diff -byt --suppress-common-lines _ubuntu/ami-6d9f3604/LC_COLLATE/dz_BT _ubuntu/ami-4fad7426/LC_COLLATE/dz_BT
 collating-symbol <NOM>                                          |  reorder-after <U042F>
 collating-symbol <SUB>                                          <
 collating-symbol <REV>                                          <
@@ -1260,7 +1260,7 @@ order_start <TIBETAN>;forward;forward;forward;forward,position  <
 order_end                                                       <
 Only in _ubuntu/ami-4fad7426/LC_COLLATE: en_ZM
 Only in _ubuntu/ami-4fad7426/LC_COLLATE: ff_SN
-diff -yt --suppress-common-lines _ubuntu/ami-6d9f3604/LC_COLLATE/iso14651_t1_common _ubuntu/ami-4fad7426/LC_COLLATE/iso14651_t1_common
+diff -byt --suppress-common-lines _ubuntu/ami-6d9f3604/LC_COLLATE/iso14651_t1_common _ubuntu/ami-4fad7426/LC_COLLATE/iso14651_t1_common
                                                                 >  script <TIBETAN>
                                                                 >  collating-symbol <NOM>
                                                                 >  collating-symbol <SUB>
@@ -2536,54 +2536,31 @@ diff -yt --suppress-common-lines _ubuntu/ami-6d9f3604/LC_COLLATE/iso14651_t1_com
 Only in _ubuntu/ami-4fad7426/LC_COLLATE: lij_IT
 Only in _ubuntu/ami-4fad7426/LC_COLLATE: mhr_RU
 Only in _ubuntu/ami-4fad7426/LC_COLLATE: os_RU
-diff -yt --suppress-common-lines _ubuntu/ami-6d9f3604/LC_COLLATE/se_NO _ubuntu/ami-4fad7426/LC_COLLATE/se_NO
-<U00E0> <agrave>;<GRA>;<MIN>;IGNORE % 201 ‡
-                     |  <U00E0> <agrave>;<GRA>;<MIN>;IGNORE % 201 √†
-<U00E1> <aacute>;<ACA>;<MIN>;IGNORE % 200 ·
-                     |  <U00E1> <aacute>;<ACA>;<MIN>;IGNORE % 200 √°
-<U00E2> <acircumflex>;<CIR>;<MIN>;IGNORE % 202 ‚
-                |  <U00E2> <acircumflex>;<CIR>;<MIN>;IGNORE % 202 √¢
-<U00E3> <atilde>;<TIL>;<MIN>;IGNORE % 203 „
-                     |  <U00E3> <atilde>;<TIL>;<MIN>;IGNORE % 203 √£
-<U00C0> <agrave>;<GRA>;<CAP>;IGNORE % 321 ¿                     |  <U00C0> <agrave>;<GRA>;<CAP>;IGNORE % 321 √Ä
-<U00C1> <aacute>;<ACA>;<CAP>;IGNORE % 320 ¡                     |  <U00C1> <aacute>;<ACA>;<CAP>;IGNORE % 320 √Å
-<U00C2> <acircumflex>;<CIR>;<CAP>;IGNORE % 322 ¬
-                |  <U00C2> <acircumflex>;<CIR>;<CAP>;IGNORE % 322 √Ç
-<U00C3> <atilde>;<TIL>;<CAP>;IGNORE % 323 √
-                     |  <U00C3> <atilde>;<TIL>;<CAP>;IGNORE % 323 √É
-<U00E7> <ccedilla>;<CDI>;<MIN>;IGNORE % 212 Á
-                   |  <U00E7> <ccedilla>;<CDI>;<MIN>;IGNORE % 212 √ß
-<U00C7> <ccedilla>;<CDI>;<CAP>;IGNORE % 332 «
-                   |  <U00C7> <ccedilla>;<CDI>;<CAP>;IGNORE % 332 √á
-<U00F0> <eth>;<PCL>;<MIN>;IGNORE % 218 
-                        |  <U00F0> <eth>;<PCL>;<MIN>;IGNORE % 218 √∞
-<U00D0> <eth>;<PCL>;<CAP>;IGNORE % 338 –
-                        |  <U00D0> <eth>;<PCL>;<CAP>;IGNORE % 338 √ê
-<U00DF> <ssharp>;"<LIG><LIG>";"<MIN><MIN>";IGNORE % ﬂ
-           |  <U00DF> <ssharp>;"<LIG><LIG>";"<MIN><MIN>";IGNORE % √ü
-<U00E4> <svae>;<REU>;<MIN>;IGNORE % ‰
-                           |  <U00E4> <svae>;<REU>;<MIN>;IGNORE % √§
-<U00E5> <aring>;<RNE>;<MIN>;IGNORE % Â
-                          |  <U00E5> <aring>;<RNE>;<MIN>;IGNORE % √•
-<U00E6> <noae>;<LIG>;<MIN>;IGNORE % Ê
-                           |  <U00E6> <noae>;<LIG>;<MIN>;IGNORE % √¶
-<U00F6> <oumlaut>;<REU>;<MIN>;IGNORE % ˆ
-                        |  <U00F6> <oumlaut>;<REU>;<MIN>;IGNORE % √∂
-<U00F8> <oslash>;<OBL>;<MIN>;IGNORE % ¯
-                         |  <U00F8> <oslash>;<OBL>;<MIN>;IGNORE % √∏
-<U00C4> <svae>;<REU>;<CAP>;IGNORE % ƒ
-                           |  <U00C4> <svae>;<REU>;<CAP>;IGNORE % √Ñ
-<U00C5> <aring>;<RNE>;<CAP>;IGNORE % ≈
-                          |  <U00C5> <aring>;<RNE>;<CAP>;IGNORE % √Ö
-<U00C6> <noae>;<LIG>;<CAP>;IGNORE % ∆
-                           |  <U00C6> <noae>;<LIG>;<CAP>;IGNORE % √Ü
-<U00D6> <oumlaut>;<REU>;<CAP>;IGNORE % ÷
-                        |  <U00D6> <oumlaut>;<REU>;<CAP>;IGNORE % √ñ
-<U00D8> <oslash>;<OBL>;<CAP>;IGNORE % ÿ
-                         |  <U00D8> <oslash>;<OBL>;<CAP>;IGNORE % √ò
-<U00FC> <y>;<REU>;<MIN>;IGNORE % ¸
-                              |  <U00FC> <y>;<REU>;<MIN>;IGNORE % √º
-<U00DC> <y>;<REU>;<CAP>;IGNORE % ‹
-                              |  <U00DC> <y>;<REU>;<CAP>;IGNORE % √ú
+diff -byt --suppress-common-lines _ubuntu/ami-6d9f3604/LC_COLLATE/se_NO _ubuntu/ami-4fad7426/LC_COLLATE/se_NO
+<U00E0> <agrave>;<GRA>;<MIN>;IGNORE % 201 ‡                      |  <U00E0> <agrave>;<GRA>;<MIN>;IGNORE % 201 √†
+<U00E1> <aacute>;<ACA>;<MIN>;IGNORE % 200 ·                      |  <U00E1> <aacute>;<ACA>;<MIN>;IGNORE % 200 √°
+<U00E2> <acircumflex>;<CIR>;<MIN>;IGNORE % 202 ‚                 |  <U00E2> <acircumflex>;<CIR>;<MIN>;IGNORE % 202 √¢
+<U00E3> <atilde>;<TIL>;<MIN>;IGNORE % 203 „                      |  <U00E3> <atilde>;<TIL>;<MIN>;IGNORE % 203 √£
+<U00C0> <agrave>;<GRA>;<CAP>;IGNORE % 321 ¿                      |  <U00C0> <agrave>;<GRA>;<CAP>;IGNORE % 321 √Ä
+<U00C1> <aacute>;<ACA>;<CAP>;IGNORE % 320 ¡                      |  <U00C1> <aacute>;<ACA>;<CAP>;IGNORE % 320 √Å
+<U00C2> <acircumflex>;<CIR>;<CAP>;IGNORE % 322 ¬                 |  <U00C2> <acircumflex>;<CIR>;<CAP>;IGNORE % 322 √Ç
+<U00C3> <atilde>;<TIL>;<CAP>;IGNORE % 323 √                      |  <U00C3> <atilde>;<TIL>;<CAP>;IGNORE % 323 √É
+<U00E7> <ccedilla>;<CDI>;<MIN>;IGNORE % 212 Á                    |  <U00E7> <ccedilla>;<CDI>;<MIN>;IGNORE % 212 √ß
+<U00C7> <ccedilla>;<CDI>;<CAP>;IGNORE % 332 «                    |  <U00C7> <ccedilla>;<CDI>;<CAP>;IGNORE % 332 √á
+<U00F0> <eth>;<PCL>;<MIN>;IGNORE % 218                          |  <U00F0> <eth>;<PCL>;<MIN>;IGNORE % 218 √∞
+<U00D0> <eth>;<PCL>;<CAP>;IGNORE % 338 –                         |  <U00D0> <eth>;<PCL>;<CAP>;IGNORE % 338 √ê
+<U00DF> <ssharp>;"<LIG><LIG>";"<MIN><MIN>";IGNORE % ﬂ            |  <U00DF> <ssharp>;"<LIG><LIG>";"<MIN><MIN>";IGNORE % √ü
+<U00E4> <svae>;<REU>;<MIN>;IGNORE % ‰                            |  <U00E4> <svae>;<REU>;<MIN>;IGNORE % √§
+<U00E5> <aring>;<RNE>;<MIN>;IGNORE % Â                           |  <U00E5> <aring>;<RNE>;<MIN>;IGNORE % √•
+<U00E6> <noae>;<LIG>;<MIN>;IGNORE % Ê                            |  <U00E6> <noae>;<LIG>;<MIN>;IGNORE % √¶
+<U00F6> <oumlaut>;<REU>;<MIN>;IGNORE % ˆ                         |  <U00F6> <oumlaut>;<REU>;<MIN>;IGNORE % √∂
+<U00F8> <oslash>;<OBL>;<MIN>;IGNORE % ¯                          |  <U00F8> <oslash>;<OBL>;<MIN>;IGNORE % √∏
+<U00C4> <svae>;<REU>;<CAP>;IGNORE % ƒ                            |  <U00C4> <svae>;<REU>;<CAP>;IGNORE % √Ñ
+<U00C5> <aring>;<RNE>;<CAP>;IGNORE % ≈                           |  <U00C5> <aring>;<RNE>;<CAP>;IGNORE % √Ö
+<U00C6> <noae>;<LIG>;<CAP>;IGNORE % ∆                            |  <U00C6> <noae>;<LIG>;<CAP>;IGNORE % √Ü
+<U00D6> <oumlaut>;<REU>;<CAP>;IGNORE % ÷                         |  <U00D6> <oumlaut>;<REU>;<CAP>;IGNORE % √ñ
+<U00D8> <oslash>;<OBL>;<CAP>;IGNORE % ÿ                          |  <U00D8> <oslash>;<OBL>;<CAP>;IGNORE % √ò
+<U00FC> <y>;<REU>;<MIN>;IGNORE % ¸                               |  <U00FC> <y>;<REU>;<MIN>;IGNORE % √º
+<U00DC> <y>;<REU>;<CAP>;IGNORE % ‹                               |  <U00DC> <y>;<REU>;<CAP>;IGNORE % √ú
 Only in _ubuntu/ami-4fad7426/LC_COLLATE: wae_CH
 Only in _ubuntu/ami-4fad7426/LC_COLLATE: yue_HK

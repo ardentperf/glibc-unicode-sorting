@@ -1,5 +1,5 @@
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: bho_NP
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/bs_BA _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/bs_BA
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/bs_BA _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/bs_BA
 copy "iso14651_t1"                                              |  copy "hr_HR"
 collating-symbol  <d-z-sh>                                      <
 collating-element <D-Z<> from "<U0044><U017D>"                  <
@@ -76,10 +76,10 @@ reorder-after <U007A>                                           <
 reorder-after <U005A>                                           <
 <U017D> <zcaron>;<PCT>;<CAP>;IGNORE                             <
 reorder-end                                                     <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/cmn_TW _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/cmn_TW
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/cmn_TW _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/cmn_TW
 copy "iso14651_t1"                                              |  copy "cns11643_stroke"
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: cns11643_stroke
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/cs_CZ _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/cs_CZ
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/cs_CZ _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/cs_CZ
 collating-symbol <CAPITAL>                                      |  copy "iso14651_t1"
 collating-symbol <CAPITAL-SMALL>                                |  collating-symbol <c-caron>
 collating-symbol <SMALL-CAPITAL>                                |  collating-symbol <ch-digraph>
@@ -2072,10 +2072,10 @@ UNDEFINED       IGNORE;IGNORE;IGNORE;IGNORE                     <
 <U30F3> <U30F3>;<U30F3>;IGNORE;<U30F3>                          <
 <U3093> <U30F3>;<U3093>;IGNORE;<U30F3>                          <
 order_end                                                       <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/de_DE _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/de_DE
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/de_DE _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/de_DE
 define DIACRIT_FORWARD                                          <
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: en_SC
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/et_EE _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/et_EE
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/et_EE _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/et_EE
 define UPPERCASE_FIRST                                          <
 collating-symbol <scaron>                                       |  collating-symbol <s-caron>
 collating-symbol <otilde>                                       |  collating-symbol <z-caron>
@@ -2112,9 +2112,9 @@ reorder-after <U0076>                                           <
 <U00E4> <adiaeresis>;<BAS>;<MIN>;IGNORE                         <
 <U00F6> <odiaeresis>;<BAS>;<MIN>;IGNORE                         <
 <U00FC> <udiaeresis>;<BAS>;<MIN>;IGNORE                         <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/fr_CA _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/fr_CA
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/fr_CA _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/fr_CA
                                                                 >  define DIACRIT_BACKWARD
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/hr_HR _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/hr_HR
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/hr_HR _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/hr_HR
 collating-symbol <CAP-MIN>                                      |  collating-element <D-Z<> from "<U0044><U017D>"
 collating-symbol <MIN-CAP>                                      |  collating-element <D-z<> from "<U0044><U017E>"
 collating-symbol <ccaron>                                       |  collating-element <d-Z<> from "<U0064><U017D>"
@@ -2175,7 +2175,7 @@ reorder-after <U007A>                                           |  <U017D> <zcar
 <U017E> <zcaron>;<BAS>;<MIN>;IGNORE                             <
 reorder-after <U005A>                                           <
 <U017D> <zcaron>;<BAS>;<CAP>;IGNORE                             <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/hsb_DE _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/hsb_DE
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/hsb_DE _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/hsb_DE
 collating-element <D-Z'> from "<U0044><U0179>"                  <
 collating-element <D-z'> from "<U0044><U017A>"                  <
 collating-element <d-Z'> from "<U0064><U0179>"                  <
@@ -2261,10 +2261,9 @@ reorder-after <U017C>                                           <
 <U017E> <zcaron>;<BAS>;<MIN>;IGNORE                             <
 reorder-after <U017B>                                           <
 <U017D> <zcaron>;<BAS>;<CAP>;IGNORE                             <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/hu_HU _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/hu_HU
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/hu_HU _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/hu_HU
 define DIACRIT_FORWARD                                          <
-Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: i18n_ctype
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/is_IS _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/is_IS
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/is_IS _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/is_IS
 collating-symbol <CAPITAL>                                      |  copy "iso14651_t1"
 collating-symbol <CAPITAL-SMALL>                                |  collating-symbol <a-acute>
 collating-symbol <SMALL-CAPITAL>                                |  collating-symbol <d-stroke>
@@ -4289,7 +4288,7 @@ UNDEFINED       IGNORE;IGNORE;IGNORE                            <
 <U02C9> IGNORE;IGNORE;<MACRON>;IGNORE                           <
 <U02CB> IGNORE;IGNORE;<GRAVE>;IGNORE                            <
 order_end                                                       <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/iso14651_t1_common _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/iso14651_t1_common
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/iso14651_t1_common _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/iso14651_t1_common
 ifdef UPPERCASE_FIRST                                           <
 <CAP>                                                           <
 else                                                            <
@@ -4310,11 +4309,11 @@ else                                                            <
                                                                 >  else
                                                                 >  order_start <LATIN>;forward;forward;forward;forward,position
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: kab_DZ
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/ky_KG _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/ky_KG
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/ky_KG _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/ky_KG
 copy "<U0069><U0073><U006F><U0031><U0034><U0036><U0035><U0031>< |  copy "iso14651_t1"
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/lb_LU _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/lb_LU
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/lb_LU _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/lb_LU
 define DIACRIT_FORWARD                                          <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/lt_LT _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/lt_LT
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/lt_LT _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/lt_LT
 define UPPERCASE_FIRST                                          <
                                                                 >  collating-symbol <a-ogonek>
                                                                 >  collating-symbol <c-caron>
@@ -4358,7 +4357,7 @@ define UPPERCASE_FIRST                                          <
                                                                 >  <U016A> <u-macron>;<BAS>;<CAP>;IGNORE % Ū
                                                                 >  <U017E> <z-caron>;<BAS>;<MIN>;IGNORE % ž
                                                                 >  <U017D> <z-caron>;<BAS>;<CAP>;IGNORE % Ž
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/lv_LV _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/lv_LV
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/lv_LV _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/lv_LV
 collating-symbol <CAPITAL>                                      |  copy "iso14651_t1"
 collating-symbol <CAPITAL-SMALL>                                |  collating-symbol <c-caron>
 collating-symbol <SMALL-CAPITAL>                                |  collating-symbol <g-cedilla>
@@ -6348,7 +6347,7 @@ order_end                                                       <
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: mfe_MU
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: miq_NI
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: mjw_IN
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/om_KE _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/om_KE
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/om_KE _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/om_KE
 collating-element <CH> from "<U0043><U0048>"                    |  collating-element <CH> from "CH"
 collating-element <Ch> from "<U0043><U0068>"                    |  collating-element <Ch> from "Ch"
 collating-element <ch> from "<U0063><U0068>"                    |  collating-element <ch> from "ch"
@@ -6367,7 +6366,7 @@ collating-element <ph> from "<U0070><U0068>"                    |  collating-ele
 collating-element <SH> from "<U0053><U0048>"                    |  collating-element <SH> from "SH"
 collating-element <Sh> from "<U0053><U0068>"                    |  collating-element <Sh> from "Sh"
 collating-element <sh> from "<U0073><U0068>"                    |  collating-element <sh> from "sh"
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/pl_PL _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/pl_PL
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/pl_PL _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/pl_PL
 collating-symbol <aogonek>                                      |  collating-symbol <space>
 collating-symbol <cacute>                                       |  collating-symbol <a-ogonek>
 collating-symbol <eogonek>                                      |  collating-symbol <c-acute>
@@ -6426,7 +6425,7 @@ reorder-after <U005A>                                           <
 <U0179> <zacute>;<BAS>;<CAP>;IGNORE                             <
 <U017B> <zdot>;<BAS>;<CAP>;IGNORE                               <
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: shn_MM
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/sr_RS _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/sr_RS
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/sr_RS _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/sr_RS
 copy "iso14651_t1"                                              |  copy "hr_HR"
 collating-element <D-Z<> from "<U0044><U017D>"                  <
 collating-element <D-z<> from "<U0044><U017E>"                  <
@@ -6512,7 +6511,7 @@ reorder-after <U007A>                                           <
 reorder-after <U005A>                                           <
 <U017D> <zcaron>;<PCT>;<CAP>;IGNORE                             <
 reorder-end                                                     <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/tr_TR _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/tr_TR
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/tr_TR _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/tr_TR
 define UPPERCASE_FIRST                                          <
 collating-symbol <o-diaeresis>                                  |  collating-symbol <i-dotless>
                                                                 >  collating-symbol <o-diaresis>
@@ -6548,6 +6547,6 @@ reorder-after <U0055>                                           <
 <U00DC> <u-diaeresis>;<BAS>;<CAP>;IGNORE                        <
 reorder-after <U0075>                                           <
 <U00FC> <u-diaeresis>;<BAS>;<MIN>;IGNORE                        <
-diff -yt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/uk_UA _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/uk_UA
+diff -byt --suppress-common-lines _ubuntu/ami-10eadd6a/LC_COLLATE/uk_UA _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE/uk_UA
 copy "<U0069><U0073><U006F><U0031><U0034><U0036><U0035><U0031>< |  copy "iso14651_t1"
 Only in _ubuntu/ami-0279c3b3186e54acd/LC_COLLATE: yuw_PG

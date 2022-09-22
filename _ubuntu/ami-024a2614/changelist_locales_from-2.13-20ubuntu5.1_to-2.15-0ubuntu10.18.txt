@@ -1,7 +1,7 @@
 Only in _ubuntu/ami-024a2614/LC_COLLATE: bho_IN
 Only in _ubuntu/ami-024a2614/LC_COLLATE: brx_IN
 Only in _ubuntu/ami-024a2614/LC_COLLATE: es_CU
-diff -yt --suppress-common-lines _ubuntu/ami-4fad7426/LC_COLLATE/hu_HU _ubuntu/ami-024a2614/LC_COLLATE/hu_HU
+diff -byt --suppress-common-lines _ubuntu/ami-4fad7426/LC_COLLATE/hu_HU _ubuntu/ami-024a2614/LC_COLLATE/hu_HU
                                                                 >  collating-symbol  <c_or_cs>
                                                                 >  collating-symbol  <d_or_dz>
                                                                 >  collating-symbol  <d_or_dzs>
@@ -101,7 +101,7 @@ diff -yt --suppress-common-lines _ubuntu/ami-4fad7426/LC_COLLATE/hu_HU _ubuntu/a
 <z-z-S>         "<zs><zs>";"<BAS><BAS>";"<MIN><MIN-CAP>";IGNORE |  <z-z-S>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><MIN-CAP>";I
 <z-z-s>         "<zs><zs>";"<BAS><BAS>";"<MIN><MIN>";IGNORE     |  <z-z-s>         "<z_or_zs><zs>";"<BAS><BAS>";"<MIN><MIN>";IGNOR
 Only in _ubuntu/ami-024a2614/LC_COLLATE: ta_LK
-diff -yt --suppress-common-lines _ubuntu/ami-4fad7426/LC_COLLATE/ug_CN _ubuntu/ami-024a2614/LC_COLLATE/ug_CN
+diff -byt --suppress-common-lines _ubuntu/ami-4fad7426/LC_COLLATE/ug_CN _ubuntu/ami-024a2614/LC_COLLATE/ug_CN
 collating-symbol  <schwa>                                       |  collating-symbol  <ARA_ywha_alef>
 collating-symbol  <gh>                                          |  collating-symbol  <ARA_ywha_ae>
 collating-symbol  <ng>                                          |  collating-symbol  <ARA_ae>
@@ -216,31 +216,29 @@ reorder-after <keheh>                                           |  <alef>
 <ar_e>                                                          |  <ARA_ywha_oe>
 <ar_i>                                                          |  <ARA_oe>
 <ar_y>                                                          |  <ARA_ywha_yu>
-reorder-after <U0627>                                           |  <ARA_yu>
-<U06D5> <ar_ae>;<BAS>;<MIN>;IGNORE                              |  <ARA_ve>
-reorder-after <U06A9>                                           |  <ARA_ywha_e>
-<U06AD> <ar_ng>;<BAS>;<MIN>;IGNORE                              |  <ARA_e>
-reorder-after <U0648>                                           |  <ARA_ywha_alma>
-<U06C7> <ar_u>;<BAS>;<MIN>;IGNORE                               |  <alef_maksura>
-<U06C6> <ar_oe>;<BAS>;<MIN>;IGNORE                              |  <ARA_yeh>
-<U06C8> <ar_yu>;<BAS>;<MIN>;IGNORE                              |  <ARA_ywha>
-<U06CB> <ar_ve>;<BAS>;<MIN>;IGNORE                              |  reorder-after   <U0627>
-<U06D0> <ar_e>;<BAS>;<MIN>;IGNORE                               |  <ara_h_alef>    <ARA_ywha_alef>;<BAS>;<MIN>;IGNORE
-<U06CC> <ar_i>;<BAS>;<MIN>;IGNORE                               |  <U0627>         <alef>;<BAS>;<MIN>;IGNORE
-<U064A> <ar_y>;<BAS>;<MIN>;IGNORE                               |  <ara_h_ae>      <ARA_ywha_ae>;<BAS>;<MIN>;IGNORE
+                                                                >  <ARA_yu>
+                                                                >  <ARA_ve>
+                                                                >  <ARA_ywha_e>
+                                                                >  <ARA_e>
+                                                                >  <ARA_ywha_alma>
+                                                                >  <alef_maksura>
+                                                                >  <ARA_yeh>
+                                                                >  <ARA_ywha>
+<U06D5> <ar_ae>;<BAS>;<MIN>;IGNORE                              |  <ara_h_alef>    <ARA_ywha_alef>;<BAS>;<MIN>;IGNORE
+reorder-after <U06A9>                                           |  <U0627>         <alef>;<BAS>;<MIN>;IGNORE
+<U06AD> <ar_ng>;<BAS>;<MIN>;IGNORE                              |  <ara_h_ae>      <ARA_ywha_ae>;<BAS>;<MIN>;IGNORE
                                                                 >  <U06D5>         <ARA_ae>;<BAS>;<MIN>;IGNORE
                                                                 >  reorder-after   <U06AF>
                                                                 >  <U06AD>         <ARA_ng>;<BAS>;<MIN>;IGNORE
                                                                 >  reorder-after   <U0646>
                                                                 >  <U06BE>         <ARA_hehd>;<BAS>;<MIN>;IGNORE
-                                                                >  reorder-after   <U0648>
-                                                                >  <ara_ywha_waw>  <ARA_ywha_waw>;<BAS>;<MIN>;IGNORE
-                                                                >  <U0648>         <waw>;<BAS>;<MIN>;IGNORE
-                                                                >  <ara_ywha_u>    <ARA_ywha_u>;<BAS>;<MIN>;IGNORE
-                                                                >  <U06C7>         <ARA_u>;<BAS>;<MIN>;IGNORE
-                                                                >  <ara_ywha_oe>   <ARA_ywha_oe>;<BAS>;<MIN>;IGNORE
-                                                                >  <U06C6>         <ARA_oe>;<BAS>;<MIN>;IGNORE
-                                                                >  <ara_ywha_yu>   <ARA_ywha_yu>;<BAS>;<MIN>;IGNORE
+<U06C7> <ar_u>;<BAS>;<MIN>;IGNORE                               |  <ara_ywha_waw>  <ARA_ywha_waw>;<BAS>;<MIN>;IGNORE
+<U06C6> <ar_oe>;<BAS>;<MIN>;IGNORE                              |  <U0648>         <waw>;<BAS>;<MIN>;IGNORE
+<U06C8> <ar_yu>;<BAS>;<MIN>;IGNORE                              |  <ara_ywha_u>    <ARA_ywha_u>;<BAS>;<MIN>;IGNORE
+<U06CB> <ar_ve>;<BAS>;<MIN>;IGNORE                              |  <U06C7>         <ARA_u>;<BAS>;<MIN>;IGNORE
+<U06D0> <ar_e>;<BAS>;<MIN>;IGNORE                               |  <ara_ywha_oe>   <ARA_ywha_oe>;<BAS>;<MIN>;IGNORE
+<U06CC> <ar_i>;<BAS>;<MIN>;IGNORE                               |  <U06C6>         <ARA_oe>;<BAS>;<MIN>;IGNORE
+<U064A> <ar_y>;<BAS>;<MIN>;IGNORE                               |  <ara_ywha_yu>   <ARA_ywha_yu>;<BAS>;<MIN>;IGNORE
                                                                 >  <U06C8>         <ARA_yu>;<BAS>;<MIN>;IGNORE
                                                                 >  <U06CB>         <ARA_ve>;<BAS>;<MIN>;IGNORE
                                                                 >  <ara_ywha_e>    <ARA_ywha_e>;<BAS>;<MIN>;IGNORE
