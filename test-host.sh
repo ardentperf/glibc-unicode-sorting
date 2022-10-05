@@ -12,10 +12,10 @@
 # usage: sh test-host.sh [ubuntu|rhel] [LOGIN-USERNAME@HOSTNAME]
 #
 # one-liners that I found helpful:
-#   aws ec2 run-instances --instance-type c3.2xlarge --image-id ami-10eadd6a
+#   aws ec2 run-instances --instance-type c6i.4xlarge --image-id ami-10eadd6a
 #     --region us-east-1  --monitoring Enabled=true --key-name <my-key-name>
 #     --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=ubuntu-1710}]'
-#   (Note that c3.2xl supports paravirt, used by AMIs for some old OS versions like RHEL5)
+#   (Note that c3 supports paravirt, used by AMIs for some old OS versions like RHEL5)
 #   aws ec2 describe-instances --region=us-east-1 |jq -r '.Reservations[].Instances[] |
 #     select(.Tags[].Value | startswith("ubuntu-")) | [ .Tags[].Value,
 #     .PublicDnsName ] | @tsv' | sort  >hosts
@@ -25,7 +25,7 @@
 #
 # finding AMIs for specific OS releases:
 #   aws ec2 describe-images --region us-east-1 --image-ids ami-00482f016b2410dc8
-#   aws ec2 describe-images --region us-east-1 --filters "Name=description,\
+#   aws ec2 describe-images --region us-east-1 --include-deprecated --filters "Name=description,\
 #     Values='Canonical, Ubuntu, 22.04 LTS, amd64*'"|egrep '(ImageId|Description|CreationDate|OwnerId)'
 #
 [ -z "$2" ] && echo "ERROR: pass user@hostname as parameter" && exit 1
