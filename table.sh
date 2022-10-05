@@ -347,7 +347,7 @@ do
       # create a file with patterns that are seen more than 20,000 times. this
       # is later used to filter most of these from the data file thats uploaded
       # to github.
-      for(keys %all_patterns) {
+      for(sort keys %all_patterns) {
           print PF $_." (".$all_patterns{$_}."x)\n" if $_ ne "S-199" && $all_patterns{$_}>20000;
       }
       close PF;
@@ -444,10 +444,10 @@ do
     grep -E '^diff' $LC_CHANGELIST|tr / ' '|awk '{print" "$7}' >langs.tmp
     grep -E "^Only in $PREFIX/$PREV_AMI" $LC_CHANGELIST|awk '{print" "$4" (removed)"}' >>langs.tmp
     (( `cat langs.tmp|wc -l` > 20 )) && echo "(More than 20 languages)" >langs.tmp
-    # string for count of changed codepoints (includes markdown link to data)
-    CHANGECOUNT_STR="0"; (( CHANGECOUNT > 0 )) && CHANGECOUNT_STR="[$CHANGECOUNT]($CHANGELIST)"
     # string for count of changed locales (includes markdown link to data)
     LC_CHANGECOUNT_STR="0"; (( LC_CHANGECOUNT > 0 )) && LC_CHANGECOUNT_STR="[$LC_CHANGECOUNT]($LC_CHANGELIST)"
+    # total count of locales - create markdown link if any new locales were added
+    grep -qE "^Only in $PREFIX/$AMI" $LC_CHANGELIST && LOCALE_COUNT="[$LOCALE_COUNT]($LC_CHANGELIST)"
     # don't upload a data file bigger than 50GB to git
     CHANGELIST_SIZE=$(stat --printf="%s" $CHANGELIST)
     if (( CHANGELIST_SIZE > 40000000 )); then
@@ -467,8 +467,10 @@ do
       echo "" >>$SORTDIFF
       head -c40000000 $PREFIX/$AMI/diff.tmp >>$SORTDIFF
     fi
+    # string for count of changed codepoints (includes markdown link to data)
+    CHANGECOUNT_STR="0"; (( CHANGECOUNT > 0 )) && CHANGECOUNT_STR="[$CHANGECOUNT]($CHANGELIST) ([Full Diff]($SORTDIFF))"
   fi
-  echo "| $GLIBC_VERS | $SUMMARY_STR | $CHANGECOUNT_STR | $LC_CHANGECOUNT_STR | $(paste -sd, langs.tmp) | $LOCALE_COUNT | $OS_VERS | [$AMI]($PREFIX/$AMI) |"
+  echo "| $GLIBC_VERS | $SUMMARY_STR | $CHANGECOUNT_STR | $(paste -sd, langs.tmp) | $LC_CHANGECOUNT_STR | $LOCALE_COUNT | $OS_VERS | [$AMI]($PREFIX/$AMI) |"
   PREV_AMI="$AMI"
   PREV_GLIBC_VERS="$GLIBC_VERS"
 done 

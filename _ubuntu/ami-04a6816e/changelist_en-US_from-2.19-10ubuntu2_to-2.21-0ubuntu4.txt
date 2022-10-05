@@ -5,7 +5,7 @@
 #   - full data for pattern S-199, aka single-character strings
 # 
 # Filtered Pattern ID (total count of distinct codepoints in diff output), Pattern ID (codepoints), etc:
-#   S-326 (22282x), S-585 (22435x), S-423 (22461x), S-426 (22432x), S-323 (22311x), S-324 (22311x), S-424 (22461x), S-583 (22283x), S-481 (22279x), S-420 (22406x) 
+#   S-323 (22311x), S-324 (22311x), S-326 (22282x), S-420 (22406x), S-423 (22461x), S-424 (22461x), S-426 (22432x), S-481 (22279x), S-583 (22283x), S-585 (22435x)
 
 # CodePoint UnicodeBlock PatternID String PositionChange
 000020 0000 S-315 様 様 -23713557,258028+23713557,38764
