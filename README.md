@@ -57,7 +57,7 @@ that are changed, and which locales contain the changes.
 
 The filter.sh script was used to run an additional comparison between sorted lists using only strings that are composed entirely/purely of ISO-8859-1 characters, across all of the above versions of Ubuntu. Note that ISO-8859-1 is a superset of ASCII, so pure ASCII was also covered by this comparison.
 
-Glibc 2.28 is the only version which changed comparisons of any pure ASCII strings in this test. Glibc 2.27 did not change pure ASCII, but it changed ISO-8859-1 strings. No other versions of glibc made sort order changes for the strings generated in this test.
+Glibc 2.28 is the only version which changed comparisons of any pure ASCII strings in this test. Glibc 2.27 did not change pure ASCII, but it changed ISO-8859-1 strings. No other versions of glibc made sort order changes for the ISO-8859-1 strings generated in this test.
 
 
 ### Red Hat Enterprise Linux
