@@ -55,6 +55,10 @@ that are changed, and which locales contain the changes.
 | 2.34-0ubuntu3 | 0 | 0 |  sv_SE | [2](_ubuntu/ami-00482f016b2410dc8/changelist_locales_from-2.33-0ubuntu5_to-2.34-0ubuntu3.txt) | 348 | Ubuntu 21.10  | [ami-00482f016b2410dc8](_ubuntu/ami-00482f016b2410dc8) |
 | 2.35-0ubuntu3 | 0 | 0 |  C | [822](_ubuntu/ami-0ba8e031ca32ab37f/changelist_locales_from-2.34-0ubuntu3_to-2.35-0ubuntu3.txt) | [349](_ubuntu/ami-0ba8e031ca32ab37f/changelist_locales_from-2.34-0ubuntu3_to-2.35-0ubuntu3.txt) | Ubuntu 22.04 LTS  | [ami-0ba8e031ca32ab37f](_ubuntu/ami-0ba8e031ca32ab37f) |
 
+The filter.sh script was used to run an additional comparison between sorted lists using only strings that are composed entirely/purely of ISO-8859-1 characters, across all of the above versions of Ubuntu. Note that ISO-8859-1 is a superset of ASCII, so pure ASCII was also covered by this comparison.
+
+Glibc 2.28 is the only version which changed comparisons of any pure ASCII strings in this test. Glibc 2.27 did not change pure ASCII, but it changed ISO-8859-1 strings. No other versions of glibc made sort order changes for the strings generated in this test.
+
 
 ### Red Hat Enterprise Linux
 
