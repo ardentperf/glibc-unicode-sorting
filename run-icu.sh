@@ -46,9 +46,12 @@ UNICODE_VERS="15"
 
 # this psql program will read the unicode spec source and use it to output each
 # legal code point. for each code point, we output all the strings specified
-# in the main README. note that the output is split into multiple files of 500k
-# strings each. those files can be sorted in parallel to leverage multiple CPUs for
-# increased performance.
+# in the main README. 
+# 
+# we use a function instead of a procedure to work around a postgresql bug (commit 
+# a6b1f536) where there's a memory leak with calling procedures from a DO block.
+# workaround enables testing on older distributions like ubuntu 14.04 and 19.04
+# where latest PostgreSQL minors are not available in the package archives.
 #
 # IMPORTANT: make sure to keep this block in sync with README and table.sh
 #
@@ -64,7 +67,7 @@ copy unicode_spec from program 'curl -ks https://www.unicode.org/Public/${UNICOD
 drop table if exists unicode_data;
 create table unicode_data(d1 text);
 
-create or replace procedure insert_codepoint(cp int) as \$\$
+create or replace function insert_codepoint(cp int) returns int as \$\$
   begin
     insert into unicode_data values( chr(cp) );   -- 199
 
@@ -161,6 +164,8 @@ create or replace procedure insert_codepoint(cp int) as \$\$
     insert into unicode_data values( chr(cp)||chr(cp)||'.33' );   -- 584
     insert into unicode_data values( '3B-'||chr(cp)||'B' );   -- 585
     insert into unicode_data values( chr(cp)||chr(cp)||chr(cp)||chr(cp)||chr(cp) );   -- 599
+
+    return null;
   end;
 \$\$ language plpgsql;
 
@@ -175,24 +180,30 @@ do \$\$
       if t2 like '% First>' then first=('x'||lpad(t1, 8, '0'))::bit(32)::int; continue; end if;
       if t2 like '% Last>' then
         last=('x'||lpad(t1, 8, '0'))::bit(32)::int;
-        for i in first..last loop call insert_codepoint(i); end loop;
+        for i in first..last loop perform insert_codepoint(i); end loop;
         continue;
       end if;
-      call insert_codepoint(('x'||lpad(t1, 8, '0'))::bit(32)::int);
+      perform insert_codepoint(('x'||lpad(t1, 8, '0'))::bit(32)::int);
     end loop;
   end;
 \$\$;
 
 set work_mem="100MB";
 
-copy (select * from unicode_data order by d1 collate "en-US-x-icu") to '/tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}.txt' with (format text);
+copy (select * from unicode_data order by d1 collate "en-US-x-icu") to '/tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-en.txt' with (format text);
+copy (select * from unicode_data order by d1 collate "zh-Hans-CN-x-icu") to '/tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-zh.txt' with (format text);
+copy (select * from unicode_data order by d1 collate "ja-JP-x-icu") to '/tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-ja.txt' with (format text);
+copy (select * from unicode_data order by d1 collate "fr-FR-x-icu") to '/tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-fr.txt' with (format text);
+copy (select * from unicode_data order by d1 collate "ru-RU-x-icu") to '/tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-ru.txt' with (format text);
+copy (select * from unicode_data order by d1 collate "de-DE-x-icu") to '/tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-de.txt' with (format text);
+copy (select * from unicode_data order by d1 collate "es-ES-x-icu") to '/tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-es.txt' with (format text);
 
 EOF
 
 # write file sizes and final count of strings (lines) to stdout, can crosscheck w earlier count
 ls -ltr /tmp/unicode-*
-wc /tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}.txt
+wc /tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}*
 
-cp -v /tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}.txt $PWD/
+cp -v /tmp/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}* $PWD/
 
 date
