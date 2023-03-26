@@ -1,0 +1,115 @@
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
++ date
+Sat Mar 25 11:27:00 PM UTC 2023
++ dirname icu-unicode-sorting/run.sh
++ cd icu-unicode-sorting
++ pwd
+/home/ubuntu/icu-unicode-sorting
++ which dpkg
+/usr/bin/dpkg
++ dpkg -l libicu* postgresql*
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                      Version            Architecture Description
++++-=========================-==================-============-=========================================================
+ii  libicu70:amd64            70.1-2             amd64        International Components for Unicode
+un  libiculx63                <none>             <none>       (no description available)
+ii  postgresql-15             15.2-1.pgdg22.04+1 amd64        The World's Most Advanced Open Source Relational Database
+un  postgresql-15-jit-llvm    <none>             <none>       (no description available)
+un  postgresql-9.1            <none>             <none>       (no description available)
+un  postgresql-client         <none>             <none>       (no description available)
+ii  postgresql-client-15      15.2-1.pgdg22.04+1 amd64        front-end programs for PostgreSQL 15
+ii  postgresql-client-common  248.pgdg22.04+1    all          manager for multiple PostgreSQL client versions
+ii  postgresql-common         248.pgdg22.04+1    all          PostgreSQL database-cluster manager
+un  postgresql-contrib-15     <none>             <none>       (no description available)
+un  postgresql-doc-15         <none>             <none>       (no description available)
+un  postgresql-pgmp           <none>             <none>       (no description available)
+un  postgresql-server-dev-all <none>             <none>       (no description available)
++ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-0ba8e031ca32ab37f
++ cat /etc/issue
++ OS_VERS=Ubuntu 22.04 LTS \n \l
++ which dpkg
+/usr/bin/dpkg
++ awk /^ii  libicu/{print$3}
++ dpkg -l libicu*
++ ICU_VERS=70.1-2
++ [ -f /etc/os-release ]
++ cat /etc/os-release
+PRETTY_NAME="Ubuntu 22.04 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
++ [ -f /etc/system-release ]
++ [ -f /etc/system-release-cpe ]
++ UNICODE_VERS=15
++ sudo su - postgres -c psql -v ON_ERROR_STOP=on
+Timing is on.
+NOTICE:  table "unicode_spec" does not exist, skipping
+DROP TABLE
+Time: 0.409 ms
+CREATE TABLE
+Time: 8.384 ms
+COPY 34924
+Time: 458.082 ms
+NOTICE:  table "unicode_data" does not exist, skipping
+DROP TABLE
+Time: 0.230 ms
+CREATE TABLE
+Time: 4.359 ms
+CREATE PROCEDURE
+Time: 2.895 ms
+DO
+Time: 117719.341 ms (01:57.719)
+SET
+Time: 0.097 ms
+COPY 26085514
+Time: 79588.894 ms (01:19.589)
+COPY 26085514
+Time: 66785.674 ms (01:06.786)
+COPY 26085514
+Time: 65057.789 ms (01:05.058)
+COPY 26085514
+Time: 65910.174 ms (01:05.910)
+COPY 26085514
+Time: 64321.076 ms (01:04.321)
+COPY 26085514
+Time: 65717.334 ms (01:05.717)
+COPY 26085514
+Time: 66217.889 ms (01:06.218)
++ ls -ltr /tmp/unicode-15-chars-sorted-icu-70.1-2-de.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-en.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-es.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-fr.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-ja.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-ru.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-zh.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:30 /tmp/unicode-15-chars-sorted-icu-70.1-2-en.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:31 /tmp/unicode-15-chars-sorted-icu-70.1-2-zh.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:32 /tmp/unicode-15-chars-sorted-icu-70.1-2-ja.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:33 /tmp/unicode-15-chars-sorted-icu-70.1-2-fr.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:34 /tmp/unicode-15-chars-sorted-icu-70.1-2-ru.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:35 /tmp/unicode-15-chars-sorted-icu-70.1-2-de.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:36 /tmp/unicode-15-chars-sorted-icu-70.1-2-es.txt
++ wc /tmp/unicode-15-chars-sorted-icu-70.1-2-de.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-en.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-es.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-fr.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-ja.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-ru.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-zh.txt
+  26085514   26295785  249155525 /tmp/unicode-15-chars-sorted-icu-70.1-2-de.txt
+  26085514   26295785  249155525 /tmp/unicode-15-chars-sorted-icu-70.1-2-en.txt
+  26085514   26295785  249155525 /tmp/unicode-15-chars-sorted-icu-70.1-2-es.txt
+  26085514   26295785  249155525 /tmp/unicode-15-chars-sorted-icu-70.1-2-fr.txt
+  26085514   26295785  249155525 /tmp/unicode-15-chars-sorted-icu-70.1-2-ja.txt
+  26085514   26295785  249155525 /tmp/unicode-15-chars-sorted-icu-70.1-2-ru.txt
+  26085514   26295785  249155525 /tmp/unicode-15-chars-sorted-icu-70.1-2-zh.txt
+ 182598598  184070495 1744088675 total
++ cp -v /tmp/unicode-15-chars-sorted-icu-70.1-2-de.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-en.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-es.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-fr.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-ja.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-ru.txt /tmp/unicode-15-chars-sorted-icu-70.1-2-zh.txt /home/ubuntu/icu-unicode-sorting/
+'/tmp/unicode-15-chars-sorted-icu-70.1-2-de.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-70.1-2-de.txt'
+'/tmp/unicode-15-chars-sorted-icu-70.1-2-en.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-70.1-2-en.txt'
+'/tmp/unicode-15-chars-sorted-icu-70.1-2-es.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-70.1-2-es.txt'
+'/tmp/unicode-15-chars-sorted-icu-70.1-2-fr.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-70.1-2-fr.txt'
+'/tmp/unicode-15-chars-sorted-icu-70.1-2-ja.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-70.1-2-ja.txt'
+'/tmp/unicode-15-chars-sorted-icu-70.1-2-ru.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-70.1-2-ru.txt'
+'/tmp/unicode-15-chars-sorted-icu-70.1-2-zh.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-70.1-2-zh.txt'
++ date
+Sat Mar 25 11:37:46 PM UTC 2023

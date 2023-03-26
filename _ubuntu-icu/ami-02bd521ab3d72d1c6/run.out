@@ -1,0 +1,115 @@
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
++ date
+Sat Mar 25 10:58:43 PM UTC 2023
++ dirname icu-unicode-sorting/run.sh
++ cd icu-unicode-sorting
++ pwd
+/home/ubuntu/icu-unicode-sorting
++ which dpkg
+/usr/bin/dpkg
++ dpkg -l libicu* postgresql*
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                      Version            Architecture Description
++++-=========================-==================-============-=========================================================
+ii  libicu67:amd64            67.1-6ubuntu2      amd64        International Components for Unicode
+un  libiculx63                <none>             <none>       (no description available)
+ii  postgresql-14             14.2-1.pgdg21.04+1 amd64        The World's Most Advanced Open Source Relational Database
+un  postgresql-14-jit-llvm    <none>             <none>       (no description available)
+un  postgresql-9.1            <none>             <none>       (no description available)
+un  postgresql-client         <none>             <none>       (no description available)
+ii  postgresql-client-14      14.2-1.pgdg21.04+1 amd64        front-end programs for PostgreSQL 14
+ii  postgresql-client-common  238.pgdg21.04+1    all          manager for multiple PostgreSQL client versions
+ii  postgresql-common         238.pgdg21.04+1    all          PostgreSQL database-cluster manager
+un  postgresql-contrib-14     <none>             <none>       (no description available)
+un  postgresql-doc-14         <none>             <none>       (no description available)
+un  postgresql-pgmp           <none>             <none>       (no description available)
+un  postgresql-server-dev-all <none>             <none>       (no description available)
++ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-02bd521ab3d72d1c6
++ cat /etc/issue
++ OS_VERS=Ubuntu 21.04 \n \l
++ which dpkg
+/usr/bin/dpkg
++ awk /^ii  libicu/{print$3}
++ dpkg -l libicu*
++ ICU_VERS=67.1-6ubuntu2
++ [ -f /etc/os-release ]
++ cat /etc/os-release
+NAME="Ubuntu"
+VERSION="21.04 (Hirsute Hippo)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 21.04"
+VERSION_ID="21.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=hirsute
+UBUNTU_CODENAME=hirsute
++ [ -f /etc/system-release ]
++ [ -f /etc/system-release-cpe ]
++ UNICODE_VERS=15
++ sudo su - postgres -c psql -v ON_ERROR_STOP=on
+Timing is on.
+NOTICE:  table "unicode_spec" does not exist, skipping
+DROP TABLE
+Time: 0.460 ms
+CREATE TABLE
+Time: 7.795 ms
+COPY 34924
+Time: 480.840 ms
+NOTICE:  table "unicode_data" does not exist, skipping
+DROP TABLE
+Time: 0.242 ms
+CREATE TABLE
+Time: 4.119 ms
+CREATE PROCEDURE
+Time: 2.771 ms
+DO
+Time: 143769.311 ms (02:23.769)
+SET
+Time: 0.110 ms
+COPY 26085514
+Time: 75991.505 ms (01:15.992)
+COPY 26085514
+Time: 65946.972 ms (01:05.947)
+COPY 26085514
+Time: 64373.103 ms (01:04.373)
+COPY 26085514
+Time: 64792.203 ms (01:04.792)
+COPY 26085514
+Time: 63214.336 ms (01:03.214)
+COPY 26085514
+Time: 61354.266 ms (01:01.354)
+COPY 26085514
+Time: 62607.010 ms (01:02.607)
++ ls -ltr /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-de.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-en.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-es.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-fr.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ja.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ru.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-zh.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:02 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-en.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:03 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-zh.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:04 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ja.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:05 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-fr.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:06 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ru.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:07 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-de.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 25 23:08 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-es.txt
++ wc /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-de.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-en.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-es.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-fr.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ja.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ru.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-zh.txt
+  26085514   26281539  249155525 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-de.txt
+  26085514   26281539  249155525 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-en.txt
+  26085514   26281539  249155525 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-es.txt
+  26085514   26281539  249155525 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-fr.txt
+  26085514   26281539  249155525 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ja.txt
+  26085514   26281539  249155525 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ru.txt
+  26085514   26281539  249155525 /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-zh.txt
+ 182598598  183970773 1744088675 total
++ cp -v /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-de.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-en.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-es.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-fr.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ja.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ru.txt /tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-zh.txt /home/ubuntu/icu-unicode-sorting/
+'/tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-de.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-67.1-6ubuntu2-de.txt'
+'/tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-en.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-67.1-6ubuntu2-en.txt'
+'/tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-es.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-67.1-6ubuntu2-es.txt'
+'/tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-fr.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-67.1-6ubuntu2-fr.txt'
+'/tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ja.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ja.txt'
+'/tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ru.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-67.1-6ubuntu2-ru.txt'
+'/tmp/unicode-15-chars-sorted-icu-67.1-6ubuntu2-zh.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-67.1-6ubuntu2-zh.txt'
++ date
+Sat Mar 25 11:09:40 PM UTC 2023

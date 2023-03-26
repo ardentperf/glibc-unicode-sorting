@@ -1,0 +1,113 @@
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
++ date
+Sun Mar 26 01:26:49 UTC 2023
++ dirname icu-unicode-sorting/run.sh
++ cd icu-unicode-sorting
++ pwd
+/home/ubuntu/icu-unicode-sorting
++ which dpkg
+/usr/bin/dpkg
++ dpkg -l libicu* postgresql*
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                                    Version                                    Architecture Description
++++-=======================================-==========================================-============-===============================================================================
+ii  libicu52:amd64                          52.1-3ubuntu0.8                            amd64        International Components for Unicode
+ii  postgresql-11                           11.3-1.pgdg14.04+1                         amd64        object-relational SQL database, version 11 server
+un  postgresql-11-citus                     <none>                                     <none>       (no description available)
+un  postgresql-11-cron                      <none>                                     <none>       (no description available)
+un  postgresql-11-pgextwlist                <none>                                     <none>       (no description available)
+un  postgresql-11-pglogical                 <none>                                     <none>       (no description available)
+un  postgresql-11-plsh                      <none>                                     <none>       (no description available)
+un  postgresql-11-rum                       <none>                                     <none>       (no description available)
+un  postgresql-11-wal2json                  <none>                                     <none>       (no description available)
+un  postgresql-9.1                          <none>                                     <none>       (no description available)
+un  postgresql-client                       <none>                                     <none>       (no description available)
+ii  postgresql-client-11                    11.3-1.pgdg14.04+1                         amd64        front-end programs for PostgreSQL 11
+ii  postgresql-client-common                201.pgdg14.04+1                            all          manager for multiple PostgreSQL client versions
+ii  postgresql-common                       201.pgdg14.04+1                            all          PostgreSQL database-cluster manager
+un  postgresql-contrib-11                   <none>                                     <none>       (no description available)
+un  postgresql-doc-11                       <none>                                     <none>       (no description available)
++ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-000b3a073fc20e415
++ cat /etc/issue
++ OS_VERS=Ubuntu 14.04.6 LTS \n \l
++ which dpkg
+/usr/bin/dpkg
++ awk /^ii  libicu/{print$3}
++ dpkg -l libicu*
++ ICU_VERS=52.1-3ubuntu0.8
++ [ -f /etc/os-release ]
++ cat /etc/os-release
+NAME="Ubuntu"
+VERSION="14.04.6 LTS, Trusty Tahr"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 14.04.6 LTS"
+VERSION_ID="14.04"
+HOME_URL="http://www.ubuntu.com/"
+SUPPORT_URL="http://help.ubuntu.com/"
+BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
++ [ -f /etc/system-release ]
++ [ -f /etc/system-release-cpe ]
++ UNICODE_VERS=15
++ sudo su - postgres -c psql -v ON_ERROR_STOP=on
+Timing is on.
+DROP TABLE
+Time: 84.502 ms
+CREATE TABLE
+Time: 45.152 ms
+COPY 34924
+Time: 521.452 ms
+DROP TABLE
+Time: 1042.454 ms (00:01.042)
+CREATE TABLE
+Time: 4.506 ms
+CREATE FUNCTION
+Time: 21.638 ms
+DO
+Time: 121927.438 ms (02:01.927)
+SET
+Time: 4.531 ms
+COPY 26085514
+Time: 140754.583 ms (02:20.755)
+COPY 26085514
+Time: 133775.385 ms (02:13.775)
+COPY 26085514
+Time: 132012.826 ms (02:12.013)
+COPY 26085514
+Time: 137377.644 ms (02:17.378)
+COPY 26085514
+Time: 136068.546 ms (02:16.069)
+COPY 26085514
+Time: 135063.263 ms (02:15.063)
+COPY 26085514
+Time: 135071.718 ms (02:15.072)
++ ls -ltr /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-de.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-en.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-es.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-fr.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ja.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ru.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-zh.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:31 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-en.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:33 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-zh.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:35 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ja.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:37 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-fr.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:40 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ru.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:42 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-de.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:44 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-es.txt
++ wc /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-de.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-en.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-es.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-fr.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ja.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ru.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-zh.txt
+  26085514   25546042  249155525 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-de.txt
+  26085514   25546042  249155525 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-en.txt
+  26085514   25546042  249155525 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-es.txt
+  26085514   25546042  249155525 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-fr.txt
+  26085514   25546042  249155525 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ja.txt
+  26085514   25546042  249155525 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ru.txt
+  26085514   25546042  249155525 /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-zh.txt
+ 182598598  178822294 1744088675 total
++ cp -v /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-de.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-en.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-es.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-fr.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ja.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ru.txt /tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-zh.txt /home/ubuntu/icu-unicode-sorting/
+‘/tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-de.txt’ -> ‘/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-de.txt’
+‘/tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-en.txt’ -> ‘/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-en.txt’
+‘/tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-es.txt’ -> ‘/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-es.txt’
+‘/tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-fr.txt’ -> ‘/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-fr.txt’
+‘/tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ja.txt’ -> ‘/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ja.txt’
+‘/tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ru.txt’ -> ‘/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-ru.txt’
+‘/tmp/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-zh.txt’ -> ‘/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-52.1-3ubuntu0.8-zh.txt’
++ date
+Sun Mar 26 01:45:42 UTC 2023

@@ -1,0 +1,114 @@
++ export LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
++ date
+Sun 26 Mar 2023 01:38:42 AM UTC
++ dirname icu-unicode-sorting/run.sh
++ cd icu-unicode-sorting
++ pwd
+/home/ubuntu/icu-unicode-sorting
++ which dpkg
+/usr/bin/dpkg
++ dpkg -l libicu* postgresql*
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                     Version            Architecture Description
++++-========================-==================-============-=================================================
+ii  libicu63:amd64           63.1-6             amd64        International Components for Unicode
+un  libiculx63               <none>             <none>       (no description available)
+ii  postgresql-12            12.1-1.pgdg19.04+1 amd64        object-relational SQL database, version 12 server
+un  postgresql-7.4           <none>             <none>       (no description available)
+un  postgresql-8.0           <none>             <none>       (no description available)
+un  postgresql-9.1           <none>             <none>       (no description available)
+un  postgresql-client        <none>             <none>       (no description available)
+ii  postgresql-client-12     12.1-1.pgdg19.04+1 amd64        front-end programs for PostgreSQL 12
+ii  postgresql-client-common 199ubuntu0.1       all          manager for multiple PostgreSQL client versions
+ii  postgresql-common        199ubuntu0.1       all          PostgreSQL database-cluster manager
+un  postgresql-contrib-12    <none>             <none>       (no description available)
+un  postgresql-doc-12        <none>             <none>       (no description available)
++ curl -s http://169.254.169.254/latest/meta-data/ami-id
++ SOURCE_AMI=ami-01b0d3176b3d530ad
++ cat /etc/issue
++ OS_VERS=Ubuntu 19.04 \n \l
++ which dpkg
+/usr/bin/dpkg
++ awk /^ii  libicu/{print$3}
++ dpkg -l libicu*
++ ICU_VERS=63.1-6
++ [ -f /etc/os-release ]
++ cat /etc/os-release
+NAME="Ubuntu"
+VERSION="19.04 (Disco Dingo)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 19.04"
+VERSION_ID="19.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=disco
+UBUNTU_CODENAME=disco
++ [ -f /etc/system-release ]
++ [ -f /etc/system-release-cpe ]
++ UNICODE_VERS=15
++ sudo su - postgres -c psql -v ON_ERROR_STOP=on
+Timing is on.
+NOTICE:  table "unicode_spec" does not exist, skipping
+DROP TABLE
+Time: 0.412 ms
+CREATE TABLE
+Time: 10.046 ms
+COPY 34924
+Time: 482.253 ms
+NOTICE:  table "unicode_data" does not exist, skipping
+DROP TABLE
+Time: 0.286 ms
+CREATE TABLE
+Time: 4.507 ms
+CREATE FUNCTION
+Time: 2.915 ms
+DO
+Time: 110008.160 ms (01:50.008)
+SET
+Time: 26.386 ms
+COPY 26085514
+Time: 67720.807 ms (01:07.721)
+COPY 26085514
+Time: 63836.533 ms (01:03.837)
+COPY 26085514
+Time: 63920.464 ms (01:03.920)
+COPY 26085514
+Time: 62725.220 ms (01:02.725)
+COPY 26085514
+Time: 64111.728 ms (01:04.112)
+COPY 26085514
+Time: 62562.569 ms (01:02.563)
+COPY 26085514
+Time: 63433.364 ms (01:03.433)
++ ls -ltr /tmp/unicode-15-chars-sorted-icu-63.1-6-de.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-en.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-es.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-fr.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-ja.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-ru.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-zh.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:41 /tmp/unicode-15-chars-sorted-icu-63.1-6-en.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:42 /tmp/unicode-15-chars-sorted-icu-63.1-6-zh.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:43 /tmp/unicode-15-chars-sorted-icu-63.1-6-ja.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:44 /tmp/unicode-15-chars-sorted-icu-63.1-6-fr.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:45 /tmp/unicode-15-chars-sorted-icu-63.1-6-ru.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:46 /tmp/unicode-15-chars-sorted-icu-63.1-6-de.txt
+-rw-r--r-- 1 postgres postgres 249155525 Mar 26 01:48 /tmp/unicode-15-chars-sorted-icu-63.1-6-es.txt
++ wc /tmp/unicode-15-chars-sorted-icu-63.1-6-de.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-en.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-es.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-fr.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-ja.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-ru.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-zh.txt
+  26085514   26171302  249155525 /tmp/unicode-15-chars-sorted-icu-63.1-6-de.txt
+  26085514   26171302  249155525 /tmp/unicode-15-chars-sorted-icu-63.1-6-en.txt
+  26085514   26171302  249155525 /tmp/unicode-15-chars-sorted-icu-63.1-6-es.txt
+  26085514   26171302  249155525 /tmp/unicode-15-chars-sorted-icu-63.1-6-fr.txt
+  26085514   26171302  249155525 /tmp/unicode-15-chars-sorted-icu-63.1-6-ja.txt
+  26085514   26171302  249155525 /tmp/unicode-15-chars-sorted-icu-63.1-6-ru.txt
+  26085514   26171302  249155525 /tmp/unicode-15-chars-sorted-icu-63.1-6-zh.txt
+ 182598598  183199114 1744088675 total
++ cp -v /tmp/unicode-15-chars-sorted-icu-63.1-6-de.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-en.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-es.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-fr.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-ja.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-ru.txt /tmp/unicode-15-chars-sorted-icu-63.1-6-zh.txt /home/ubuntu/icu-unicode-sorting/
+'/tmp/unicode-15-chars-sorted-icu-63.1-6-de.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-63.1-6-de.txt'
+'/tmp/unicode-15-chars-sorted-icu-63.1-6-en.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-63.1-6-en.txt'
+'/tmp/unicode-15-chars-sorted-icu-63.1-6-es.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-63.1-6-es.txt'
+'/tmp/unicode-15-chars-sorted-icu-63.1-6-fr.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-63.1-6-fr.txt'
+'/tmp/unicode-15-chars-sorted-icu-63.1-6-ja.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-63.1-6-ja.txt'
+'/tmp/unicode-15-chars-sorted-icu-63.1-6-ru.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-63.1-6-ru.txt'
+'/tmp/unicode-15-chars-sorted-icu-63.1-6-zh.txt' -> '/home/ubuntu/icu-unicode-sorting/unicode-15-chars-sorted-icu-63.1-6-zh.txt'
++ date
+Sun 26 Mar 2023 01:48:52 AM UTC

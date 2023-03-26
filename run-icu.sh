@@ -12,12 +12,19 @@
 # built strings are generated. See the main README for more information
 # about this.
 #
+# The script expects PostgreSQL v10 or newer to be installed and running
+# under the user "postgres". It has been tested only with default
+# installs from the official PGDG apt respositories and Ubuntu (including
+# apt-archive.postgresql.org for historical ubuntu distributions). The
+# "postgres" user should be able to run psql and connect directly
+# without needing to enter a password.
+#
 # This script is entirely self-contained so that it can be easily cut 
 # and pasted to any system and then it can be executed to generate a 
 # sorted file directly on that system.
 #
 # The script generates two outputs. First (and most important) is a file 
-# named unicode-${UNICODE_VERS}-chars-sorted-glibc-${ICU_VERS}.txt which
+# named unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}.txt which
 # contains the sorted list of strings. Second, the direct "stdout" of the
 # script is intended to be captured. This will show additional diagnostics
 # information, like the output of dpkg and rpm queries, execution timestamps, 

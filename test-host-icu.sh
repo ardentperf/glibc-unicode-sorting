@@ -16,12 +16,24 @@
 #     --region us-east-1  --monitoring Enabled=true --key-name <my-key-name>
 #     --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=ubuntu-1710}]'
 #   (Note that c3 supports paravirt, used by AMIs for some old OS versions like RHEL5)
+#   (In some cases I needed to add --subnet-id to run-instances)
 #   aws ec2 describe-instances --region=us-east-1 |jq -r '.Reservations[].Instances[] |
 #     select(.Tags[].Value | startswith("ubuntu-")) | [ .Tags[].Value,
 #     .PublicDnsName ] | @tsv' | sort  >hosts
 #   wc hosts ; split -l7 hosts hostpart
 #   NN=0; for HOST in $(awk '{print$2}' hosts); do date; echo $((NN++)) $HOST;
 #     sh test-host.sh ubuntu ubuntu@$HOST; done
+#
+#   sudo cp -v /etc/apt/sources.list /etc/apt/sources.list.backup
+#   sudo sed -i -re 's/([a-z0-9.-]*\.)?archive.ubuntu.com|security.ubuntu.com/old-releases.ubuntu.com/g' /etc/apt/sources.list
+#   sudo apt-get update
+#   sudo apt-get install postgresql-common
+#   sudo sh /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+#
+#   sudo sh -c 'echo "deb [trusted=yes] https://apt-archive.postgresql.org/pub/repos/apt/ trusty-pgdg main" >/etc/apt/sources.list.d/pgdg.list'
+#   sudo apt-get update
+#
+#   sudo apt install postgresql-15
 #
 # finding AMIs for specific OS releases:
 #   aws ec2 describe-images --region us-east-1 --image-ids ami-00482f016b2410dc8
