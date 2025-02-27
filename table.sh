@@ -3,7 +3,7 @@
 # After using the test-host script to generate sorted lists on many remote systems and download
 # results from all of those remote systems, this script will iterate through all the downloaded
 # lists (ordered by glibc version) and generate a DIFF of the sorted lists. It will then summarize
-# the output of DIFF into a table in markdown format, matching the columns of the table in the main 
+# the output of DIFF into a table in markdown format, matching the columns of the table in the main
 # README of this package. This script is intended to populate that table for easy viewing of the
 # summary.
 #
@@ -37,29 +37,29 @@ echo "" >langs.tmp
 LC_CHANGECOUNT=""
 LC_CHANGECOUNT_STR=""
 
-# this logic was trickier than expected. we have a directory structure with the output 
-# of "run.sh" from a whole bunch of different major versions of an operating system, going 
-# back to RHEL 5 and Ubuntu 10. we want to produce a sorted list of those directories so 
+# this logic was trickier than expected. we have a directory structure with the output
+# of "run.sh" from a whole bunch of different major versions of an operating system, going
+# back to RHEL 5 and Ubuntu 10. we want to produce a sorted list of those directories so
 # that we can iterate over the list, comparing each directory with the preceding one, and
 # outputting a table as we go.
 #
 # in the case of RHEL, we simply sort by the full glibc version. the unix "sort" utility has
-# a built-in "version" sort (-V) which correctly handles delimitors and numbers. my initial 
+# a built-in "version" sort (-V) which correctly handles delimitors and numbers. my initial
 # approach was to choose two different minors from each RHEL major. so far, I've not yet seen
-# two minors where the glibc versions (including patch level) were identical, for the RHEL 
-# minors I tested. if this were to happen, the logic here does not guarantee that those two 
+# two minors where the glibc versions (including patch level) were identical, for the RHEL
+# minors I tested. if this were to happen, the logic here does not guarantee that those two
 # entries in the table would be correctly ordered. that may cause an incorrect and misleading
-# table to be generated. but if we need an OS version as a tie-breaker in the future, care must 
+# table to be generated. but if we need an OS version as a tie-breaker in the future, care must
 # be taken (see further notes below).
 #
 # the case of Ubuntu was harder. i wanted to include every bi-annual release. of course we sort
 # in the glibc version first. rather inconveniently, Ubuntu 15.04 and 15.10 shipped exactly the
-# same version of glibc (2.21-0ubuntu4) and we have to make sure they don't land backwards in the 
+# same version of glibc (2.21-0ubuntu4) and we have to make sure they don't land backwards in the
 # table. if they are reversed, then the table would claim that 15.10 had changes (compared with
 # the preceding table line 14.10) which would be incorrect and would mislead people. it's actually
-# Ubuntu 15.04 that has changes, and 15.10 had no detected changes at all. fortunately, Ubuntu 
-# has consistently included the OS version in /etc/issue since 2010 (unlike redhat). we pull 
-# that in addition to glibc version, use the unix "paste" utility to concatenate every pair of 
+# Ubuntu 15.04 that has changes, and 15.10 had no detected changes at all. fortunately, Ubuntu
+# has consistently included the OS version in /etc/issue since 2010 (unlike redhat). we pull
+# that in addition to glibc version, use the unix "paste" utility to concatenate every pair of
 # lines into a single line, then use the unix "sort" utility again to correctly sort by glibc
 # version with the OS version as a tie-breaker.
 case $PREFIX in
@@ -82,8 +82,8 @@ do
       OS_VERS=$(grep OS_VERS $PREFIX/$AMI/run.out|tr -d '\r'|cut -d= -f2|cut -d\\ -f1)
       ;;
     _rhel)
-      # it's not a simple operation to extract the OS version from the output of run.sh 
-      # for RHEL. this is because RHEL 5/6 include the version in /etc/issue however in 
+      # it's not a simple operation to extract the OS version from the output of run.sh
+      # for RHEL. this is because RHEL 5/6 include the version in /etc/issue however in
       # RHEL7+ it moved to the file system-release file (which doesn't exist in v5/6). the
       # logic here will use the system-release file if it exists, otherwise use /etc/issue.
       OS_VERS=$(grep -A1 "cat /etc/system-release$" $PREFIX/$AMI/run.out|grep -v "system-release" || grep OS_VERS $PREFIX/$AMI/run.out|tr -d '\r'\'|cut -d= -f2)
@@ -98,7 +98,7 @@ do
   # locale files and extract the LC_COLLATE section to a temporary working directory
   mkdir $PREFIX/$AMI/LC_COLLATE
   if [ -d $PREFIX/$AMI/locales ]; then
-    for F in $PREFIX/$AMI/locales/*; do 
+    for F in $PREFIX/$AMI/locales/*; do
       awk '/^LC_COLLATE/{pr=1}!NF{next}!/^[%#]/{if(pr){print}}/^END LC_COLLATE/{pr=0}' $F >$PREFIX/$AMI/LC_COLLATE/$(basename $F)
       [ -s $PREFIX/$AMI/LC_COLLATE/$(basename $F) ] || rm $PREFIX/$AMI/LC_COLLATE/$(basename $F)
     done
@@ -106,7 +106,7 @@ do
 
   # capture total number of locales with collations, so that table can show if there were new additions
   LOCALE_COUNT=$(ls $PREFIX/$AMI/LC_COLLATE|wc -l)
-  
+
   # compare with previous AMI & print summary of diff (doesn't apply to the very first directory we process)
   if [ -n "$PREV_AMI" ]; then
     case $PREFIX in
@@ -124,14 +124,14 @@ do
 
     [ ! -f $BASEDIR/diff.tmp ] && echo "ERROR: run diff.sh first (missing $BASEDIR/diff.tmp)" && exit 1
 
-    # most words still appear twice in the diff, as deleted from old position and added to new 
+    # most words still appear twice in the diff, as deleted from old position and added to new
     # position. we'll process the diff in two stages. first, read each word and reverse-engineer
     # which pattern and code point were used to compose the word. create an intermediate file by
     # stream processing the diff and creating a line for each word, with the additional fields.
     #     OUTPUT FIELDS: CodePoint, UnicodeBlock, PatternID, String, PositionChange
     #
-    # pass input through uniq since a few strings can be generated by multiple patterns (on different code 
-    # points) and we only need each string counted/reported once. the first matching pattern will always be 
+    # pass input through uniq since a few strings can be generated by multiple patterns (on different code
+    # points) and we only need each string counted/reported once. the first matching pattern will always be
     # used for each string. uniq doesn't sort, and doesn't change ordering of lines in the diff output.
     cat $BASEDIR/diff.tmp | uniq | perl -CSDA -e'
       use strict;
@@ -145,7 +145,7 @@ do
       while(<BLOCKS>){
         # lines look like this:
         #   102E0..102FF; Coptic Epact Numbers
-        # decode range and store as numbers in array, then store 
+        # decode range and store as numbers in array, then store
         # string version of first number (for later lookup)
         if(/^([0-9A-Z]*)[.][.]([0-9A-Z]*); (.*)/){
           my @b=(hex("0x".$1),hex("0x".$2),$1);
@@ -156,7 +156,7 @@ do
       LINE:
       while (<>) {
         chomp;
-        
+
         # diff hunk position/heading. store it so we can output with subsequent lines
         if(/^@@ (.*) @@/) { $hunkposition=$1; $hunkposition=~s/ //; next LINE; };
 
@@ -168,9 +168,9 @@ do
           # remove first character from string (unified diff prefixes each line with + or -)
           substr($_,0,1)="";
 
-          # find the first matching pattern, using length then chars, and determine code point 
-          # used for generation. there will be cases of the same string generated by multiple 
-          # code points; this approach will take the first matched pattern for all occurrences 
+          # find the first matching pattern, using length then chars, and determine code point
+          # used for generation. there will be cases of the same string generated by multiple
+          # code points; this approach will take the first matched pattern for all occurrences
           # of dup strings. this approach is worthwhile in order to keep things simple.
           #
           # IMPORTANT: make sure to keep this block in sync with README and run.sh
@@ -331,7 +331,7 @@ do
       my %all_patterns;  # hash of patterns only, for total count of each pattern
 
       # open files first, so that any errors are surfaced quickly
-      #   this will also cause existing patternfilter.tmp and blocks.tmp 
+      #   this will also cause existing patternfilter.tmp and blocks.tmp
       #   to be clobbered/truncated
       open(BLOCKS,"<","Blocks.txt") or die ("Cannot open Blocks.txt");
       open(PF,">","patternfilter.tmp") or die ("Cannot open patternfilter.tmp");
@@ -355,7 +355,7 @@ do
       close BLOCKS;
 
       # main block; read each data record line from stdin and process fields,
-      # using pre-initialized hash structures to count how many times each 
+      # using pre-initialized hash structures to count how many times each
       # pattern is seen.
       while (<>) {
         my @F=split;
@@ -385,7 +385,7 @@ do
       # data for any blocks that encountered at least one pattern.
       for my $block (sort keys %bl) {
         if(keys %{$bl{$block}{"patterns"}}>0) {
-          # while generating the report, also create a file (BL) with a list of 
+          # while generating the report, also create a file (BL) with a list of
           # unicode blocks that were encountered.
           print BL $bl{$block}{"name"}."\n";
           print $bl{$block}{"label"}."\n"."  ";
@@ -514,7 +514,7 @@ do
     done
   fi
   case $PREFIX in
-    _ubuntu|_rhel)  
+    _ubuntu|_rhel)
       echo "| $GLIBC_VERS | $SUMMARY_STR | $CHANGECOUNT_STR | $(paste -sd, langs.tmp) | $LC_CHANGECOUNT_STR | $LOCALE_COUNT | $OS_VERS | [$AMI]($PREFIX/$AMI) |"
       ;;
     _ubuntu-icu)
@@ -524,7 +524,7 @@ do
   PREV_AMI="$AMI"
   PREV_GLIBC_VERS="$GLIBC_VERS"
   PREV_ICU_VERS="$ICU_VERS"
-done 
+done
 
 # cleanup
 rm patternfilter.tmp
