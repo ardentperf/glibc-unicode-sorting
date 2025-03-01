@@ -13,7 +13,7 @@ type perl curl sort awk uniq grep wc tr cut >/dev/null || exit 2
 set -e
 
 case $(uname -s) in
-  Linux*)  STATARG='--printf="%s"';;
+  Linux*)  STATARG='--printf=%s';;
   Darwin*) STATARG='-f%z';;
   *) echo "ERROR: Unsupported platform" && exit 1;;
 esac
