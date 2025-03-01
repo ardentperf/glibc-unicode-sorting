@@ -1,0 +1,69 @@
+diff -byt --suppress-common-lines _ubuntu/ami-05b32fecf14594be1/LC_COLLATE/cv_RU _ubuntu/ami-0b81cbe72a6bc690d/LC_COLLATE/cv_RU
+collating-symbol <a-breve>                                      |  collating-symbol <cyra-breve>
+collating-symbol <e-breve>                                      |  collating-symbol <cyre-breve>
+collating-symbol <s-caron>                                      |  collating-symbol <cyrs-desc>
+collating-symbol <s-cedilla>                                    |  collating-symbol <cyru-dblacute>
+collating-symbol <u-diaerisis>                                  |  reorder-after <S0430> % а
+reorder-after <AFTER-A>                                         |  <cyra-breve>
+<a-breve>                                                       |  reorder-after <S0435> % е
+reorder-after <AFTER-E>                                         |  <cyre-breve>
+<e-breve>                                                       |  reorder-after <S0441> % с
+reorder-after <AFTER-R>                                         |  <cyrs-desc>
+<s-caron>                                                       |  reorder-after <S0443> % у
+reorder-after <AFTER-S>                                         |  <cyru-dblacute>
+<s-cedilla>                                                     |  <U04D0> <cyra-breve>;<BASE>;<CAP>;<U04D0> % Ӑ
+reorder-after <AFTER-U>                                         |  <U04D1> <cyra-breve>;<BASE>;<MIN>;<U04D1> % ӑ
+<u-diaerisis>                                                   |  <U04D6> <cyre-breve>;<BASE>;<CAP>;<U04D6> % Ӗ
+<U0103>     <a-breve>;"<BASE><BASE>";"<MIN><MIN>";IGNORE % ă    |  <U04D7> <cyre-breve>;<BASE>;<MIN>;<U04D7> % ӗ
+<U0102>     <a-breve>;"<BASE><BASE>";"<CAP><MIN>";IGNORE % Ă    |  <U04AA> <cyrs-desc>;<BASE>;<CAP>;<U04AA> % Ҫ
+<U0115>     <e-breve>;"<BASE><BASE>";"<MIN><MIN>";IGNORE % ĕ    |  <U04AB> <cyrs-desc>;<BASE>;<MIN>;<U04AB> % ҫ
+<U0114>     <e-breve>;"<BASE><BASE>";"<CAP><MIN>";IGNORE % Ĕ    |  <U04F2> <cyru-dblacute>;<BASE>;<CAP>;<U04F2> % Ӳ
+<U0161>     <s-caron>;"<BASE><BASE>";"<MIN><MIN>";IGNORE % š    |  <U04F3> <cyru-dblacute>;<BASE>;<MIN>;<U04F3> % ӳ
+<U0160>     <s-caron>;"<BASE><BASE>";"<CAP><MIN>";IGNORE % Š    <
+<U015F>   <s-cedilla>;"<BASE><BASE>";"<MIN><MIN>";IGNORE % ş    <
+<U015E>   <s-cedilla>;"<BASE><BASE>";"<CAP><MIN>";IGNORE % Ş    <
+<U0219>   <s-cedilla>;"<BASE><VRNT1>";"<MIN><MIN>";IGNORE % ș   <
+<U0218>   <s-cedilla>;"<BASE><VRNT1>";"<CAP><MIN>";IGNORE % Ș   <
+<U00FC> <u-diaerisis>;"<BASE><BASE>";"<MIN><MIN>";IGNORE % ü    <
+<U00DC> <u-diaerisis>;"<BASE><BASE>";"<CAP><MIN>";IGNORE % Ü    <
+Only in _ubuntu/ami-0b81cbe72a6bc690d/LC_COLLATE: ltg_LV
+diff -byt --suppress-common-lines _ubuntu/ami-05b32fecf14594be1/LC_COLLATE/lv_LV _ubuntu/ami-0b81cbe72a6bc690d/LC_COLLATE/lv_LV
+                                                                >  collating-symbol <a-macron>
+                                                                >  collating-symbol <e-macron>
+                                                                >  collating-symbol <ypsilon>
+                                                                >  collating-symbol <i-macron>
+                                                                >  collating-symbol <o-macron>
+                                                                >  collating-symbol <u-macron>
+reorder-after <BEFORE-D>                                        |  reorder-after <AFTER-A>
+                                                                >  <a-macron>
+                                                                >  reorder-after <AFTER-C>
+reorder-after <BEFORE-H>                                        |  reorder-after <AFTER-E>
+                                                                >  <e-macron>
+                                                                >  reorder-after <AFTER-G>
+reorder-after <BEFORE-L>                                        |  reorder-after <AFTER-I>
+                                                                >  <ypsilon>
+                                                                >  <i-macron>
+                                                                >  reorder-after <AFTER-K>
+reorder-after <BEFORE-M>                                        |  reorder-after <AFTER-L>
+reorder-after <BEFORE-O>                                        |  reorder-after <AFTER-N>
+reorder-after <BEFORE-S>                                        |  reorder-after <AFTER-O>
+                                                                >  <o-macron>
+                                                                >  reorder-after <AFTER-R>
+reorder-after <BEFORE-T>                                        |  reorder-after <AFTER-S>
+reorder-after <BEFORE-EZH>                                      |  reorder-after <AFTER-U>
+                                                                >  <u-macron>
+                                                                >  reorder-after <AFTER-Z>
+                                                                >  <U0101> <a-macron>;<BASE>;<MIN>;IGNORE % ā
+                                                                >  <U0100> <a-macron>;<BASE>;<CAP>;IGNORE % Ā
+                                                                >  <U0113> <e-macron>;<BASE>;<MIN>;IGNORE % ē
+                                                                >  <U0112> <e-macron>;<BASE>;<CAP>;IGNORE % Ē
+<U0079> <S0069>;<LOWLINE>;<MIN>;IGNORE % y                      |  <U0079> <ypsilon>;<BASE>;<MIN>;IGNORE % y
+<U0059> <S0069>;<LOWLINE>;<CAP>;IGNORE % Y                      |  <U0059> <ypsilon>;<BASE>;<CAP>;IGNORE % Y
+                                                                >  <U012B> <i-macron>;<BASE>;<MIN>;IGNORE % ī
+                                                                >  <U012A> <i-macron>;<BASE>;<CAP>;IGNORE % Ī
+                                                                >  <U014D> <o-macron>;<BASE>;<MIN>;IGNORE % ō
+                                                                >  <U014C> <o-macron>;<BASE>;<CAP>;IGNORE % Ō
+                                                                >  <U016B> <u-macron>;<BASE>;<MIN>;IGNORE % ū
+                                                                >  <U016A> <u-macron>;<BASE>;<CAP>;IGNORE % Ū
+Only in _ubuntu/ami-0b81cbe72a6bc690d/LC_COLLATE: mdf_RU
+Only in _ubuntu/ami-0b81cbe72a6bc690d/LC_COLLATE: scn_IT
