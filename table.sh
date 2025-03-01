@@ -19,7 +19,7 @@ case $(uname -s) in
 esac
 
 # make sure the unicode version here matches the "run.sh" script
-UNICODE_VERS="15"
+UNICODE_VERS="14"
 curl -kO https://www.unicode.org/Public/${UNICODE_VERS}.0.0/ucd/Blocks.txt
 
 date

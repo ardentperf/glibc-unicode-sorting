@@ -12,7 +12,7 @@ type git sort awk uniq grep paste wc tr cut >/dev/null || exit 2
 set -x -e
 
 # make sure the unicode version here matches the "run.sh" script
-UNICODE_VERS="15"
+UNICODE_VERS="14"
 
 date
 for PREFIX in _ubuntu _rhel _ubuntu-icu; do
