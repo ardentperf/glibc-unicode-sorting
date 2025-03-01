@@ -49,8 +49,11 @@ scp run.sh $HOST:glibc-unicode-sorting/run.sh
 ssh $HOST 'set -o pipefail;sh glibc-unicode-sorting/run.sh 2>&1 | tee glibc-unicode-sorting/run.out'
 
 # output of run.sh has a line like "SOURCE_AMI=ami-xxxxx" so we find & eval that line to set the var correctly
-SOURCE_AMI=$(ssh $HOST cat glibc-unicode-sorting/run.out|grep SOURCE_AMI|cut -c2-|tr -d '\r')
+SOURCE_AMI=$(ssh $HOST cat glibc-unicode-sorting/run.out|grep SOURCE_AMI|tail -1|cut -c2-|tr -d '\r')
 eval $SOURCE_AMI
+
+# make sure SOURCE_AMI is set and is a valid AMI
+[ -z "$SOURCE_AMI" ] && echo "ERROR: SOURCE_AMI not detected" && exit 1
 
 # cleanup local results of any previous run, copy remote output to the local tree
 [ -d _$1/$SOURCE_AMI ] && rm -rf _$1/$SOURCE_AMI
