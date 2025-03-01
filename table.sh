@@ -111,16 +111,16 @@ do
   if [ -n "$PREV_AMI" ]; then
     case $PREFIX in
       _ubuntu|_rhel)
-        LANG_LIST=glibc
+        MYLANG_LIST=glibc
         BASEDIR=$PREFIX/$AMI
         ;;
       _ubuntu-icu)
-        LANG_LIST="en zh ja fr ru de es"
+        MYLANG_LIST="en zh ja fr ru de es"
         ;;
     esac
 
-    for LANG in $LANG_LIST; do
-    [[ "$LANG" != "glibc" ]] && BASEDIR=$PREFIX/$AMI/$LANG
+    for MYLANG in $MYLANG_LIST; do
+    [[ "$MYLANG" != "glibc" ]] && BASEDIR=$PREFIX/$AMI/$MYLANG
 
     [ ! -f $BASEDIR/diff.tmp ] && echo "ERROR: run diff.sh first (missing $BASEDIR/diff.tmp)" && exit 1
 
@@ -314,10 +314,10 @@ do
     # distinct code points that appear for each pattern in each block. the awk command is necessary
     # because at this stage, many strings appear twice in the changelist (a removal and an addition).
     # these are later combined into single lines for the final data file.
-    if [[ "$LANG" == "glibc" ]]; then
+    if [[ "$MYLANG" == "glibc" ]]; then
       SUMMARY="$BASEDIR/summary_en-US_from-${PREV_GLIBC_VERS}_to-${GLIBC_VERS}.txt"
     else
-      SUMMARY="$BASEDIR/summary_${LANG}_from-${PREV_ICU_VERS}_to-${ICU_VERS}.txt"
+      SUMMARY="$BASEDIR/summary_${MYLANG}_from-${PREV_ICU_VERS}_to-${ICU_VERS}.txt"
     fi
     echo "" >$SUMMARY
     echo "# Unicode Block" >>$SUMMARY
@@ -410,10 +410,10 @@ do
     SUMMARY_STR="0"; (( BLOCKCOUNT > 0 )) && SUMMARY_STR="[$BLOCKCOUNT_STR]($SUMMARY)"
 
     # final master code point data file: uploaded to git
-    if [[ "$LANG" == "glibc" ]]; then
+    if [[ "$MYLANG" == "glibc" ]]; then
       CHANGELIST="$BASEDIR/changelist_en-US_from-${PREV_GLIBC_VERS}_to-${GLIBC_VERS}.txt"
     else
-      CHANGELIST="$BASEDIR/changelist_${LANG}_from-${PREV_ICU_VERS}_to-${ICU_VERS}.txt"
+      CHANGELIST="$BASEDIR/changelist_${MYLANG}_from-${PREV_ICU_VERS}_to-${ICU_VERS}.txt"
     fi
     echo "">"${CHANGELIST}"
 
@@ -470,7 +470,7 @@ do
     LC_CHANGELIST="$PREFIX/$AMI/changelist_locales_from-${PREV_GLIBC_VERS}_to-${GLIBC_VERS}.txt"
     # the LC_COLLATE directory contains files with only the collation data for each locale; do
     # a recursive diff and generate a single output file
-    diff -byt --suppress-common-lines $PREFIX/$AMI/LC_COLLATE $PREFIX/$AMI/LC_COLLATE >"${LC_CHANGELIST}" || true
+    diff -byt --suppress-common-lines $PREFIX/$PREV_AMI/LC_COLLATE $PREFIX/$AMI/LC_COLLATE >"${LC_CHANGELIST}" || true
     # count number of line changes detected by the diff in all locales
     LC_CHANGECOUNT=$(grep -vE '^(diff|Only)' $LC_CHANGELIST|wc -l)
     # extract the locales from the filenames, for a summary (if 20 or less)
@@ -492,10 +492,10 @@ do
     fi
     # upload a copy of the diff to git, unless it's bigger than 50GB
     #   (using a copy so that the original can be left as a local working file)
-    if [[ "$LANG" == "glibc" ]]; then
+    if [[ "$MYLANG" == "glibc" ]]; then
       SORTDIFF="$BASEDIR/diff_en-US_from-${PREV_GLIBC_VERS}_to-${GLIBC_VERS}.txt"
     else
-      SORTDIFF="$BASEDIR/diff_${LANG}_from-${PREV_ICU_VERS}_to-${ICU_VERS}.txt"
+      SORTDIFF="$BASEDIR/diff_${MYLANG}_from-${PREV_ICU_VERS}_to-${ICU_VERS}.txt"
     fi
     cp $BASEDIR/diff.tmp $SORTDIFF
     SORTDIFF_SIZE=$(stat $STATARG $SORTDIFF)
@@ -507,9 +507,9 @@ do
     # string for count of changed codepoints (includes markdown link to data)
     CHANGECOUNT_STR="0"; (( CHANGECOUNT > 0 )) && CHANGECOUNT_STR="[$CHANGECOUNT]($CHANGELIST) ([Full Diff]($SORTDIFF))"
 
-    if [[ "$LANG" != "glibc" ]]; then
-      eval "SUMMARY_STR_${LANG}=\"${SUMMARY_STR}\""
-      eval "CHANGECOUNT_STR_${LANG}=\"$CHANGECOUNT_STR\""
+    if [[ "$MYLANG" != "glibc" ]]; then
+      eval "SUMMARY_STR_${MYLANG}=\"${SUMMARY_STR}\""
+      eval "CHANGECOUNT_STR_${MYLANG}=\"$CHANGECOUNT_STR\""
     fi
     done
   fi

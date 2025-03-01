@@ -53,12 +53,12 @@ do
             > $PREFIX/$AMI/diff.tmp || true
         ;;
       _ubuntu-icu)
-        for LANG in en zh ja fr ru de es; do
-          mkdir -v $PREFIX/$AMI/$LANG
+        for MYLANG in en zh ja fr ru de es; do
+          mkdir -v $PREFIX/$AMI/$MYLANG
           time git diff --no-index --diff-algorithm=histogram \
-              $PREFIX/$PREV_AMI/unicode-${UNICODE_VERS}-chars-sorted-icu-${PREV_ICU_VERS}-${LANG}.txt \
-              $PREFIX/$AMI/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-${LANG}.txt \
-              > $PREFIX/$AMI/$LANG/diff.tmp || true
+              $PREFIX/$PREV_AMI/unicode-${UNICODE_VERS}-chars-sorted-icu-${PREV_ICU_VERS}-${MYLANG}.txt \
+              $PREFIX/$AMI/unicode-${UNICODE_VERS}-chars-sorted-icu-${ICU_VERS}-${MYLANG}.txt \
+              > $PREFIX/$AMI/$MYLANG/diff.tmp || true
         done
         ;;
     esac
