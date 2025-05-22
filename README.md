@@ -68,6 +68,7 @@ identical to that used for the GNU C Library.
 | 2.38-1ubuntu6.3 | 0 | 0 |  | 0 | 351 | Ubuntu 23.10  | [ami-006a0fdfea2775802](_ubuntu/ami-006a0fdfea2775802) |
 | 2.39-0ubuntu8.2 | 0 | 0 |  ber_DZ, kab_DZ, th_TH, crh_RU (removed), gbm_IN (removed), kv_RU (removed), ssy_ER (removed), su_ID (removed), tok (removed), zgh_MA (removed) | [739](_ubuntu/ami-05b32fecf14594be1/changelist_locales_from-2.38-1ubuntu6.3_to-2.39-0ubuntu8.2.txt) | [357](_ubuntu/ami-05b32fecf14594be1/changelist_locales_from-2.38-1ubuntu6.3_to-2.39-0ubuntu8.2.txt) | Ubuntu 24.04 LTS  | [ami-05b32fecf14594be1](_ubuntu/ami-05b32fecf14594be1) |
 | 2.40-1ubuntu3.1 | 0 | 0 |  cv_RU, lv_LV, ltg_LV (removed), mdf_RU (removed), scn_IT (removed) | [64](_ubuntu/ami-0b81cbe72a6bc690d/changelist_locales_from-2.39-0ubuntu8.2_to-2.40-1ubuntu3.1.txt) | [360](_ubuntu/ami-0b81cbe72a6bc690d/changelist_locales_from-2.39-0ubuntu8.2_to-2.40-1ubuntu3.1.txt) | Ubuntu 24.10  | [ami-0b81cbe72a6bc690d](_ubuntu/ami-0b81cbe72a6bc690d) |
+| 2.41-6ubuntu1 | 0 | 0 |  | 0 | 360 | Ubuntu 25.04  | [ami-02183c955d69e6bb5](_ubuntu/ami-02183c955d69e6bb5) |
 
 The filter.sh script was used to run an additional comparison between sorted lists using only strings that are composed entirely/purely of ISO-8859-1 characters, across all of the above versions of Ubuntu. Note that ISO-8859-1 is a superset of ASCII, so pure ASCII was also covered by this comparison.
 
