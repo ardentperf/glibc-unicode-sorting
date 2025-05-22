@@ -70,7 +70,7 @@ identical to that used for the GNU C Library.
 | 2.40-1ubuntu3.1 | 0 | 0 |  cv_RU, lv_LV, ltg_LV (removed), mdf_RU (removed), scn_IT (removed) | [64](_ubuntu/ami-0b81cbe72a6bc690d/changelist_locales_from-2.39-0ubuntu8.2_to-2.40-1ubuntu3.1.txt) | [360](_ubuntu/ami-0b81cbe72a6bc690d/changelist_locales_from-2.39-0ubuntu8.2_to-2.40-1ubuntu3.1.txt) | Ubuntu 24.10  | [ami-0b81cbe72a6bc690d](_ubuntu/ami-0b81cbe72a6bc690d) |
 | 2.41-6ubuntu1 | 0 | 0 |  | 0 | 360 | Ubuntu 25.04  | [ami-02183c955d69e6bb5](_ubuntu/ami-02183c955d69e6bb5) |
 
-The filter.sh script was used to run an additional comparison between sorted lists using only strings that are composed entirely/purely of ISO-8859-1 characters, across all of the above versions of Ubuntu. Note that ISO-8859-1 is a superset of ASCII, so pure ASCII was also covered by this comparison.
+The filter.sh script was used to run an additional comparison between sorted lists using only strings that are composed entirely/purely of ISO-8859-1 characters, across versions of Ubuntu through 21.10 above. Note that ISO-8859-1 is a superset of ASCII, so pure ASCII was also covered by this comparison.
 
 Glibc 2.28 is the only version which changed comparisons of any pure ASCII strings in this test. Glibc 2.27 did not change pure ASCII, but it changed ISO-8859-1 strings. No other versions of glibc made sort order changes for the ISO-8859-1 strings generated in this test.
 
