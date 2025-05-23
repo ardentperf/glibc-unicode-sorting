@@ -28,8 +28,12 @@
 #   aws ec2 describe-images --region us-east-1 --include-deprecated --filters "Name=description,\
 #     Values='Canonical, Ubuntu, 22.04 LTS, amd64*'"|egrep '(ImageId|Description|CreationDate|OwnerId)'
 #
+# for Debian:
+#   sudo apt-get update
+#   sudo apt-get install time locales-all
+#
 [ -z "$2" ] && echo "ERROR: pass user@hostname as parameter" && exit 1
-case $1 in (ubuntu|rhel) ;; (*) echo "ERROR: first parameter must be a recognized OS" && exit 1 ;; esac
+case $1 in (ubuntu|debian|rhel) ;; (*) echo "ERROR: first parameter must be a recognized OS" && exit 1 ;; esac
 
 HOST=$2
 echo 'if prompted with "WARNING: terminal is not fully functional" then press RETURN'

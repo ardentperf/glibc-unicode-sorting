@@ -6,7 +6,7 @@
 #
 # NOTE: keep this script in sync with table.sh
 #
-# usage: sh diff.sh [ubuntu|rhel|ubuntu-icu]
+# usage: sh diff.sh [ubuntu|debian|rhel|ubuntu-icu]
 #
 type git sort awk uniq grep paste wc tr cut >/dev/null || exit 2
 set -x -e
@@ -15,13 +15,13 @@ set -x -e
 UNICODE_VERS="14"
 
 date
-for PREFIX in _ubuntu _rhel _ubuntu-icu; do
+for PREFIX in _ubuntu _debian _rhel _ubuntu-icu; do
 [ -n "$1" ] && [ "_$1" != "$PREFIX" ] && continue
 
 # IMPORTANT: KEEP IN SYNC WITH "table.sh"
 #   this logic is tricky, reference that file for more extensive comments/explanation
 case $PREFIX in
-  _ubuntu)
+  _ubuntu|_debian)
     SORTED_AMI_LIST="$(grep -E '(GLIBC_VERS|OS_VERS)' $PREFIX/*/run.out|sed 's.[/=].  .g;s.[\r\]..g;s.LTS..'|paste -d" " - -|sort -k13 -k6 -V|awk '{print$2}')"
     ;;
   _ubuntu-icu)
@@ -46,7 +46,7 @@ do
     # and 2.28 comparison in about 26 minutes.
     date
     case $PREFIX in
-      _ubuntu|_rhel)
+      _ubuntu|_debian|_rhel)
         time git diff --no-index --diff-algorithm=histogram \
             $PREFIX/$PREV_AMI/unicode-${UNICODE_VERS}-chars-sorted-glibc-${PREV_GLIBC_VERS}.txt \
             $PREFIX/$AMI/unicode-${UNICODE_VERS}-chars-sorted-glibc-${GLIBC_VERS}.txt \

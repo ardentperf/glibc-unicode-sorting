@@ -7,7 +7,7 @@
 # README of this package. This script is intended to populate that table for easy viewing of the
 # summary.
 #
-# usage: sh table.sh [ubuntu|rhel|ubuntu-icu]
+# usage: sh table.sh [ubuntu|debian|rhel|ubuntu-icu]
 #
 type perl curl sort awk uniq grep wc tr cut >/dev/null || exit 2
 set -e
@@ -24,7 +24,7 @@ curl -kO https://www.unicode.org/Public/${UNICODE_VERS}.0.0/ucd/Blocks.txt
 
 date
 
-for PREFIX in _ubuntu _rhel _ubuntu-icu; do
+for PREFIX in _ubuntu _debian _rhel _ubuntu-icu; do
 [ -n "$1" ] && [ "_$1" != "$PREFIX" ] && continue
 echo ""
 echo "===== Table for $PREFIX ====="
@@ -63,7 +63,7 @@ LC_CHANGECOUNT_STR=""
 # lines into a single line, then use the unix "sort" utility again to correctly sort by glibc
 # version with the OS version as a tie-breaker.
 case $PREFIX in
-  _ubuntu)
+  _ubuntu|_debian)
     SORTED_AMI_LIST="$(grep -E '(GLIBC_VERS|OS_VERS)' $PREFIX/*/run.out|sed 's.[/=].  .g;s.[\r\]..g;s.LTS..'|paste -d" " - -|sort -k13 -k6 -V|awk '{print$2}')"
     ;;
   _ubuntu-icu)
@@ -78,7 +78,7 @@ do
   GLIBC_VERS=$(grep GLIBC_VERS $PREFIX/$AMI/run.out|tr -d '\r'|cut -d= -f2)
   ICU_VERS=$(grep ICU_VERS $PREFIX/$AMI/run.out|tr -d '\r'|cut -d= -f2)
   case $PREFIX in
-    _ubuntu*)
+    _ubuntu*|_debian)
       OS_VERS=$(grep OS_VERS $PREFIX/$AMI/run.out|tr -d '\r'|cut -d= -f2|cut -d\\ -f1)
       ;;
     _rhel)
@@ -110,7 +110,7 @@ do
   # compare with previous AMI & print summary of diff (doesn't apply to the very first directory we process)
   if [ -n "$PREV_AMI" ]; then
     case $PREFIX in
-      _ubuntu|_rhel)
+      _ubuntu|_debian|_rhel)
         MYLANG_LIST=glibc
         BASEDIR=$PREFIX/$AMI
         ;;
@@ -514,7 +514,7 @@ do
     done
   fi
   case $PREFIX in
-    _ubuntu|_rhel)
+    _ubuntu|_debian|_rhel)
       echo "| $GLIBC_VERS | $SUMMARY_STR | $CHANGECOUNT_STR | $(paste -sd, langs.tmp) | $LC_CHANGECOUNT_STR | $LOCALE_COUNT | $OS_VERS | [$AMI]($PREFIX/$AMI) |"
       ;;
     _ubuntu-icu)
