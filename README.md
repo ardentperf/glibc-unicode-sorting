@@ -75,6 +75,18 @@ The filter.sh script was used to run an additional comparison between sorted lis
 Glibc 2.28 is the only version which changed comparisons of any pure ASCII strings in this test. Glibc 2.27 did not change pure ASCII, but it changed ISO-8859-1 strings. No other versions of glibc made sort order changes for the ISO-8859-1 strings generated in this test.
 
 
+### Debian
+
+| GLIBC Version | SUMMARY: Unicode Blocks in Diff of en_US Sort | DETAIL: Codepoints in Diff of en_US Sort | SUMMARY: Locales in Dif
+f of OS Collation Data | DETAIL: Lines in Diff of OS Collation Data | DETAIL: Number of Locales | Operating System  | AMI |
+| ---- | ---- | ---- | ----  | ---- | ---- | ---- | ---- |
+| 2.19-18+deb8u7 |  |  |  |  | 317 | Debian GNU/Linux 8  | [ami-b14ba7a7](_debian/ami-b14ba7a7) |
+| 2.24-11+deb9u4 | [(317 blocks)](_debian/ami-0a694f67ea86df8a7/summary_en-US_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt) | [281423](_debian/ami-0a694f67ea86df8a7/changelist_en-US_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt) ([Full Diff](_debian/ami-0a694f67ea86df8a7/diff_en-US_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt)) |  C, cs_CZ, eo, iso14651_t1_common, kk_KZ, sv_SE, uk_UA, bhb_IN (removed), ce_RU (removed), chr_US (removed), de_IT (removed), en_IL (removed), ln_CD (removed), raj_IN (removed), sgs_LT (removed), tcy_IN (removed) | [392762](_debian/ami-0a694f67ea86df8a7/changelist_locales_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt) | [324](_debian/ami-0a694f67ea86df8a7/changelist_locales_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt) | Debian GNU/Linux 9  | [ami-0a694f67ea86df8a7](_debian/ami-0a694f67ea86df8a7) |
+| 2.28-10+deb10u4 | [(317 blocks)](_debian/ami-08040345bc0b30c71/summary_en-US_from-2.24-11+deb9u4_to-2.28-10+deb10u4.txt) | [282165](_debian/ami-08040345bc0b30c71/changelist_en-US_from-2.24-11+deb9u4_to-2.28-10+deb10u4.txt) ([Full Diff](_debian/ami-08040345bc0b30c71/diff_en-US_from-2.24-11+deb9u4_to-2.28-10+deb10u4.txt)) | (More than 20 languages) | [100568](_debian/ami-08040345bc0b30c71/changelist_locales_from-2.24-11+deb9u4_to-2.28-10+deb10u4.txt) | [343](_debian/ami-08040345bc0b30c71/changelist_locales_from-2.24-11+deb9u4_to-2.28-10+deb10u4.txt) | Debian GNU/Linux 10  | [ami-08040345bc0b30c71](_debian/ami-08040345bc0b30c71) |
+| 2.31-13+deb11u12 | 0 | 0 |  mnw_MM (removed) | 0 | [344](_debian/ami-03bff4aeb4895d95c/changelist_locales_from-2.28-10+deb10u4_to-2.31-13+deb11u12.txt) | Debian GNU/Linux 11  | [ami-03bff4aeb4895d95c](_debian/ami-03bff4aeb4895d95c) |
+| 2.36-9+deb12u10 | 0 | 0 |  C, or_IN, sv_SE, ab_GE (removed), ckb_IQ (removed), rif_MA (removed), syr (removed) | [1344](_debian/ami-0cfb691bc9feb8f58/changelist_locales_from-2.31-13+deb11u12_to-2.36-9+deb12u10.txt) | [348](_debian/ami-0cfb691bc9feb8f58/changelist_locales_from-2.31-13+deb11u12_to-2.36-9+deb12u10.txt) | Debian GNU/Linux 12  | [ami-0cfb691bc9feb8f58](_debian/ami-0cfb691bc9feb8f58) |
+
+
 ### Red Hat Enterprise Linux
 
 *Note: Generated with an older version of scripts; not yet updated. This Red Hat table may be missing some changes.*

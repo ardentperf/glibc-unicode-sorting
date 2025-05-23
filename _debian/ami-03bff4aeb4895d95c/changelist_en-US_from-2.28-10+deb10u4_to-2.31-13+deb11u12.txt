@@ -1,0 +1,3 @@
+
+# CodePoint UnicodeBlock PatternID String PositionChange
+

@@ -1,0 +1,4 @@
+
+# Unicode Block
+#   Pattern ID (total count of distinct codepoints in diff output), Pattern ID (codepoints), ...
+
