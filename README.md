@@ -77,6 +77,12 @@ Glibc 2.28 is the only version which changed comparisons of any pure ASCII strin
 
 ### Debian
 
+Note: Debian 9 Stretch looks a little worse than it actually is. This is what summary files exist for! Once you click into
+the summary, it's evident that much of the change is driven by strings with the CJK Unified Ideograph unicode character
+U+69D8. Strings S-335, S-405 and S-415 change order in combination with virtually every code point. I'm not sure why other
+strings with the same character don't impact as many blocks; but it's worth noting that only 26 blocks have changes to
+strings that don't involve this character.
+
 | GLIBC Version | SUMMARY: Unicode Blocks in Diff of en_US Sort | DETAIL: Codepoints in Diff of en_US Sort | SUMMARY: Locales in Diff of OS Collation Data | DETAIL: Lines in Diff of OS Collation Data | DETAIL: Number of Locales | Operating System  | AMI |
 | ---- | ---- | ---- | ----  | ---- | ---- | ---- | ---- |
 | 2.19-18+deb8u7 |  |  |  |  | 317 | Debian GNU/Linux 8  | [ami-b14ba7a7](_debian/ami-b14ba7a7) |
