@@ -77,8 +77,7 @@ Glibc 2.28 is the only version which changed comparisons of any pure ASCII strin
 
 ### Debian
 
-| GLIBC Version | SUMMARY: Unicode Blocks in Diff of en_US Sort | DETAIL: Codepoints in Diff of en_US Sort | SUMMARY: Locales in Dif
-f of OS Collation Data | DETAIL: Lines in Diff of OS Collation Data | DETAIL: Number of Locales | Operating System  | AMI |
+| GLIBC Version | SUMMARY: Unicode Blocks in Diff of en_US Sort | DETAIL: Codepoints in Diff of en_US Sort | SUMMARY: Locales in Diff of OS Collation Data | DETAIL: Lines in Diff of OS Collation Data | DETAIL: Number of Locales | Operating System  | AMI |
 | ---- | ---- | ---- | ----  | ---- | ---- | ---- | ---- |
 | 2.19-18+deb8u7 |  |  |  |  | 317 | Debian GNU/Linux 8  | [ami-b14ba7a7](_debian/ami-b14ba7a7) |
 | 2.24-11+deb9u4 | [(317 blocks)](_debian/ami-0a694f67ea86df8a7/summary_en-US_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt) | [281423](_debian/ami-0a694f67ea86df8a7/changelist_en-US_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt) ([Full Diff](_debian/ami-0a694f67ea86df8a7/diff_en-US_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt)) |  C, cs_CZ, eo, iso14651_t1_common, kk_KZ, sv_SE, uk_UA, bhb_IN (removed), ce_RU (removed), chr_US (removed), de_IT (removed), en_IL (removed), ln_CD (removed), raj_IN (removed), sgs_LT (removed), tcy_IN (removed) | [392762](_debian/ami-0a694f67ea86df8a7/changelist_locales_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt) | [324](_debian/ami-0a694f67ea86df8a7/changelist_locales_from-2.19-18+deb8u7_to-2.24-11+deb9u4.txt) | Debian GNU/Linux 9  | [ami-0a694f67ea86df8a7](_debian/ami-0a694f67ea86df8a7) |
