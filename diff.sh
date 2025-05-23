@@ -6,8 +6,9 @@
 #
 # NOTE: keep this script in sync with table.sh
 #
-# usage: sh diff.sh [ubuntu|debian|rhel|ubuntu-icu]
+# usage: bash diff.sh [ubuntu|debian|rhel|ubuntu-icu]
 #
+[ -z "$BASH_VERSION" ] && echo "ERROR: this script must be run with bash" && exit 2
 type git sort awk uniq grep paste wc tr cut >/dev/null || exit 2
 set -x -e
 
@@ -17,6 +18,17 @@ UNICODE_VERS="14"
 date
 for PREFIX in _ubuntu _debian _rhel _ubuntu-icu; do
 [ -n "$1" ] && [ "_$1" != "$PREFIX" ] && continue
+
+# sanity check that all unicode sorted word files are the same size. if not, a download may have failed.
+SIZE=-1
+for FILE in $PREFIX/*/unicode-${UNICODE_VERS}-chars-sorted-*; do
+  # store the size of the first file we see
+  ((SIZE < 0)) && SIZE=$(wc -c <$FILE) && SIZE_SRC=$FILE && continue
+
+  # check the size of all other files to ensure they match
+  SIZE_CMP=$(wc -c <$FILE)
+  ((SIZE != SIZE_CMP)) && echo "ERROR: size $SIZE ($SIZE_SRC) does not match size $SIZE_CMP ($FILE). did the download fail?" && exit 2
+done
 
 # IMPORTANT: KEEP IN SYNC WITH "table.sh"
 #   this logic is tricky, reference that file for more extensive comments/explanation

@@ -7,8 +7,9 @@
 # README of this package. This script is intended to populate that table for easy viewing of the
 # summary.
 #
-# usage: sh table.sh [ubuntu|debian|rhel|ubuntu-icu]
+# usage: bash table.sh [ubuntu|debian|rhel|ubuntu-icu]
 #
+[ -z "$BASH_VERSION" ] && echo "ERROR: this script must be run with bash" && exit 2
 type perl curl sort awk uniq grep wc tr cut >/dev/null || exit 2
 set -e
 
