@@ -114,8 +114,8 @@ jobs:
 
           architectures = [architecture] if architecture == 'x86_64' else [architecture, 'x86_64']
           languages = [language] if language == 'en' else [language, 'en']
-          for d in [debian, 'stable']:
-              for a in architectures:
+          for a in architectures:
+              for d in [debian, '13']:
                   for l in languages:
                       value = rows.get((d, a, l, engine))
                       if value:
