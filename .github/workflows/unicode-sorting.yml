@@ -67,7 +67,7 @@ jobs:
               for lang in ls:
                   for engine in es:
                       for architecture in ars:
-                          if engine == "icu" and int(d) <= 9:
+                          if engine == "icu" and d.isdigit() and int(d) <= 9:
                               continue
                           glibc, icu = languages[lang]
                           tests.append({
