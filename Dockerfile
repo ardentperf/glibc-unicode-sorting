@@ -44,6 +44,7 @@ RUN ulimit -n 1024 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --chmod=644 unicode-sorting.sql unicode-sorting-md5.sql /opt/unicode-sorting/
+RUN chmod 755 /opt/unicode-sorting
 
 WORKDIR /opt/unicode-sorting
 
