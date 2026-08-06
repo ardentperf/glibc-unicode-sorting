@@ -43,7 +43,7 @@ RUN ulimit -n 1024 \
         postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-COPY unicode-sorting.sql unicode-sorting-md5.sql /opt/unicode-sorting/
+COPY --chmod=644 unicode-sorting.sql unicode-sorting-md5.sql /opt/unicode-sorting/
 
 WORKDIR /opt/unicode-sorting
 

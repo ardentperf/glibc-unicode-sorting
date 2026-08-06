@@ -106,11 +106,10 @@ jobs:
           with open('testdata/md5sums.tsv', encoding='utf-8') as f:
               for line in f:
                   if line.strip() and not line.startswith('#'):
-                      line = line.split('#', 1)[0].rstrip()
-                      if line:
-                          d, a, l, e, md5 = line.split('\t')
-                      else:
+                      fields = line.rstrip('\n').split('\t')
+                      if len(fields) < 5:
                           continue
+                      d, a, l, e, md5 = fields[:5]
                       rows[(d, a, l, e)] = md5
 
           architectures = [architecture] if architecture == 'x86_64' else [architecture, 'x86_64']
