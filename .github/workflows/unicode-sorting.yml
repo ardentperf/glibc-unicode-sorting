@@ -48,7 +48,7 @@ jobs:
           languages = {
               "en": ("en_US.UTF-8", "en-US"),
               "ja": ("ja_JP.UTF-8", "ja-JP"),
-              "zh": ("zh_CN.UTF-8", "zh-CN"),
+              "zh": ("zh_CN.UTF-8", "zh-Hans-CN"),
               "ko": ("ko_KR.UTF-8", "ko-KR"),
               "ru": ("ru_RU.UTF-8", "ru-RU"),
               "fr": ("fr_FR.UTF-8", "fr-FR"),
