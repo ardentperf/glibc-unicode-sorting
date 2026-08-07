@@ -2,7 +2,8 @@
 -- https://joeconway.com/presentations/
 
 \timing
-SET work_mem = '3GB';
+-- On aarch64, Debian 7/8 PostgreSQL packages require work_mem no higher than 2097151kB.
+SET work_mem = '2097151kB';
 
 WITH t AS (
   SELECT d1 AS strings

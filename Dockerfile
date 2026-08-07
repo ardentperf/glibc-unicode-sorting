@@ -48,6 +48,7 @@ RUN chmod 755 /opt/unicode-sorting
 
 WORKDIR /opt/unicode-sorting
 
+# On aarch64, Debian 7/8 PostgreSQL packages require work_mem no higher than 2097151kB.
 CMD set -eu; \
     test_started="$(date +%s)"; \
     libc_version="$(dpkg-query -W -f='${Version}' libc6 2>/dev/null || true)"; \
@@ -63,7 +64,7 @@ CMD set -eu; \
     if [ "${TEST_ENGINE}" = glibc ]; then \
       su postgres -c "psql -v ON_ERROR_STOP=1 -c \"CREATE COLLATION \\\"${TEST_LOCALE}\\\" (locale = '${TEST_LOCALE}');\"" || true; \
     fi; \
-    su postgres -c "psql -v ON_ERROR_STOP=1 -v UNICODE_VERS=15 -v UNICODE_FILE=/opt/unicode-sorting/UnicodeData.txt -c \"SET work_mem = '3GB';\" -f /opt/unicode-sorting/unicode-sorting.sql"; \
+    su postgres -c "psql -v ON_ERROR_STOP=1 -v UNICODE_VERS=15 -v UNICODE_FILE=/opt/unicode-sorting/UnicodeData.txt -c \"SET work_mem = '2097151kB';\" -f /opt/unicode-sorting/unicode-sorting.sql"; \
     sed "s/@LOCALE@/\\\"${TEST_LOCALE}\\\"/g" /opt/unicode-sorting/unicode-sorting-md5.sql > /tmp/unicode-sorting-md5.sql; \
     su postgres -c "psql -At -v ON_ERROR_STOP=1 -f /tmp/unicode-sorting-md5.sql" | tee /tmp/unicode-sorting-md5-output; \
     result="$(sed -n 's/^[0-9a-f][0-9a-f]*$/&/p' /tmp/unicode-sorting-md5-output | tail -1)"; \
