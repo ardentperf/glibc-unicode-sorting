@@ -1,37 +1,6 @@
 
 # Collation Changes Across Linux Versions
 
-## Methodology
-
-### GNU C Library
-
-There are two aspects to this analysis: comparing the results of actual sorts in
-en_US locale, and comparing the LC_COLLATE section of the Operating System
-locale data files.
-
-Comparing the results of actual sorts should catch any changes to default
-sorting which is not defined in the OS collation data. A simple perl script is
-used to generate a text file containing 91 different strings for every legal
-unicode character. The unix "sort" utility processes this file with the locale
-configured to en_US for collation. This process is repeated on each
-release from the past 10 years, and then the unix "diff" utility is used to
-compare the sorted output files and count how many characters have different
-positions after sorting. The results show how many individual code points have
-changed positions in the sorted data across different Operating System releases
-and which Unicode Blocks contain the changed code points.
-
-The Operating System locale data files from `/usr/share/i18n/locales` are
-compared directly. The results show the total number of lines in the data files
-that are changed, and which locales contain the changes.
-
-### International Components for Unicode
-
-Analysis for ICU only compares the results of actual sorts (no raw locale data
-is analyzed), but it uses multiple locales: en-US, ja-JP, zh-Hans-CN, ru-RU, 
-fr-FR, de-DE, and es-ES. The methodology for comparing the sorted strings is 
-identical to that used for the GNU C Library.
-
-
 ## Results
 
 The tables below summarize the TSV measurements for the x86_64 architecture.
@@ -88,6 +57,39 @@ and `./tsv-table.pl icu`.
 </tbody>
 </table>
 
+
+## Methodology
+
+### GNU C Library
+
+There are two aspects to this analysis: comparing the results of actual sorts in
+en_US locale, and comparing the LC_COLLATE section of the Operating System
+locale data files.
+
+Comparing the results of actual sorts should catch any changes to default
+sorting which is not defined in the OS collation data. A simple perl script is
+used to generate a text file containing 91 different strings for every legal
+unicode character. The unix "sort" utility processes this file with the locale
+configured to en_US for collation. This process is repeated on each
+release from the past 10 years, and then the unix "diff" utility is used to
+compare the sorted output files and count how many characters have different
+positions after sorting. The results show how many individual code points have
+changed positions in the sorted data across different Operating System releases
+and which Unicode Blocks contain the changed code points.
+
+The Operating System locale data files from `/usr/share/i18n/locales` are
+compared directly. The results show the total number of lines in the data files
+that are changed, and which locales contain the changes.
+
+### International Components for Unicode
+
+Analysis for ICU only compares the results of actual sorts (no raw locale data
+is analyzed), but it uses multiple locales: en-US, ja-JP, zh-Hans-CN, ru-RU,
+fr-FR, de-DE, and es-ES. The methodology for comparing the sorted strings is
+identical to that used for the GNU C Library.
+
+
+## Other Results
 
 ### Ubuntu
 
