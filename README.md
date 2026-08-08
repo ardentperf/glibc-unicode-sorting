@@ -9,7 +9,7 @@ flowchart LR
 
 ## Results
 
-Each table shows how PostgreSQL sorts the same 25 million strings with a
+This README shows how PostgreSQL sorts the same 25 million strings with a
 particular collation implementation and OS or ICU version. The checksum is a
 compact fingerprint of the complete sorted result: matching checksums indicate
 the same ordering, while a changed checksum means that at least one string
