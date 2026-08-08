@@ -22,7 +22,7 @@ or ICU; the tables make changes in that behavior visible across versions.
 If PostgreSQL data files are moved to a different operating system (or the
 base container used to build PostgreSQL is changed) without rebuilding indexes
 and other persistent structures that depend on collation
-ordering, the database should be treated as effectively corrupt: its stored
+ordering, **the database is effectively corrupt**: its stored
 structures may no longer agree with the ordering PostgreSQL now uses.
 
 The package version appears in each column header. The tables can be regenerated
