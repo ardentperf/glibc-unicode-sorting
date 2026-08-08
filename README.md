@@ -3,7 +3,7 @@
 
 ```mermaid
 flowchart LR
-    A["Table with 25 million strings"] --> B["SELECT ... ORDER BY d1 COLLATE @LOCALE@"]
+    A["Table with 25 million strings"] --> B["SELECT ... ORDER BY d1 COLLATE <locale>"]
     B --> C["md5(string_agg(...))"]
 ```
 
