@@ -104,7 +104,7 @@ fr-FR, de-DE, and es-ES. The methodology for comparing the sorted strings is
 identical to that used for the GNU C Library.
 
 
-## Other Results
+## Drill-Down Results
 
 ### Ubuntu
 
