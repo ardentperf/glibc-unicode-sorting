@@ -93,6 +93,7 @@ is analyzed), but it uses multiple locales: en-US, ja-JP, zh-Hans-CN, ru-RU,
 fr-FR, de-DE, and es-ES. The methodology for comparing the sorted strings is
 identical to that used for the GNU C Library.
 
+## Drill-Down Results
 
 ### Ubuntu
 
