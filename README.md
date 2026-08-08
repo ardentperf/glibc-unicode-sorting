@@ -9,14 +9,18 @@ flowchart LR
 
 ## Results
 
-The tables below summarize the TSV measurements for the x86_64 architecture.
-Each cell shows the final six characters of the checksum and the time required
-to generate it, in minutes. The cell background is the checksum suffix, used as
-a six-digit hexadecimal color. The runtime version is shown
-on a second line in each column header, and the generation time is shown on a
-second line in each cell. Runtime versions appear only in the headers. They
-can be regenerated with `./tsv-table.pl glibc`
-and `./tsv-table.pl icu`.
+Each table shows how PostgreSQL sorts the same 25 million strings with a
+particular collation implementation and OS or ICU version. The checksum is a
+compact fingerprint of the complete sorted result: matching checksums indicate
+the same ordering, while a changed checksum means that at least one string
+moved. Only the final six checksum characters are shown in each cell, with the
+same value used as its badge color. The italic value below it is the time taken
+to produce the result in minutes. This matters because PostgreSQL `ORDER BY`,
+indexes, and other comparisons can depend on the collation supplied by the OS
+or ICU; the tables make changes in that behavior visible across versions.
+
+The package version appears in each column header. The tables can be regenerated
+with `./tsv-table.pl glibc` and `./tsv-table.pl icu`.
 
 ### Debian: glibc
 
