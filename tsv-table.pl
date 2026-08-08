@@ -32,9 +32,9 @@ while (my $line = <$fh>) {
     $minutes =~ s/\.$//;
     my $suffix = substr($checksum, -6);
     $cell{$lang}{$version} = {
-        text => '<img alt="' . html_escape($suffix) . '" src="https://img.shields.io/badge/-'
+        text => '<img src="https://img.shields.io/badge/-'
             . html_escape($suffix) . '-' . $suffix
-            . '?style=flat"><br>*' . $minutes . '&nbsp;min*',
+            . '"><br>*' . $minutes . '&nbsp;min*',
     };
 }
 close $fh;
