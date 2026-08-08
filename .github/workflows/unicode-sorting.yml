@@ -6,7 +6,7 @@ on:
       debian:
         description: Debian major version, or all
         required: false
-        default: all
+        default: sid
         type: string
       language:
         description: Language, or all
@@ -23,7 +23,7 @@ on:
       architecture:
         description: Architecture, or all
         required: false
-        default: all
+        default: x86_64
         type: choice
         options: [all, x86_64, aarch64]
 
@@ -36,10 +36,10 @@ jobs:
       - id: matrix
         name: Build test matrix
         env:
-          DEBIAN: ${{ github.event.inputs.debian || inputs.debian || 'all' }}
+          DEBIAN: ${{ github.event.inputs.debian || inputs.debian || 'sid' }}
           LANGUAGE: ${{ github.event.inputs.language || inputs.language || 'all' }}
           ENGINE: ${{ github.event.inputs.engine || inputs.engine || 'all' }}
-          ARCHITECTURE: ${{ github.event.inputs.architecture || inputs.architecture || 'all' }}
+          ARCHITECTURE: ${{ github.event.inputs.architecture || inputs.architecture || 'x86_64' }}
         run: |
           python3 - <<'PY' >> "$GITHUB_OUTPUT"
           import json, os
