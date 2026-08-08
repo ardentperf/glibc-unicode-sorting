@@ -27,7 +27,8 @@ structures may no longer agree with the ordering PostgreSQL now uses.
 [![checksums validated for sid](https://img.shields.io/github/actions/workflow/status/ardentperf/glibc-unicode-sorting/unicode-sorting.yml?branch=main&label=checksums%20validated%20for%20sid)](https://github.com/ardentperf/glibc-unicode-sorting/actions/workflows/unicode-sorting.yml)
 
 The package version appears in each column header. The tables can be regenerated
-with `./tsv-table.pl glibc` and `./tsv-table.pl icu`.
+with `./tsv-table.pl glibc` and `./tsv-table.pl icu`. The TSV data is generated
+by running the GitHub Actions workflow.
 
 ### Debian: glibc
 
