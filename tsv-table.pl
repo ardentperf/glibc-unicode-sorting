@@ -34,7 +34,7 @@ while (my $line = <$fh>) {
     $cell{$lang}{$version} = {
         text => '<img alt="' . html_escape($suffix) . '" src="https://img.shields.io/badge/-'
             . html_escape($suffix) . '-' . $suffix
-            . '?style=flat"><br><i>' . $minutes . '&nbsp;min</i>',
+            . '?style=flat"><br>*' . $minutes . '&nbsp;min*',
     };
 }
 close $fh;
@@ -58,24 +58,23 @@ sub html_escape {
     return $value;
 }
 
-print "<table>\n<thead>\n<tr><th></th>";
+print '| |';
 for my $version (@versions) {
     my $runtime = $runtime_version{$version} // '';
-    print "<th>Debian&nbsp;" . html_escape($version) . ":";
-    print "<br><i>" . html_escape($runtime) . "</i>" if $runtime ne '';
-    print "</th>";
+    print ' Debian&nbsp;' . html_escape($version) . ':';
+    print '<br>*' . html_escape($runtime) . '*' if $runtime ne '';
+    print '|';
 }
-print "</tr>\n</thead>\n<tbody>\n";
+print "\n|---" . ('|---' x scalar @versions) . "|\n";
 for my $lang (@languages) {
-    print "<tr><th>" . html_escape($lang) . "</th>";
+    print '| ' . html_escape($lang);
     for my $version (@versions) {
         my $value = $cell{$lang}{$version};
         if ($value) {
-            print '<td>' . $value->{text} . '</td>';
+            print '| ' . $value->{text};
         } else {
-            print '<td></td>';
+            print '| ';
         }
     }
-    print "</tr>\n";
+    print "|\n";
 }
-print "</tbody>\n</table>\n";
