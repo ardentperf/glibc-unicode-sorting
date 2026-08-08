@@ -1,6 +1,12 @@
 
 # Collation Changes Across Linux Versions
 
+```mermaid
+flowchart LR
+    A["Table with 25 million strings"] --> B["SELECT ... ORDER BY d1 COLLATE @LOCALE@"]
+    B --> C["md5(string_agg(...))"]
+```
+
 ## Results
 
 The tables below summarize the TSV measurements for the x86_64 architecture.
