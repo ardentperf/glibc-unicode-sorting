@@ -27,7 +27,7 @@ while (my $line = <$fh>) {
     $language{$lang} = 1;
     $debian{$version} = 1 if $version eq 'sid' || $version =~ /^\d+$/;
     $runtime_version{$version} = $engine eq 'icu' ? $f[8] : $f[7];
-    my $minutes = sprintf '%.2f', $sort_ms / 60000;
+    my $minutes = sprintf '%.1f', $sort_ms / 60000;
     $minutes =~ s/0+$//;
     $minutes =~ s/\.$//;
     my $suffix = substr($checksum, -5);
