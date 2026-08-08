@@ -7,7 +7,7 @@ flowchart LR
     B --> C["md5(string_agg(...))"]
 ```
 
-## Results
+## Summary Results
 
 This README shows how PostgreSQL sorts the same 25 million strings with a
 particular collation implementation and OS or ICU version. The checksum is a
