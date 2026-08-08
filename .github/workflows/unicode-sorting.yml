@@ -46,7 +46,7 @@ jobs:
 
           debian = ["7", "8", "9", "10", "11", "12", "13"]
           languages = {
-              "C/root": ("C.utf8", "und"),
+              "C/root": ("C.UTF-8", "und"),
               "en": ("en_US.UTF-8", "en-US"),
               "ja": ("ja_JP.UTF-8", "ja-JP"),
               "zh": ("zh_CN.UTF-8", "zh-Hans-CN"),
@@ -78,6 +78,8 @@ jobs:
                           if architecture == "aarch64" and d.isdigit() and int(d) <= 8:
                               continue
                           glibc, icu = languages[lang]
+                          if lang == "C/root" and engine == "glibc" and d == "sid":
+                              glibc = "C.utf8"
                           tests.append({
                               "debian": d,
                               "language": lang,
