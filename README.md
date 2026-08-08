@@ -73,7 +73,7 @@ with `./tsv-table.pl glibc` and `./tsv-table.pl icu`.
 </table>
 
 
-## Methodology
+## Drill-Down Methodology
 
 ### GNU C Library
 
