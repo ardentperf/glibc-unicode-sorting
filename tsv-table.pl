@@ -30,10 +30,10 @@ while (my $line = <$fh>) {
     my $minutes = sprintf '%.1f', $sort_ms / 60000;
     $minutes =~ s/0+$//;
     $minutes =~ s/\.$//;
-    my $suffix = substr($checksum, -5);
+    my $suffix = substr($checksum, -6);
     $cell{$lang}{$version} = {
         text => '<img alt="' . html_escape($suffix) . '" src="https://img.shields.io/badge/-'
-            . html_escape($suffix) . '-' . ('f' . $suffix)
+            . html_escape($suffix) . '-' . $suffix
             . '?style=flat"><br><small><i>' . $minutes . '&nbsp;min</i></small>',
     };
 }
