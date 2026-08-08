@@ -34,7 +34,7 @@ while (my $line = <$fh>) {
     $cell{$lang}{$version} = {
         text => '<img alt="' . html_escape($suffix) . '" src="https://img.shields.io/badge/-'
             . html_escape($suffix) . '-' . $suffix
-            . '?style=flat"><br><small><i>' . $minutes . '&nbsp;min</i></small>',
+            . '?style=flat"><br><i>' . $minutes . '&nbsp;min</i>',
     };
 }
 close $fh;
@@ -62,7 +62,7 @@ print "<table>\n<thead>\n<tr><th></th>";
 for my $version (@versions) {
     my $runtime = $runtime_version{$version} // '';
     print "<th>Debian&nbsp;" . html_escape($version) . ":";
-    print "<br><small><i>" . html_escape($runtime) . "</i></small>" if $runtime ne '';
+    print "<br><i>" . html_escape($runtime) . "</i>" if $runtime ne '';
     print "</th>";
 }
 print "</tr>\n</thead>\n<tbody>\n";
