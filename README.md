@@ -19,6 +19,11 @@ to produce the result in minutes. This matters because PostgreSQL `ORDER BY`,
 indexes, and other comparisons can depend on the collation supplied by the OS
 or ICU; the tables make changes in that behavior visible across versions.
 
+If PostgreSQL data files are moved to a different operating system without
+rebuilding indexes and other persistent structures that depend on collation
+ordering, the database should be treated as effectively corrupt: its stored
+structures may no longer agree with the ordering PostgreSQL now uses.
+
 The package version appears in each column header. The tables can be regenerated
 with `./tsv-table.pl glibc` and `./tsv-table.pl icu`.
 
