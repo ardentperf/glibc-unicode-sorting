@@ -13,7 +13,7 @@ on:
         required: false
         default: all
         type: choice
-        options: [all, en, ja, zh, ko, ru, fr, de, es, ar]
+        options: [all, C/root, en, ja, zh, ko, ru, fr, de, es, ar]
       engine:
         description: Collation engine, or all
         required: false
@@ -46,6 +46,7 @@ jobs:
 
           debian = ["7", "8", "9", "10", "11", "12", "13"]
           languages = {
+              "C/root": ("C", "und"),
               "en": ("en_US.UTF-8", "en-US"),
               "ja": ("ja_JP.UTF-8", "ja-JP"),
               "zh": ("zh_CN.UTF-8", "zh-Hans-CN"),
@@ -120,7 +121,8 @@ jobs:
                       rows[(d, a, l, e)] = md5
 
           architectures = [architecture] if architecture == 'x86_64' else [architecture, 'x86_64']
-          languages = [language] if language == 'en' else [language, 'en']
+          lookup_language = ('C' if engine == 'glibc' else 'root') if language == 'C/root' else language
+          languages = [lookup_language] if language == 'en' or language == 'C/root' else [lookup_language, 'en']
           for a in architectures:
               for d in [debian, '13']:
                   for l in languages:
