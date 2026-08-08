@@ -17,7 +17,7 @@ on:
       engine:
         description: Collation engine, or all
         required: false
-        default: all
+        default: glibc
         type: choice
         options: [all, glibc, icu]
       architecture:
