@@ -10,12 +10,14 @@ ARG PG_MAJOR=15
 ENV TEST_LOCALE=${LOCALE}
 ENV TEST_ENGINE=${ENGINE}
 ENV EXPECTED_MD5=${EXPECTED_MD5}
+ENV PG_MAJOR=${PG_MAJOR}
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
+# PGDG's EL7 post-install scripts hang under BuildKit; this image uses absolute PostgreSQL paths and initializes its own cluster.
 RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
       groupadd -r postgres \
-      && useradd -r -g postgres -d /var/lib/pgsql -s /sbin/nologin postgres; \
+      && useradd -r -g postgres -d /var/lib/pgsql -s /bin/bash postgres; \
     fi
 
 RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
@@ -23,7 +25,7 @@ RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
       && yum install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
       && sed -i 's/rhel-7Server/rhel-7.10/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
       && sed -i 's/^repo_gpgcheck[[:space:]]*=.*/repo_gpgcheck=0/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
-      && yum --disablerepo='pgdg12*' --disablerepo='pgdg13*' --disablerepo='pgdg15*' install -y postgresql${PG_MAJOR}-server postgresql${PG_MAJOR} \
+      && yum --setopt=tsflags=noscripts --disablerepo='pgdg12*' --disablerepo='pgdg13*' --disablerepo='pgdg15*' install -y postgresql${PG_MAJOR}-server postgresql${PG_MAJOR} \
       && yum clean all; \
     else \
       dnf install -y ca-certificates glibc-langpack-en gzip \
