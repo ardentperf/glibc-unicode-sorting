@@ -1,2 +1,3 @@
 # rhel	architecture	language	engine	md5	date	sort_ms	libc	icu
+8	x86_64	en	icu	471ac75fde4636f7815e436a658248fb	2026-08-10	30230.064	2.28-251.el8_10.40.x86_64	60.3-2.el8_1
 9	x86_64	en	icu	d09ddc8dc309750f9d1f31fbe7f5617e	2026-08-10	27705.390	2.34-275.el9_8.x86_64	67.1-10.el9_6
