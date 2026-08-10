@@ -47,5 +47,9 @@ CMD set -eu; \
     result="$(sed -n 's/^[0-9a-f][0-9a-f]*$/&/p' /tmp/unicode-sorting-md5-output | tail -1)"; \
     echo "locale=${TEST_LOCALE} md5=${result} expected=${EXPECTED_MD5}"; \
     echo "libc_version=${libc_version} postgresql_version=${pg_version} test_runtime_seconds=$(( $(date +%s) - test_started ))";
-    test -n "${EXPECTED_MD5}" || { echo 'No expected MD5 supplied; Red Hat TSV is empty or has no matching row' >&2; exit 1; }; \
-    test "${result}" = "${EXPECTED_MD5}"
+    if [ -n "${EXPECTED_MD5}" ]; then \
+      test "${result}" = "${EXPECTED_MD5}"; \
+    else \
+      echo 'No expected MD5 supplied; checksum was not compared'; \
+      exit 2; \
+    fi
