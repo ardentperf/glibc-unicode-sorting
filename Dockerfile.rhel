@@ -14,6 +14,11 @@ ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
 RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
+      groupadd -r postgres \
+      && useradd -r -g postgres -d /var/lib/pgsql -s /sbin/nologin postgres; \
+    fi
+
+RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
       yum install -y ca-certificates gzip \
       && yum install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
       && sed -i 's/rhel-7Server/rhel-7.10/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
