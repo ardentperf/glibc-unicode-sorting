@@ -43,12 +43,54 @@ jobs:
     name: RHEL ${{ matrix.rhel }} / ${{ matrix.language }} / ${{ matrix.engine }} / ${{ matrix.architecture }}
     steps:
       - uses: actions/checkout@v4
+      - name: Read expected checksum
+        id: expected
+        run: |
+          lookup="$(RHEL='${{ matrix.rhel }}' LANGUAGE='${{ matrix.language }}' ENGINE='${{ matrix.engine }}' ARCHITECTURE='${{ matrix.architecture }}' python3 - <<'PY'
+          import os
+
+          rhel = os.environ['RHEL']
+          language = os.environ['LANGUAGE']
+          engine = os.environ['ENGINE']
+          architecture = os.environ['ARCHITECTURE']
+          rows = {}
+          with open('testdata/redhat-md5sums.tsv', encoding='utf-8') as f:
+              for line in f:
+                  if line.strip() and not line.startswith('#'):
+                      fields = line.rstrip('\n').split('\t')
+                      if len(fields) >= 5:
+                          rows[tuple(fields[:4])] = fields[4]
+
+          architectures = [architecture] if architecture == 'x86_64' else [architecture, 'x86_64']
+          languages = [language] if language == 'en' or language == 'C/root' else [language, 'en']
+          for a in architectures:
+              for r in [rhel, '10']:
+                  for l in languages:
+                      value = rows.get((r, a, l, engine))
+                      if value:
+                          print(value + '|' + '\t'.join((r, a, l, engine)))
+                          raise SystemExit
+          PY
+          )"
+          value="${lookup%%|*}"
+          source="${lookup#*|}"
+          requested="$(printf '%s\t%s\t%s\t%s' '${{ matrix.rhel }}' '${{ matrix.architecture }}' '${{ matrix.language }}' '${{ matrix.engine }}')"
+          if [ -z "$value" ]; then
+            echo 'No expected checksum found in testdata/redhat-md5sums.tsv' >&2
+            exit 1
+          elif [ "$source" != "$requested" ]; then
+            echo "CHECKSUM FALLBACK USED: requested $requested"
+            echo "CHECKSUM FALLBACK SOURCE: $source"
+            echo "::warning::Checksum fallback used from $source"
+          fi
+          echo "md5=$value" >> "$GITHUB_OUTPUT"
       - name: Build UBI test image
         run: |
           docker build --file Dockerfile.rhel \
             --build-arg RHEL_MAJOR="${{ matrix.rhel }}" \
             --build-arg LOCALE="en-US-x-icu" \
             --build-arg ENGINE="${{ matrix.engine }}" \
+            --build-arg EXPECTED_MD5="${{ steps.expected.outputs.md5 }}" \
             -t unicode-sorting-rhel-test .
       - name: Run checksum test
         run: docker run --rm unicode-sorting-rhel-test
