@@ -46,7 +46,7 @@ CMD set -eu; \
     su postgres -c "/usr/pgsql-15/bin/psql -At -v ON_ERROR_STOP=1 -f /tmp/unicode-sorting-md5.sql" | tee /tmp/unicode-sorting-md5-output; \
     result="$(sed -n 's/^[0-9a-f][0-9a-f]*$/&/p' /tmp/unicode-sorting-md5-output | tail -1)"; \
     echo "locale=${TEST_LOCALE} md5=${result} expected=${EXPECTED_MD5}"; \
-    echo "libc_version=${libc_version} postgresql_version=${pg_version} test_runtime_seconds=$(( $(date +%s) - test_started ))";
+    echo "libc_version=${libc_version} postgresql_version=${pg_version} test_runtime_seconds=$(( $(date +%s) - test_started ))"; \
     if [ -n "${EXPECTED_MD5}" ]; then \
       test "${result}" = "${EXPECTED_MD5}"; \
     else \
