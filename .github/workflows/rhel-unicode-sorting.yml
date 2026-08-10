@@ -31,22 +31,73 @@ on:
         options: [all, x86_64, aarch64]
 
 jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      tests: ${{ steps.matrix.outputs.tests }}
+    steps:
+      - id: matrix
+        name: Build test matrix
+        env:
+          RHEL: ${{ github.event.inputs.rhel || inputs.rhel || 'all' }}
+          LANGUAGE: ${{ github.event.inputs.language || inputs.language || 'all' }}
+          ENGINE: ${{ github.event.inputs.engine || inputs.engine || 'all' }}
+          ARCHITECTURE: ${{ github.event.inputs.architecture || inputs.architecture || 'x86_64' }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+
+          rhel = ["8", "9", "10"]
+          languages = {
+              "C/root": ("C.UTF-8", "und"),
+              "en": ("en_US.UTF-8", "en-US"),
+              "ja": ("ja_JP.UTF-8", "ja-JP"),
+              "zh": ("zh_CN.UTF-8", "zh-Hans-CN"),
+              "ko": ("ko_KR.UTF-8", "ko-KR"),
+              "ru": ("ru_RU.UTF-8", "ru-RU"),
+              "fr": ("fr_FR.UTF-8", "fr-FR"),
+              "de": ("de_DE.UTF-8", "de-DE"),
+              "es": ("es_ES.UTF-8", "es-ES"),
+              "ar": ("ar_SA.UTF-8", "ar-SA"),
+          }
+          engines = ["glibc", "icu"]
+          architectures = {"x86_64": "ubuntu-latest", "aarch64": "ubuntu-24.04-arm"}
+          rs = rhel if os.environ["RHEL"] == "all" else [os.environ["RHEL"]]
+          ls = list(languages) if os.environ["LANGUAGE"] == "all" else [os.environ["LANGUAGE"]]
+          es = engines if os.environ["ENGINE"] == "all" else [os.environ["ENGINE"]]
+          ars = list(architectures) if os.environ["ARCHITECTURE"] == "all" else [os.environ["ARCHITECTURE"]]
+          tests = []
+          for r in rs:
+              for lang in ls:
+                  for engine in es:
+                      for architecture in ars:
+                          glibc, icu = languages[lang]
+                          tests.append({
+                              "rhel": r,
+                              "language": lang,
+                              "engine": engine,
+                              "architecture": architecture,
+                              "runner": architectures[architecture],
+                              "locale": glibc if engine == "glibc" else icu + "-x-icu",
+                          })
+          print("tests=" + json.dumps(tests, separators=(",", ":")))
+          PY
+
   test:
+    needs: matrix
     strategy:
       fail-fast: false
       matrix:
-        rhel: [8, 9, 10]
-        language: [en]
-        engine: [icu]
-        architecture: [x86_64]
-    runs-on: ubuntu-latest
-    name: RHEL ${{ matrix.rhel }} / ${{ matrix.language }} / ${{ matrix.engine }} / ${{ matrix.architecture }}
+        test: ${{ fromJSON(needs.matrix.outputs.tests) }}
+    runs-on: ${{ matrix.test.runner }}
+    name: RHEL ${{ matrix.test.rhel }} / ${{ matrix.test.language }} / ${{ matrix.test.engine }} / ${{ matrix.test.architecture }}
     steps:
       - uses: actions/checkout@v4
+
       - name: Read expected checksum
         id: expected
         run: |
-          lookup="$(RHEL='${{ matrix.rhel }}' LANGUAGE='${{ matrix.language }}' ENGINE='${{ matrix.engine }}' ARCHITECTURE='${{ matrix.architecture }}' python3 - <<'PY'
+          lookup="$(RHEL='${{ matrix.test.rhel }}' LANGUAGE='${{ matrix.test.language }}' ENGINE='${{ matrix.test.engine }}' ARCHITECTURE='${{ matrix.test.architecture }}' python3 - <<'PY'
           import os
 
           rhel = os.environ['RHEL']
@@ -58,11 +109,14 @@ jobs:
               for line in f:
                   if line.strip() and not line.startswith('#'):
                       fields = line.rstrip('\n').split('\t')
-                      if len(fields) >= 5:
-                          rows[tuple(fields[:4])] = fields[4]
+                      if len(fields) < 5:
+                          continue
+                      r, a, l, e, md5 = fields[:5]
+                      rows[(r, a, l, e)] = md5
 
           architectures = [architecture] if architecture == 'x86_64' else [architecture, 'x86_64']
-          languages = [language] if language == 'en' or language == 'C/root' else [language, 'en']
+          lookup_language = ('C' if engine == 'glibc' else 'root') if language == 'C/root' else language
+          languages = [lookup_language] if language == 'en' or language == 'C/root' else [lookup_language, 'en']
           for a in architectures:
               for r in [rhel, '10']:
                   for l in languages:
@@ -74,22 +128,35 @@ jobs:
           )"
           value="${lookup%%|*}"
           source="${lookup#*|}"
-          requested="$(printf '%s\t%s\t%s\t%s' '${{ matrix.rhel }}' '${{ matrix.architecture }}' '${{ matrix.language }}' '${{ matrix.engine }}')"
+          requested="$(printf '%s\t%s\t%s\t%s' '${{ matrix.test.rhel }}' '${{ matrix.test.architecture }}' '${{ matrix.test.language }}' '${{ matrix.test.engine }}')"
           if [ -z "$value" ]; then
             echo 'No expected checksum found; running without comparison'
           elif [ "$source" != "$requested" ]; then
-            echo "CHECKSUM FALLBACK USED: requested $requested"
+            echo '============================================================'
+            echo "CHECKSUM FALLBACK USED: requested ${{ matrix.test.rhel }}/${{ matrix.test.architecture }}/${{ matrix.test.language }}/${{ matrix.test.engine }}"
             echo "CHECKSUM FALLBACK SOURCE: $source"
+            echo '============================================================'
             echo "::warning::Checksum fallback used from $source"
           fi
           echo "md5=$value" >> "$GITHUB_OUTPUT"
+
       - name: Build UBI test image
         run: |
-          docker build --file Dockerfile.rhel \
-            --build-arg RHEL_MAJOR="${{ matrix.rhel }}" \
-            --build-arg LOCALE="en-US-x-icu" \
-            --build-arg ENGINE="${{ matrix.engine }}" \
+          docker build \
+            --file Dockerfile.rhel \
+            --build-arg RHEL_MAJOR="${{ matrix.test.rhel }}" \
+            --build-arg LOCALE="${{ matrix.test.locale }}" \
+            --build-arg ENGINE="${{ matrix.test.engine }}" \
             --build-arg EXPECTED_MD5="${{ steps.expected.outputs.md5 }}" \
             -t unicode-sorting-rhel-test .
+
       - name: Run checksum test
-        run: docker run --rm unicode-sorting-rhel-test
+        run: |
+          set +e
+          docker run --rm unicode-sorting-rhel-test | tee docker-output.log
+          container_status=${PIPESTATUS[0]}
+          set -e
+          md5="$(sed -n 's/.* md5=\([0-9a-f][0-9a-f]*\) expected=.*/\1/p' docker-output.log | tail -1)"
+          test -n "$md5" || { echo 'Checksum was not emitted' >&2; exit 1; }
+          echo "Computed checksum: $md5" >> "$GITHUB_STEP_SUMMARY"
+          exit "$container_status"
