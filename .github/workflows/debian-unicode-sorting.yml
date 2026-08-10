@@ -1,4 +1,4 @@
-name: Unicode sorting
+name: Debian Unicode Sorting
 
 on:
   schedule:
@@ -115,7 +115,7 @@ jobs:
           engine = os.environ['ENGINE']
           architecture = os.environ['ARCHITECTURE']
           rows = {}
-          with open('testdata/md5sums.tsv', encoding='utf-8') as f:
+          with open('testdata/debian-md5sums.tsv', encoding='utf-8') as f:
               for line in f:
                   if line.strip() and not line.startswith('#'):
                       fields = line.rstrip('\n').split('\t')
@@ -153,6 +153,7 @@ jobs:
       - name: Build test image
         run: |
           docker build \
+            --file Dockerfile.debian \
             --build-arg DEBIAN_TAG="${{ matrix.test.debian }}" \
             --build-arg LOCALE="${{ matrix.test.locale }}" \
             --build-arg ENGINE="${{ matrix.test.engine }}" \

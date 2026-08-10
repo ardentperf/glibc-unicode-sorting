@@ -1,16 +1,23 @@
 #!/usr/bin/env perl
 
-# Generate a GitHub-Markdown-compatible HTML table from md5sums.tsv.
+# Generate a GitHub-Markdown-compatible HTML table from checksum TSV data.
 # Usage: tsv-table.pl ENGINE [ARCHITECTURE] [TSV_FILE]
+#        tsv-table.pl rhel ENGINE [ARCHITECTURE] [TSV_FILE]
 
 use strict;
 use warnings;
-my ($engine, $architecture, $file) = @ARGV;
+my ($dataset, $engine, $architecture, $file) = @ARGV;
+if ($dataset eq 'rhel') {
+    $file //= 'testdata/redhat-md5sums.tsv';
+} else {
+    ($file, $architecture) = ($architecture, $engine) if defined $file;
+    ($engine, $architecture, $file) = ($dataset, $engine, $architecture);
+    $file //= 'testdata/debian-md5sums.tsv';
+}
 $architecture //= 'x86_64';
-die "Usage: $0 ENGINE [ARCHITECTURE] [TSV_FILE]\n" unless defined $engine;
+die "Usage: $0 ENGINE [ARCHITECTURE] [TSV_FILE]\n       $0 rhel ENGINE [ARCHITECTURE] [TSV_FILE]\n"
+    unless defined $engine;
 die "Engine must be glibc or icu\n" unless $engine eq 'glibc' || $engine eq 'icu';
-
-$file //= 'testdata/md5sums.tsv';
 open my $fh, '<', $file or die "Cannot open $file: $!\n";
 
 my (%cell, %language, %debian, %runtime_version);
@@ -42,8 +49,8 @@ close $fh;
 my @versions = sort {
     $a eq 'sid' ? -1 : $b eq 'sid' ? 1 : $b <=> $a
 } keys %debian;
-my $special_language = $engine eq 'glibc' ? 'C' : 'root';
-my @language_order = ($special_language, qw(de en fr ar ru es ja ko zh));
+my $special_language = $dataset eq 'rhel' ? 'C/root' : ($engine eq 'glibc' ? 'C' : 'root');
+my @language_order = ($special_language, qw(de en fr ru ar es ja ko zh));
 my %language_rank = map { $language_order[$_] => $_ } 0 .. $#language_order;
 my @languages = sort {
     ($language_rank{$a} // 1000) <=> ($language_rank{$b} // 1000)
@@ -61,7 +68,8 @@ sub html_escape {
 print '| |';
 for my $version (@versions) {
     my $runtime = $runtime_version{$version} // '';
-    print ' Debian&nbsp;' . html_escape($version) . ':';
+    my $platform = $dataset eq 'rhel' ? 'RHEL' : 'Debian';
+    print ' ' . $platform . '&nbsp;' . html_escape($version) . ':';
     print '<br>*' . html_escape($runtime) . '*' if $runtime ne '';
     print '|';
 }

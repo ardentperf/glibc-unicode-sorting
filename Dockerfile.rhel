@@ -1,0 +1,84 @@
+ARG RHEL_MAJOR=9
+FROM registry.access.redhat.com/ubi${RHEL_MAJOR}:latest
+
+ARG RHEL_MAJOR=9
+ARG LOCALE=en_US.UTF-8
+ARG ENGINE=icu
+ARG EXPECTED_MD5
+ARG PG_MAJOR=15
+
+# PGDG publishes architecture-specific repository metadata.  Keep the RPM
+# download aligned with the image architecture (the RPM itself is noarch).
+ARG TARGETARCH
+RUN test -n "${TARGETARCH}" || { echo 'TARGETARCH must be supplied by Docker/buildx' >&2; exit 1; }
+ENV TARGETARCH=${TARGETARCH}
+
+ENV TEST_LOCALE=${LOCALE}
+ENV TEST_ENGINE=${ENGINE}
+ENV EXPECTED_MD5=${EXPECTED_MD5}
+ENV PG_MAJOR=${PG_MAJOR}
+ENV RHEL_MAJOR=${RHEL_MAJOR}
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
+      groupadd -r postgres \
+      && useradd -r -g postgres -d /var/lib/pgsql -s /bin/bash postgres; \
+    fi
+
+RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
+      # PGDG EL7 scripts hang under BuildKit; absolute PostgreSQL paths avoid their alternatives setup. \
+      yum install -y ca-certificates gzip \
+      && yum install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
+      && sed -i 's/rhel-7Server/rhel-7.10/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
+      && sed -i 's/^repo_gpgcheck[[:space:]]*=.*/repo_gpgcheck=0/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
+      && yum --setopt=tsflags=noscripts --disablerepo='pgdg12*' --disablerepo='pgdg13*' --disablerepo='pgdg15*' install -y postgresql${PG_MAJOR}-server postgresql${PG_MAJOR} \
+      && for locale in en_US ja_JP zh_CN ko_KR ru_RU fr_FR de_DE es_ES ar_SA; do localedef --no-archive -i "${locale}" -f UTF-8 "/usr/lib/locale/${locale}.UTF-8"; done \
+      && localedef --no-archive -c -i POSIX -f UTF-8 /usr/lib/locale/C.UTF-8 || test -d /usr/lib/locale/C.UTF-8 \
+      && yum clean all; \
+    else \
+      # EL7 needs exact locale paths; EL8+ supplies English/C.UTF-8 and generates named test locales. \
+      pgdg_arch=x86_64; [ "${TARGETARCH}" = arm64 ] && pgdg_arch=aarch64; \
+      dnf install -y ca-certificates glibc-langpack-en glibc-locale-source gzip \
+      && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-${pgdg_arch}/pgdg-redhat-repo-latest.noarch.rpm" \
+      && sed -i 's/^repo_gpgcheck[[:space:]]*=.*/repo_gpgcheck=0/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
+      && dnf install -y postgresql${PG_MAJOR}-server postgresql${PG_MAJOR} \
+      && for locale in ja_JP zh_CN ko_KR ru_RU fr_FR de_DE es_ES ar_SA; do localedef -i "${locale}" -f UTF-8 "${locale}.UTF-8"; done \
+      && dnf clean all \
+      && rm -rf /var/cache/dnf; \
+    fi
+
+COPY --chmod=644 unicode-sorting.sql unicode-sorting-md5.sql /opt/unicode-sorting/
+WORKDIR /opt/unicode-sorting
+
+RUN mkdir -p /var/lib/pgsql/data \
+    && chown -R postgres:postgres /var/lib/pgsql /opt/unicode-sorting \
+    && chmod -R a+rX /opt/unicode-sorting \
+    && if [ "${RHEL_MAJOR}" = 7 ]; then export LOCPATH=/usr/lib/locale; fi \
+    && su postgres -c "/usr/pgsql-${PG_MAJOR}/bin/initdb -D /var/lib/pgsql/data --encoding=UTF8 --locale=en_US.UTF-8"
+
+CMD set -eu; \
+    if [ "${RHEL_MAJOR}" = 7 ]; then export LOCPATH=/usr/lib/locale; fi; \
+    test_started="$(date +%s)"; \
+    libc_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' glibc)"; \
+    pg_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' postgresql${PG_MAJOR}-server)"; \
+    su postgres -c "/usr/pgsql-${PG_MAJOR}/bin/pg_ctl -D /var/lib/pgsql/data -l /tmp/postgresql.log start"; \
+    curl -ks "https://www.unicode.org/Public/15.0.0/ucd/UnicodeData.txt" | cut -d';' -f1-3 > /opt/unicode-sorting/UnicodeData.txt; \
+    chmod 644 /opt/unicode-sorting/UnicodeData.txt; \
+    if [ "${TEST_ENGINE}" = icu ]; then \
+      su postgres -c "/usr/pgsql-${PG_MAJOR}/bin/psql -v ON_ERROR_STOP=1 -c \"CREATE COLLATION \\\"${TEST_LOCALE}\\\" (provider = icu, locale = '${TEST_LOCALE}');\"" || true; \
+    else \
+      su postgres -c "/usr/pgsql-${PG_MAJOR}/bin/psql -v ON_ERROR_STOP=1 -c \"CREATE COLLATION \\\"${TEST_LOCALE}\\\" (locale = '${TEST_LOCALE}');\"" || true; \
+    fi; \
+    su postgres -c "/usr/pgsql-${PG_MAJOR}/bin/psql -v ON_ERROR_STOP=1 -v UNICODE_VERS=15 -v UNICODE_FILE=/opt/unicode-sorting/UnicodeData.txt -c \"SET work_mem = '256MB';\" -f /opt/unicode-sorting/unicode-sorting.sql"; \
+    sed "s/@LOCALE@/\\\"${TEST_LOCALE}\\\"/g" /opt/unicode-sorting/unicode-sorting-md5.sql > /tmp/unicode-sorting-md5.sql; \
+    su postgres -c "/usr/pgsql-${PG_MAJOR}/bin/psql -At -v ON_ERROR_STOP=1 -f /tmp/unicode-sorting-md5.sql" | tee /tmp/unicode-sorting-md5-output; \
+    result="$(sed -n 's/^[0-9a-f][0-9a-f]*$/&/p' /tmp/unicode-sorting-md5-output | tail -1)"; \
+    echo "locale=${TEST_LOCALE} md5=${result} expected=${EXPECTED_MD5}"; \
+    echo "libc_version=${libc_version} postgresql_version=${pg_version} test_runtime_seconds=$(( $(date +%s) - test_started ))"; \
+    if [ -n "${EXPECTED_MD5}" ]; then \
+      test "${result}" = "${EXPECTED_MD5}"; \
+    else \
+      echo 'No expected MD5 supplied; checksum was not compared'; \
+      exit 2; \
+    fi
