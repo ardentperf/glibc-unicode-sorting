@@ -1,0 +1,39 @@
+name: RHEL Unicode sorting
+
+on:
+  schedule:
+    - cron: '0 0 */14 * *'
+  workflow_dispatch:
+    inputs:
+      rhel:
+        description: RHEL major version, or all
+        required: false
+        default: all
+        type: choice
+        options: [all, '8', '9', '10']
+      language:
+        description: Language to test
+        required: false
+        default: en
+        type: choice
+        options: [C/root, en, ja, zh, ko, ru, fr, de, es, ar]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        rhel: [8, 9, 10]
+        language: [en]
+    runs-on: ubuntu-latest
+    name: RHEL ${{ matrix.rhel }} / ${{ matrix.language }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build UBI test image
+        run: |
+          docker build --file Dockerfile.rhel \
+            --build-arg RHEL_MAJOR="${{ matrix.rhel }}" \
+            --build-arg LOCALE="${{ matrix.language == 'C/root' && 'C.UTF-8' || format('{0}_US.UTF-8', matrix.language) }}" \
+            -t unicode-sorting-rhel-test .
+      - name: Run checksum test
+        run: docker run --rm unicode-sorting-rhel-test

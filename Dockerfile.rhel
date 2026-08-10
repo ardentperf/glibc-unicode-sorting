@@ -1,0 +1,41 @@
+ARG RHEL_MAJOR=9
+FROM registry.access.redhat.com/ubi${RHEL_MAJOR}:latest
+
+ARG RHEL_MAJOR=9
+ARG LOCALE=en_US.UTF-8
+
+ENV TEST_LOCALE=${LOCALE}
+ENV LANG=${LOCALE}
+ENV LC_ALL=${LOCALE}
+
+RUN dnf install -y \
+        ca-certificates \
+        glibc-langpack-en \
+        gzip \
+    && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
+    && dnf install -y postgresql15-server postgresql15 \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf
+
+COPY --chmod=644 unicode-sorting.sql unicode-sorting-md5.sql /opt/unicode-sorting/
+WORKDIR /opt/unicode-sorting
+
+RUN mkdir -p /var/lib/pgsql/data \
+    && chown -R postgres:postgres /var/lib/pgsql /opt/unicode-sorting \
+    && chmod -R a+rX /opt/unicode-sorting \
+    && su postgres -c '/usr/pgsql-15/bin/initdb -D /var/lib/pgsql/data --encoding=UTF8 --locale=en_US.UTF-8'
+
+CMD set -eu; \
+    test_started="$(date +%s)"; \
+    libc_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' glibc)"; \
+    pg_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' postgresql15-server)"; \
+    su postgres -c '/usr/pgsql-15/bin/pg_ctl -D /var/lib/pgsql/data -l /tmp/postgresql.log start'; \
+    curl -ks "https://www.unicode.org/Public/15.0.0/ucd/UnicodeData.txt" | cut -d';' -f1-3 > /opt/unicode-sorting/UnicodeData.txt; \
+    chmod 644 /opt/unicode-sorting/UnicodeData.txt; \
+    su postgres -c "/usr/pgsql-15/bin/psql -v ON_ERROR_STOP=1 -c \"CREATE COLLATION \\\"${TEST_LOCALE}\\\" (locale = '${TEST_LOCALE}');\"" || true; \
+    su postgres -c "/usr/pgsql-15/bin/psql -v ON_ERROR_STOP=1 -v UNICODE_VERS=15 -v UNICODE_FILE=/opt/unicode-sorting/UnicodeData.txt -c \"SET work_mem = '256MB';\" -f /opt/unicode-sorting/unicode-sorting.sql"; \
+    sed "s/@LOCALE@/\\\"${TEST_LOCALE}\\\"/g" /opt/unicode-sorting/unicode-sorting-md5.sql > /tmp/unicode-sorting-md5.sql; \
+    su postgres -c "/usr/pgsql-15/bin/psql -At -v ON_ERROR_STOP=1 -f /tmp/unicode-sorting-md5.sql" | tee /tmp/unicode-sorting-md5-output; \
+    result="$(sed -n 's/^[0-9a-f][0-9a-f]*$/&/p' /tmp/unicode-sorting-md5-output | tail -1)"; \
+    echo "locale=${TEST_LOCALE} md5=${result}"; \
+    echo "libc_version=${libc_version} postgresql_version=${pg_version} test_runtime_seconds=$(( $(date +%s) - test_started ))";
