@@ -12,14 +12,18 @@ ENV EXPECTED_MD5=${EXPECTED_MD5}
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
-RUN dnf install -y \
-        ca-certificates \
-        glibc-langpack-en \
-        gzip \
-    && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
-    && dnf install -y postgresql15-server postgresql15 \
-    && dnf clean all \
-    && rm -rf /var/cache/dnf
+RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
+      yum install -y ca-certificates gzip \
+      && yum install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
+      && yum install -y postgresql15-server postgresql15 \
+      && yum clean all; \
+    else \
+      dnf install -y ca-certificates glibc-langpack-en gzip \
+      && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
+      && dnf install -y postgresql15-server postgresql15 \
+      && dnf clean all \
+      && rm -rf /var/cache/dnf; \
+    fi
 
 COPY --chmod=644 unicode-sorting.sql unicode-sorting-md5.sql /opt/unicode-sorting/
 WORKDIR /opt/unicode-sorting
