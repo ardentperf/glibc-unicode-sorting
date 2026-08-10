@@ -14,10 +14,11 @@ particular collation implementation and OS or ICU version. The checksum is a
 compact fingerprint of the complete sorted result: matching checksums indicate
 the same ordering, while a changed checksum means that at least one string
 moved. Only the final six checksum characters are shown in each cell, with the
-same value used as its badge color. The italic value below it is the time taken
-to execute the `SELECT ... ORDER BY` query in minutes. This matters because PostgreSQL `ORDER BY`,
+same value used as its badge color. This matters because PostgreSQL `ORDER BY`,
 indexes, and other comparisons can depend on the collation supplied by the OS
-or ICU; the tables make changes in that behavior visible across versions.
+or ICU; the tables make changes in that behavior visible across versions. The
+italic value below it is the time taken to execute the `SELECT ... ORDER BY`
+query in minutes.
 
 If PostgreSQL data files are moved to a different operating system (or the
 base container used to build PostgreSQL is changed) without rebuilding indexes
