@@ -7,30 +7,43 @@ ARG ENGINE=icu
 ARG EXPECTED_MD5
 ARG PG_MAJOR=15
 
+# PGDG publishes architecture-specific repository metadata.  Keep the RPM
+# download aligned with the image architecture (the RPM itself is noarch).
+ARG TARGETARCH
+RUN test -n "${TARGETARCH}" || { echo 'TARGETARCH must be supplied by Docker/buildx' >&2; exit 1; }
+ENV TARGETARCH=${TARGETARCH}
+
 ENV TEST_LOCALE=${LOCALE}
 ENV TEST_ENGINE=${ENGINE}
 ENV EXPECTED_MD5=${EXPECTED_MD5}
 ENV PG_MAJOR=${PG_MAJOR}
+ENV RHEL_MAJOR=${RHEL_MAJOR}
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
-# PGDG's EL7 post-install scripts hang under BuildKit; this image uses absolute PostgreSQL paths and initializes its own cluster.
 RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
       groupadd -r postgres \
       && useradd -r -g postgres -d /var/lib/pgsql -s /bin/bash postgres; \
     fi
 
 RUN if [ "${RHEL_MAJOR}" = 7 ]; then \
+      # PGDG EL7 scripts hang under BuildKit; absolute PostgreSQL paths avoid their alternatives setup. \
       yum install -y ca-certificates gzip \
       && yum install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
       && sed -i 's/rhel-7Server/rhel-7.10/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
       && sed -i 's/^repo_gpgcheck[[:space:]]*=.*/repo_gpgcheck=0/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
       && yum --setopt=tsflags=noscripts --disablerepo='pgdg12*' --disablerepo='pgdg13*' --disablerepo='pgdg15*' install -y postgresql${PG_MAJOR}-server postgresql${PG_MAJOR} \
+      && for locale in en_US ja_JP zh_CN ko_KR ru_RU fr_FR de_DE es_ES ar_SA; do localedef --no-archive -i "${locale}" -f UTF-8 "/usr/lib/locale/${locale}.UTF-8"; done \
+      && localedef --no-archive -c -i POSIX -f UTF-8 /usr/lib/locale/C.UTF-8 || test -d /usr/lib/locale/C.UTF-8 \
       && yum clean all; \
     else \
-      dnf install -y ca-certificates glibc-langpack-en gzip \
-      && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-x86_64/pgdg-redhat-repo-latest.noarch.rpm" \
+      # EL7 needs exact locale paths; EL8+ supplies English/C.UTF-8 and generates named test locales. \
+      pgdg_arch=x86_64; [ "${TARGETARCH}" = arm64 ] && pgdg_arch=aarch64; \
+      dnf install -y ca-certificates glibc-langpack-en glibc-locale-source gzip \
+      && dnf install -y "https://download.postgresql.org/pub/repos/yum/reporpms/EL-${RHEL_MAJOR}-${pgdg_arch}/pgdg-redhat-repo-latest.noarch.rpm" \
+      && sed -i 's/^repo_gpgcheck[[:space:]]*=.*/repo_gpgcheck=0/g' /etc/yum.repos.d/pgdg-redhat-all.repo \
       && dnf install -y postgresql${PG_MAJOR}-server postgresql${PG_MAJOR} \
+      && for locale in ja_JP zh_CN ko_KR ru_RU fr_FR de_DE es_ES ar_SA; do localedef -i "${locale}" -f UTF-8 "${locale}.UTF-8"; done \
       && dnf clean all \
       && rm -rf /var/cache/dnf; \
     fi
@@ -41,9 +54,11 @@ WORKDIR /opt/unicode-sorting
 RUN mkdir -p /var/lib/pgsql/data \
     && chown -R postgres:postgres /var/lib/pgsql /opt/unicode-sorting \
     && chmod -R a+rX /opt/unicode-sorting \
+    && if [ "${RHEL_MAJOR}" = 7 ]; then export LOCPATH=/usr/lib/locale; fi \
     && su postgres -c "/usr/pgsql-${PG_MAJOR}/bin/initdb -D /var/lib/pgsql/data --encoding=UTF8 --locale=en_US.UTF-8"
 
 CMD set -eu; \
+    if [ "${RHEL_MAJOR}" = 7 ]; then export LOCPATH=/usr/lib/locale; fi; \
     test_started="$(date +%s)"; \
     libc_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' glibc)"; \
     pg_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' postgresql${PG_MAJOR}-server)"; \
