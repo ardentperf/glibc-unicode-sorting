@@ -12,11 +12,23 @@ on:
         type: choice
         options: [all, '8', '9', '10']
       language:
-        description: Language to test
+        description: Language, or all
         required: false
-        default: en
+        default: all
         type: choice
-        options: [C/root, en, ja, zh, ko, ru, fr, de, es, ar]
+        options: [all, C/root, en, ja, zh, ko, ru, fr, de, es, ar]
+      engine:
+        description: Collation engine, or all
+        required: false
+        default: all
+        type: choice
+        options: [all, glibc, icu]
+      architecture:
+        description: Architecture, or all
+        required: false
+        default: x86_64
+        type: choice
+        options: [all, x86_64, aarch64]
 
 jobs:
   test:
@@ -26,8 +38,9 @@ jobs:
         rhel: [8, 9, 10]
         language: [en]
         engine: [icu]
+        architecture: [x86_64]
     runs-on: ubuntu-latest
-    name: RHEL ${{ matrix.rhel }} / ${{ matrix.language }} / ${{ matrix.engine }}
+    name: RHEL ${{ matrix.rhel }} / ${{ matrix.language }} / ${{ matrix.engine }} / ${{ matrix.architecture }}
     steps:
       - uses: actions/checkout@v4
       - name: Build UBI test image
