@@ -147,6 +147,7 @@ jobs:
             --build-arg RHEL_MAJOR="${{ matrix.test.rhel }}" \
             --build-arg LOCALE="${{ matrix.test.locale }}" \
             --build-arg ENGINE="${{ matrix.test.engine }}" \
+            --build-arg PG_MAJOR="${{ matrix.test.rhel == '7' && '14' || '15' }}" \
             --build-arg EXPECTED_MD5="${{ steps.expected.outputs.md5 }}" \
             -t unicode-sorting-rhel-test .
 
