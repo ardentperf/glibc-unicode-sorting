@@ -1,4 +1,4 @@
-name: Unicode sorting
+name: Debian Unicode Sorting
 
 on:
   schedule:
