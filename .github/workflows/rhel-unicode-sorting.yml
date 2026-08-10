@@ -25,15 +25,17 @@ jobs:
       matrix:
         rhel: [8, 9, 10]
         language: [en]
+        engine: [icu]
     runs-on: ubuntu-latest
-    name: RHEL ${{ matrix.rhel }} / ${{ matrix.language }}
+    name: RHEL ${{ matrix.rhel }} / ${{ matrix.language }} / ${{ matrix.engine }}
     steps:
       - uses: actions/checkout@v4
       - name: Build UBI test image
         run: |
           docker build --file Dockerfile.rhel \
             --build-arg RHEL_MAJOR="${{ matrix.rhel }}" \
-            --build-arg LOCALE="${{ matrix.language == 'C/root' && 'C.UTF-8' || format('{0}_US.UTF-8', matrix.language) }}" \
+            --build-arg LOCALE="en-US-x-icu" \
+            --build-arg ENGINE="${{ matrix.engine }}" \
             -t unicode-sorting-rhel-test .
       - name: Run checksum test
         run: docker run --rm unicode-sorting-rhel-test

@@ -3,8 +3,10 @@ FROM registry.access.redhat.com/ubi${RHEL_MAJOR}:latest
 
 ARG RHEL_MAJOR=9
 ARG LOCALE=en_US.UTF-8
+ARG ENGINE=icu
 
 ENV TEST_LOCALE=${LOCALE}
+ENV TEST_ENGINE=${ENGINE}
 ENV LANG=${LOCALE}
 ENV LC_ALL=${LOCALE}
 
@@ -32,7 +34,11 @@ CMD set -eu; \
     su postgres -c '/usr/pgsql-15/bin/pg_ctl -D /var/lib/pgsql/data -l /tmp/postgresql.log start'; \
     curl -ks "https://www.unicode.org/Public/15.0.0/ucd/UnicodeData.txt" | cut -d';' -f1-3 > /opt/unicode-sorting/UnicodeData.txt; \
     chmod 644 /opt/unicode-sorting/UnicodeData.txt; \
-    su postgres -c "/usr/pgsql-15/bin/psql -v ON_ERROR_STOP=1 -c \"CREATE COLLATION \\\"${TEST_LOCALE}\\\" (locale = '${TEST_LOCALE}');\"" || true; \
+    if [ "${TEST_ENGINE}" = icu ]; then \
+      su postgres -c "/usr/pgsql-15/bin/psql -v ON_ERROR_STOP=1 -c \"CREATE COLLATION \\\"${TEST_LOCALE}\\\" (provider = icu, locale = '${TEST_LOCALE}');\"" || true; \
+    else \
+      su postgres -c "/usr/pgsql-15/bin/psql -v ON_ERROR_STOP=1 -c \"CREATE COLLATION \\\"${TEST_LOCALE}\\\" (locale = '${TEST_LOCALE}');\"" || true; \
+    fi; \
     su postgres -c "/usr/pgsql-15/bin/psql -v ON_ERROR_STOP=1 -v UNICODE_VERS=15 -v UNICODE_FILE=/opt/unicode-sorting/UnicodeData.txt -c \"SET work_mem = '256MB';\" -f /opt/unicode-sorting/unicode-sorting.sql"; \
     sed "s/@LOCALE@/\\\"${TEST_LOCALE}\\\"/g" /opt/unicode-sorting/unicode-sorting-md5.sql > /tmp/unicode-sorting-md5.sql; \
     su postgres -c "/usr/pgsql-15/bin/psql -At -v ON_ERROR_STOP=1 -f /tmp/unicode-sorting-md5.sql" | tee /tmp/unicode-sorting-md5-output; \
