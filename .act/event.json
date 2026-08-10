@@ -1,8 +1,0 @@
-{
-  "inputs": {
-    "debian": "10",
-    "language": "en",
-    "engine": "glibc",
-    "architecture": "x86_64"
-  }
-}
