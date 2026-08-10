@@ -69,6 +69,8 @@ jobs:
               for lang in ls:
                   for engine in es:
                       for architecture in ars:
+                          if r == "7" and architecture == "aarch64":  # UBI 7 has no aarch64 base image.
+                              continue
                           glibc, icu = languages[lang]
                           tests.append({
                               "rhel": r,
