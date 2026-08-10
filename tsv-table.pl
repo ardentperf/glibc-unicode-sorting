@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-# Generate a GitHub-Markdown-compatible HTML table from md5sums.tsv.
+# Generate a GitHub-Markdown-compatible HTML table from debian-md5sums.tsv.
 # Usage: tsv-table.pl ENGINE [ARCHITECTURE] [TSV_FILE]
 
 use strict;
@@ -10,7 +10,7 @@ $architecture //= 'x86_64';
 die "Usage: $0 ENGINE [ARCHITECTURE] [TSV_FILE]\n" unless defined $engine;
 die "Engine must be glibc or icu\n" unless $engine eq 'glibc' || $engine eq 'icu';
 
-$file //= 'testdata/md5sums.tsv';
+$file //= 'testdata/debian-md5sums.tsv';
 open my $fh, '<', $file or die "Cannot open $file: $!\n";
 
 my (%cell, %language, %debian, %runtime_version);
