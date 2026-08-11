@@ -106,6 +106,12 @@ Debian 11 image: the libc `C.UTF-8` test produces checksum
 `6f81f755c83c00057888f2f64ece6a1b`. If `ucs_basic` were using the Debian 11
 libc `C.UTF-8` rules, its checksum would match the former instead.
 
+**For maximum safety, users should use a builtin collation as their database
+default and assign linguistic collations at the column level in their table
+definitions. This reduces the number of objects that need to be rebuilt when
+the linguistic sort order changes, and makes it far easier to identify
+everything that needs a rebuild.**
+
 | | PostgreSQL&nbsp;19 | PostgreSQL&nbsp;18 | PostgreSQL&nbsp;17 | PostgreSQL&nbsp;16 | PostgreSQL&nbsp;15 | PostgreSQL&nbsp;14 |
 |---|---|---|---|---|---|---|
 | **C** | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* |
