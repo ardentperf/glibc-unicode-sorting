@@ -30,7 +30,8 @@ structures may no longer agree with the ordering PostgreSQL now uses.
 assign linguistic collations at the column level in your table
 definitions. This reduces the number of objects that need to be rebuilt when
 the linguistic sort order changes, and makes it far easier to identify
-everything that needs a rebuild.**
+everything that needs a rebuild.** *(This also avoids the performance disaster
+of current glibc versions.)*
 
 ---
 
