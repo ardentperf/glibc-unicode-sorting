@@ -26,8 +26,8 @@ and other persistent structures that depend on collation
 ordering, **the database is effectively corrupt**: its stored
 structures may no longer agree with the ordering PostgreSQL now uses.
 
-**For maximum safety, users should use a builtin collation as their database
-default and assign linguistic collations at the column level in their table
+**For maximum safety, use a builtin collation as your database default and
+assign linguistic collations at the column level in your table
 definitions. This reduces the number of objects that need to be rebuilt when
 the linguistic sort order changes, and makes it far easier to identify
 everything that needs a rebuild.**
