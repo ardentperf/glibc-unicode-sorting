@@ -77,7 +77,8 @@ for my $version (@versions) {
 print "\n|---" . ('|---' x scalar @versions) . "|\n";
 for my $lang (@languages) {
     my $display_lang = $engine eq 'glibc' && $lang eq 'C'
-        ? 'C.UTF' . chr(0x2060) . '-' . chr(0x2060) . '8'
+        ? 'C' . chr(0x2060) . '.' . chr(0x2060)
+            . 'UTF' . chr(0x2060) . '-' . chr(0x2060) . '8'
         : $lang;
     print '| **' . html_escape($display_lang) . '**';
     for my $version (@versions) {
