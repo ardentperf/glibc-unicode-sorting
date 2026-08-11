@@ -1,5 +1,5 @@
 ARG PG_MAJOR=18
-FROM debian:11
+FROM debian:13
 
 ARG PG_MAJOR=18
 ARG EXPECTED_MD5
@@ -20,30 +20,12 @@ RUN apt-get update \
     && mkdir -p /usr/share/postgresql-common/pgdg \
     && curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
        | gpg --dearmor -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.gpg \
-    && echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.gpg] https://apt.postgresql.org/pub/repos/apt bullseye-pgdg main" \
+    && echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.gpg] https://apt.postgresql.org/pub/repos/apt trixie-pgdg main 19" \
        > /etc/apt/sources.list.d/pgdg.list \
     && apt-get update \
-    && if [ "${PG_MAJOR}" = "19" ]; then \
-         groupadd --system postgres \
-         && useradd --system --gid postgres --home-dir /var/lib/postgresql --shell /bin/bash postgres \
-         && apt-get install -y --no-install-recommends \
-              build-essential \
-              bison \
-              flex \
-              libicu-dev \
-         && curl -fsSL https://ftp.postgresql.org/pub/source/v19beta2/postgresql-19beta2.tar.bz2 \
-              -o /tmp/postgresql-19beta2.tar.bz2 \
-         && tar -xjf /tmp/postgresql-19beta2.tar.bz2 -C /tmp \
-         && cd /tmp/postgresql-19beta2 \
-         && ./configure --prefix=/usr/local/pgsql/19 --without-icu --without-llvm --without-readline --without-zlib \
-         && make -j2 \
-         && make install \
-         && rm -rf /tmp/postgresql-19beta2 /tmp/postgresql-19beta2.tar.bz2; \
-       else \
-         apt-get install -y --no-install-recommends \
-             postgresql-${PG_MAJOR} \
-             postgresql-client-${PG_MAJOR}; \
-       fi \
+    && apt-get install -y --no-install-recommends \
+         postgresql-${PG_MAJOR} \
+         postgresql-client-${PG_MAJOR} \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --chmod=644 unicode-sorting.sql unicode-sorting-md5.sql /opt/unicode-sorting/
@@ -53,13 +35,11 @@ RUN mkdir -p /var/lib/postgresql/${PG_MAJOR}/builtin \
     && chown -R postgres:postgres /var/lib/postgresql/${PG_MAJOR}/builtin /opt/unicode-sorting \
     && chmod 755 /opt/unicode-sorting \
     && pg_bin=/usr/lib/postgresql/${PG_MAJOR}/bin \
-    && if [ "${PG_MAJOR}" = "19" ]; then pg_bin=/usr/local/pgsql/19/bin; fi \
     && su postgres -c "${pg_bin}/initdb -D /var/lib/postgresql/${PG_MAJOR}/builtin --encoding=UTF8 --locale=C"
 
 CMD set -eu; \
     test_started="$(date +%s)"; \
     pg_bin="/usr/lib/postgresql/${PG_MAJOR}/bin"; \
-    if [ "${PG_MAJOR}" = "19" ]; then pg_bin="/usr/local/pgsql/19/bin"; fi; \
     pg_version="$(${pg_bin}/postgres --version | sed 's/^postgres (PostgreSQL) //')"; \
     su postgres -c "${pg_bin}/pg_ctl -D /var/lib/postgresql/${PG_MAJOR}/builtin -o \"-c listen_addresses=''\" -l /tmp/postgresql.log start"; \
     if su postgres -c "${pg_bin}/psql -Atqc \"SELECT 1 FROM pg_settings WHERE name = 'max_parallel_workers_per_gather'\"" | grep -q 1; then \

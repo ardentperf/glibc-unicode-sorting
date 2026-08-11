@@ -75,7 +75,8 @@ for my $version (@versions) {
 }
 print "\n|---" . ('|---' x scalar @versions) . "|\n";
 for my $lang (@languages) {
-    print '| **' . html_escape($lang) . '**';
+    my $display_lang = $engine eq 'glibc' && $lang eq 'C' ? 'C.UTF-8' : $lang;
+    print '| **' . html_escape($display_lang) . '**';
     for my $version (@versions) {
         my $value = $cell{$lang}{$version};
         if ($value) {
