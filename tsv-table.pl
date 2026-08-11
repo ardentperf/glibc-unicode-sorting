@@ -87,8 +87,14 @@ for my $version (@versions) {
     my $runtime = $runtime_version{$version} // '';
     my $platform = $dataset eq 'rhel' ? 'RHEL'
         : $dataset eq 'builtin' ? 'PostgreSQL' : 'Debian';
-    print ' ' . $platform . '&nbsp;' . html_escape($version) . ':';
-    print '<br>*' . html_escape($runtime) . '*' if $runtime ne '';
+    if ($dataset eq 'builtin') {
+        my ($major) = $version =~ /^(\d+)/;
+        print ' ' . $platform . '&nbsp;' . html_escape($major) . ':';
+        print '<br>*' . html_escape($version) . '*';
+    } else {
+        print ' ' . $platform . '&nbsp;' . html_escape($version) . ':';
+        print '<br>*' . html_escape($runtime) . '*' if $runtime ne '';
+    }
     print '|';
 }
 print "\n|---" . ('|---' x scalar @versions) . "|\n";
