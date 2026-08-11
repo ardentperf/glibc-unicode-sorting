@@ -80,7 +80,6 @@ jobs:
     needs: matrix
     strategy:
       fail-fast: false
-      max-parallel: 3
       matrix:
         test: ${{ fromJSON(needs.matrix.outputs.tests) }}
     runs-on: ${{ matrix.test.runner }}
