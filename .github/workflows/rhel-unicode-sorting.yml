@@ -142,6 +142,10 @@ jobs:
 
       - name: Build UBI test image
         run: |
+          # Use unique lowercase tags for concurrent act jobs; Docker requires lowercase repository names.
+          image="unicode-sorting-rhel-${{ matrix.test.rhel }}-${{ matrix.test.language }}-${{ matrix.test.engine }}-${{ matrix.test.architecture }}"
+          image="${image,,}"
+          image="${image//\//-}"
           docker build \
             --file Dockerfile.rhel \
             --build-arg RHEL_MAJOR="${{ matrix.test.rhel }}" \
@@ -149,12 +153,15 @@ jobs:
             --build-arg ENGINE="${{ matrix.test.engine }}" \
             --build-arg PG_MAJOR="${{ matrix.test.rhel == '7' && '14' || '15' }}" \
             --build-arg EXPECTED_MD5="${{ steps.expected.outputs.md5 }}" \
-            -t unicode-sorting-rhel-test .
+            -t "$image" .
 
       - name: Run checksum test
         run: |
+          image="unicode-sorting-rhel-${{ matrix.test.rhel }}-${{ matrix.test.language }}-${{ matrix.test.engine }}-${{ matrix.test.architecture }}"
+          image="${image,,}"
+          image="${image//\//-}"
           set +e
-          docker run --rm unicode-sorting-rhel-test | tee docker-output.log
+          docker run --rm "$image" | tee docker-output.log
           container_status=${PIPESTATUS[0]}
           set -e
           md5="$(sed -n 's/.* md5=\([0-9a-f][0-9a-f]*\) expected=.*/\1/p' docker-output.log | tail -1)"
