@@ -13,12 +13,15 @@ if ($dataset eq 'rhel') {
 } else {
     ($file, $architecture) = ($architecture, $engine) if defined $file;
     ($engine, $architecture, $file) = ($dataset, $engine, $architecture);
-    $file //= 'testdata/debian-md5sums.tsv';
+    $file //= $dataset eq 'builtin'
+        ? 'testdata/builtin-md5sums.tsv'
+        : 'testdata/debian-md5sums.tsv';
 }
 $architecture //= 'x86_64';
 die "Usage: $0 ENGINE [ARCHITECTURE] [TSV_FILE]\n       $0 rhel ENGINE [ARCHITECTURE] [TSV_FILE]\n"
     unless defined $engine;
-die "Engine must be glibc or icu\n" unless $engine eq 'glibc' || $engine eq 'icu';
+die "Engine must be builtin, glibc, or icu\n"
+    unless $engine eq 'builtin' || $engine eq 'glibc' || $engine eq 'icu';
 open my $fh, '<', $file or die "Cannot open $file: $!\n";
 
 my (%cell, %language, %debian, %runtime_version);
@@ -28,13 +31,22 @@ while (my $line = <$fh>) {
     my @f = split /\t/, $line, -1;
     die "Malformed TSV line: $line\n" unless @f >= 7;
 
-    my ($version, $arch, $lang, $row_engine, $checksum, undef, $sort_ms) = @f;
-    next unless $arch eq $architecture && $row_engine eq $engine;
+    my ($version, $arch, $lang, $row_engine, $checksum, undef, $sort_ms);
+    if ($engine eq 'builtin') {
+        ($arch, $lang, $checksum, undef, $sort_ms) = @f[1, 2, 3, 4, 5];
+        $version = $f[6];
+    } else {
+        ($version, $arch, $lang, $row_engine, $checksum, undef, $sort_ms) = @f;
+        next unless $row_engine eq $engine;
+    }
+    next unless $arch eq $architecture;
     next unless $checksum ne '' && $sort_ms ne '' && $sort_ms ne 'unknown';
 
     $language{$lang} = 1;
-    $debian{$version} = 1 if $version eq 'sid' || $version =~ /^\d+$/;
-    $runtime_version{$version} = $engine eq 'icu' ? $f[8] : $f[7];
+    $debian{$version} = 1
+        if $engine eq 'builtin' || $version eq 'sid' || $version =~ /^\d+$/;
+    $runtime_version{$version} = $engine eq 'icu' ? $f[8] : $f[7]
+        unless $engine eq 'builtin';
     my $minutes = sprintf '%.1f', $sort_ms / 60000;
     $minutes =~ s/0+$//;
     $minutes =~ s/\.$//;
@@ -48,10 +60,14 @@ while (my $line = <$fh>) {
 close $fh;
 
 my @versions = sort {
-    $a eq 'sid' ? -1 : $b eq 'sid' ? 1 : $b <=> $a
+    my ($a_num) = $a =~ /^(\d+)/;
+    my ($b_num) = $b =~ /^(\d+)/;
+    $a eq 'sid' ? -1 : $b eq 'sid' ? 1 : $b_num <=> $a_num
 } keys %debian;
 my $special_language = $engine eq 'glibc' ? 'C' : 'root';
-my @language_order = ($special_language, qw(de en fr ru ar es ja ko zh));
+my @language_order = $engine eq 'builtin'
+    ? qw(C ucs_basic pg_c_utf8 pg_unicode_fast)
+    : ($special_language, qw(de en fr ru ar es ja ko zh));
 my %language_rank = map { $language_order[$_] => $_ } 0 .. $#language_order;
 my @languages = sort {
     ($language_rank{$a} // 1000) <=> ($language_rank{$b} // 1000)
@@ -69,9 +85,16 @@ sub html_escape {
 print '| |';
 for my $version (@versions) {
     my $runtime = $runtime_version{$version} // '';
-    my $platform = $dataset eq 'rhel' ? 'RHEL' : 'Debian';
-    print ' ' . $platform . '&nbsp;' . html_escape($version) . ':';
-    print '<br>*' . html_escape($runtime) . '*' if $runtime ne '';
+    my $platform = $dataset eq 'rhel' ? 'RHEL'
+        : $dataset eq 'builtin' ? 'Postgres' : 'Debian';
+    if ($dataset eq 'builtin') {
+        my ($major) = $version =~ /^(\d+)/;
+        print ' ' . $platform . '&nbsp;' . html_escape($major) . ':';
+        print '<br>*' . html_escape($version) . '*';
+    } else {
+        print ' ' . $platform . '&nbsp;' . html_escape($version) . ':';
+        print '<br>*' . html_escape($runtime) . '*' if $runtime ne '';
+    }
     print '|';
 }
 print "\n|---" . ('|---' x scalar @versions) . "|\n";
