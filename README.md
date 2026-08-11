@@ -69,7 +69,7 @@ suggestion to try a container approach.
 
 ### RHEL: glibc
 
-| | RHEL&nbsp;10:<br>*2.39-128.el10_2.x86_64*| RHEL&nbsp;9:<br>*2.34-275.el9_8.x86_64*| RHEL&nbsp;8:<br>*2.28-251.el8_10.40.x86_64*| RHEL&nbsp;7:<br>*2.17-326.el7_9.3.x86_64*|
+| | RHEL&nbsp;10:<br>*2.39-128.el10_2*| RHEL&nbsp;9:<br>*2.34-275.el9_8*| RHEL&nbsp;8:<br>*2.28-251.el8_10.40*| RHEL&nbsp;7:<br>*2.17-326.el7_9.3*|
 |---|---|---|---|---|
 | **C**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.7&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.7&nbsp;min*| <img src="https://img.shields.io/badge/-c32236-c32236"><br>*35.2&nbsp;min*| <img src="https://img.shields.io/badge/-5f509e-5f509e"><br>*3.5&nbsp;min*|
 | **de**| <img src="https://img.shields.io/badge/-6d78f8-6d78f8"><br>*138.1&nbsp;min*| <img src="https://img.shields.io/badge/-6d78f8-6d78f8"><br>*131.6&nbsp;min*| <img src="https://img.shields.io/badge/-6d78f8-6d78f8"><br>*119&nbsp;min*| <img src="https://img.shields.io/badge/-00f6ea-00f6ea"><br>*5.6&nbsp;min*|
