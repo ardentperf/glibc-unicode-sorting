@@ -1,7 +1,0 @@
-{
-  "inputs": {
-    "pg": "all",
-    "locale": "all",
-    "architecture": "all"
-  }
-}
