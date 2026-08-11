@@ -99,14 +99,6 @@ suggestion to try a container approach.
 
 ### PostgreSQL: builtin collations
 
-The Debian 13 test image targets PostgreSQL 14 through 19 and the builtin
-collations available in each release. The values currently shown were
-generated with the previous Debian 11 image; the matrix will be regenerated
-after the Debian 13 package tests are complete. Every populated cell has checksum
-`6f81f755c83c00057888f2f64ece6a1b` on `x86_64`. `ucs_basic` is available in
-all these PostgreSQL versions, `pg_c_utf8` from 17, and `pg_unicode_fast` from
-18.
-
 The `C` and `ucs_basic` entries use PostgreSQL's bytewise comparison fast path,
 not glibc's `C.UTF-8` collation rules. We empirically verified this with the
 Debian 11 image: the libc `C.UTF-8` test produces checksum
