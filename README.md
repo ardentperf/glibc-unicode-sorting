@@ -114,7 +114,7 @@ Debian 11 image: the libc `C.UTF-8` test produces checksum
 `6f81f755c83c00057888f2f64ece6a1b`. If `ucs_basic` were using the Debian 11
 libc `C.UTF-8` rules, its checksum would match the former instead.
 
-| | PostgreSQL&nbsp;19:<br>*19beta2*| PostgreSQL&nbsp;18:<br>*18.4*| PostgreSQL&nbsp;17:<br>*17.10*| PostgreSQL&nbsp;16:<br>*16.14*| PostgreSQL&nbsp;15:<br>*15.18*| PostgreSQL&nbsp;14:<br>*14.23*|
+| | Postgres&nbsp;19:<br>*19beta2*| Postgres&nbsp;18:<br>*18.4*| Postgres&nbsp;17:<br>*17.10*| Postgres&nbsp;16:<br>*16.14*| Postgres&nbsp;15:<br>*15.18*| Postgres&nbsp;14:<br>*14.23*|
 |---|---|---|---|---|---|---|
 | **C**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*|
 | **ucs_basic**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.7&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.5&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.8&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.8&nbsp;min*|

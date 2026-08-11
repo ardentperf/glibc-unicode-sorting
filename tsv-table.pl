@@ -86,7 +86,7 @@ print '| |';
 for my $version (@versions) {
     my $runtime = $runtime_version{$version} // '';
     my $platform = $dataset eq 'rhel' ? 'RHEL'
-        : $dataset eq 'builtin' ? 'PostgreSQL' : 'Debian';
+        : $dataset eq 'builtin' ? 'Postgres' : 'Debian';
     if ($dataset eq 'builtin') {
         my ($major) = $version =~ /^(\d+)/;
         print ' ' . $platform . '&nbsp;' . html_escape($major) . ':';
