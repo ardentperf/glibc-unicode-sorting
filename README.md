@@ -31,7 +31,8 @@ assign linguistic collations at the column level in your table
 definitions. This reduces the number of objects that need to be rebuilt when
 the linguistic sort order changes, and makes it far easier to identify
 everything that needs a rebuild.** *(If ICU is used, this also avoids the
-performance disaster of current glibc versions.)*
+performance disaster of current glibc versions. However, it is critical to
+rebuild linguistic indexes after OS upgrades, even more so when using ICU.)*
 
 ---
 
