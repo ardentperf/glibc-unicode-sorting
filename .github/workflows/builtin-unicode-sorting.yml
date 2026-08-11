@@ -23,74 +23,75 @@ on:
         options: [all, x86_64]
 
 jobs:
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      tests: ${{ steps.matrix.outputs.tests }}
+    steps:
+      - id: matrix
+        name: Build test matrix
+        env:
+          PG: ${{ github.event.inputs.pg || inputs.pg || 'all' }}
+          LOCALE: ${{ github.event.inputs.locale || inputs.locale || 'all' }}
+          ARCHITECTURE: ${{ github.event.inputs.architecture || inputs.architecture || 'all' }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import os
+
+          versions = ["14", "15", "16", "17", "18", "19"]
+          locales = {
+              "C": range(14, 20),
+              "ucs_basic": range(14, 20),
+              "pg_c_utf8": range(17, 20),
+              "pg_unicode_fast": range(18, 20),
+          }
+          architectures = {"x86_64": "ubuntu-latest"}
+
+          selected_versions = (
+              versions if os.environ["PG"] == "all" else [os.environ["PG"]]
+          )
+          selected_locales = (
+              list(locales) if os.environ["LOCALE"] == "all" else [os.environ["LOCALE"]]
+          )
+          selected_architectures = (
+              list(architectures)
+              if os.environ["ARCHITECTURE"] == "all"
+              else [os.environ["ARCHITECTURE"]]
+          )
+
+          tests = []
+          for pg in selected_versions:
+              for locale in selected_locales:
+                  if int(pg) not in locales[locale]:
+                      continue
+                  for architecture in selected_architectures:
+                      tests.append({
+                          "pg": pg,
+                          "locale": locale,
+                          "architecture": architecture,
+                          "runner": architectures[architecture],
+                      })
+
+          print("tests=" + json.dumps(tests, separators=(",", ":")))
+          PY
+
   test:
+    needs: matrix
     strategy:
       fail-fast: false
       max-parallel: 3
       matrix:
-        include:
-        - pg: '14'
-          locale: C
-          architecture: x86_64
-        - pg: '14'
-          locale: ucs_basic
-          architecture: x86_64
-        - pg: '15'
-          locale: C
-          architecture: x86_64
-        - pg: '15'
-          locale: ucs_basic
-          architecture: x86_64
-        - pg: '16'
-          locale: C
-          architecture: x86_64
-        - pg: '16'
-          locale: ucs_basic
-          architecture: x86_64
-        - pg: '17'
-          locale: C
-          architecture: x86_64
-        - pg: '17'
-          locale: ucs_basic
-          architecture: x86_64
-        - pg: '17'
-          locale: pg_c_utf8
-          architecture: x86_64
-        - pg: '18'
-          locale: C
-          architecture: x86_64
-        - pg: '18'
-          locale: ucs_basic
-          architecture: x86_64
-        - pg: '18'
-          locale: pg_c_utf8
-          architecture: x86_64
-        - pg: '18'
-          locale: pg_unicode_fast
-          architecture: x86_64
-        - pg: '19'
-          locale: C
-          architecture: x86_64
-        - pg: '19'
-          locale: ucs_basic
-          architecture: x86_64
-        - pg: '19'
-          locale: pg_c_utf8
-          architecture: x86_64
-        - pg: '19'
-          locale: pg_unicode_fast
-          architecture: x86_64
-    runs-on: ubuntu-latest
-    name: PostgreSQL ${{ matrix.pg }} / ${{ matrix.locale }} / ${{ matrix.architecture }}
+        test: ${{ fromJSON(needs.matrix.outputs.tests) }}
+    runs-on: ${{ matrix.test.runner }}
+    name: PostgreSQL ${{ matrix.test.pg }} / ${{ matrix.test.locale }} / ${{ matrix.test.architecture }}
     steps:
       - uses: actions/checkout@v4
-        if: (github.event.inputs.pg == '' || github.event.inputs.pg == 'all' || github.event.inputs.pg == matrix.pg) && (github.event.inputs.locale == '' || github.event.inputs.locale == 'all' || github.event.inputs.locale == matrix.locale) && (github.event.inputs.architecture == '' || github.event.inputs.architecture == 'all' || github.event.inputs.architecture == matrix.architecture)
 
       - name: Read expected checksum
-        if: (github.event.inputs.pg == '' || github.event.inputs.pg == 'all' || github.event.inputs.pg == matrix.pg) && (github.event.inputs.locale == '' || github.event.inputs.locale == 'all' || github.event.inputs.locale == matrix.locale) && (github.event.inputs.architecture == '' || github.event.inputs.architecture == 'all' || github.event.inputs.architecture == matrix.architecture)
         id: expected
         run: |
-          value="$(PG='${{ matrix.pg }}' ARCHITECTURE='${{ matrix.architecture }}' LOCALE='${{ matrix.locale }}' python3 - <<'PY'
+          value="$(PG='${{ matrix.test.pg }}' ARCHITECTURE='${{ matrix.test.architecture }}' LOCALE='${{ matrix.test.locale }}' python3 - <<'PY'
           import os
 
           requested = (
@@ -108,27 +109,25 @@ jobs:
           PY
           )"
           if [ -z "$value" ]; then
-            echo "No expected checksum found for ${{ matrix.pg }}/${{ matrix.architecture }}/${{ matrix.locale }}" >&2
+            echo "No expected checksum found for ${{ matrix.test.pg }}/${{ matrix.test.architecture }}/${{ matrix.test.locale }}" >&2
             exit 1
           fi
           echo "md5=$value" >> "$GITHUB_OUTPUT"
 
       - name: Build test image
-        if: (github.event.inputs.pg == '' || github.event.inputs.pg == 'all' || github.event.inputs.pg == matrix.pg) && (github.event.inputs.locale == '' || github.event.inputs.locale == 'all' || github.event.inputs.locale == matrix.locale) && (github.event.inputs.architecture == '' || github.event.inputs.architecture == 'all' || github.event.inputs.architecture == matrix.architecture)
         run: |
           docker build \
             --platform linux/amd64 \
             --file Dockerfile.builtin \
-            --build-arg PG_MAJOR="${{ matrix.pg }}" \
-            --build-arg LOCALE="${{ matrix.locale }}" \
+            --build-arg PG_MAJOR="${{ matrix.test.pg }}" \
+            --build-arg LOCALE="${{ matrix.test.locale }}" \
             --build-arg EXPECTED_MD5="${{ steps.expected.outputs.md5 }}" \
-            -t "unicode-sorting-builtin-${{ matrix.pg }}-${{ matrix.locale }}" .
+            -t "unicode-sorting-builtin-${{ matrix.test.pg }}-${{ matrix.test.locale }}" .
 
       - name: Run checksum test
-        if: (github.event.inputs.pg == '' || github.event.inputs.pg == 'all' || github.event.inputs.pg == matrix.pg) && (github.event.inputs.locale == '' || github.event.inputs.locale == 'all' || github.event.inputs.locale == matrix.locale) && (github.event.inputs.architecture == '' || github.event.inputs.architecture == 'all' || github.event.inputs.architecture == matrix.architecture)
         run: |
           set +e
-          docker run --rm "unicode-sorting-builtin-${{ matrix.pg }}-${{ matrix.locale }}" | tee docker-output.log
+          docker run --rm "unicode-sorting-builtin-${{ matrix.test.pg }}-${{ matrix.test.locale }}" | tee docker-output.log
           container_status=${PIPESTATUS[0]}
           set -e
           md5="$(sed -n 's/.* md5=\([0-9a-f][0-9a-f]*\) expected=.*/\1/p' docker-output.log | tail -1)"
