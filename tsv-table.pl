@@ -65,7 +65,9 @@ my @versions = sort {
     $a eq 'sid' ? -1 : $b eq 'sid' ? 1 : $b_num <=> $a_num
 } keys %debian;
 my $special_language = $engine eq 'glibc' ? 'C' : 'root';
-my @language_order = ($special_language, qw(de en fr ru ar es ja ko zh));
+my @language_order = $engine eq 'builtin'
+    ? qw(C ucs_basic pg_c_utf8 pg_unicode_fast)
+    : ($special_language, qw(de en fr ru ar es ja ko zh));
 my %language_rank = map { $language_order[$_] => $_ } 0 .. $#language_order;
 my @languages = sort {
     ($language_rank{$a} // 1000) <=> ($language_rank{$b} // 1000)
