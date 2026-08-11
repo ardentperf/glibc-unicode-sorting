@@ -16,9 +16,7 @@ the same ordering, while a changed checksum means that at least one string
 moved. Only the final six checksum characters are shown in each cell, with the
 same value used as its badge color. This matters because PostgreSQL `ORDER BY`,
 indexes, and other comparisons can depend on the collation supplied by the OS
-or ICU; the tables make changes in that behavior visible across versions. The
-italic value below it is the time taken to execute the `SELECT ... ORDER BY`
-query in minutes.
+or ICU; the tables make changes in that behavior visible across versions.
 
 If PostgreSQL data files are moved to a different operating system (or the
 base container used to build PostgreSQL is changed) without rebuilding indexes
@@ -33,6 +31,12 @@ the linguistic sort order changes, and makes it far easier to identify
 everything that needs a rebuild.** *(If ICU is used, this also avoids the
 performance disaster of current glibc versions. However, it is critical to
 rebuild linguistic indexes after OS upgrades, even more so when using ICU.)*
+
+The italic value below each checksum is the time taken to execute the
+`SELECT ... ORDER BY` query in minutes; it is not part of the checksum. These
+timings are measured on GitHub Actions workflow runners, so they should be
+compared primarily relative to the underlying hardware of those runners, not
+treated as absolute performance measurements across different machines.
 
 ---
 
@@ -118,10 +122,10 @@ libc `C.UTF-8` rules, its checksum would match the former instead.
 
 | | Postgres&nbsp;19:<br>*19beta2*| Postgres&nbsp;18:<br>*18.4*| Postgres&nbsp;17:<br>*17.10*| Postgres&nbsp;16:<br>*16.14*| Postgres&nbsp;15:<br>*15.18*| Postgres&nbsp;14:<br>*14.23*|
 |---|---|---|---|---|---|---|
-| **C**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*|
-| **ucs_basic**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.7&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.5&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.8&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.8&nbsp;min*|
-| **pg_c_utf8**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| | | |
-| **pg_unicode_fast**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min*| | | | |
+| **C**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*|
+| **ucs_basic**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*|
+| **pg_c_utf8**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| | | |
+| **pg_unicode_fast**| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min*| <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min*| | | | |
 
 ## Generated Strings for en_US Sort Order Comparison
 
