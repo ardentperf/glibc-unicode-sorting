@@ -24,12 +24,6 @@ and other persistent structures that depend on collation
 ordering, **the database is effectively corrupt**: its stored
 structures may no longer agree with the ordering PostgreSQL now uses.
 
-The italic value below each checksum is the time taken to execute the
-`SELECT ... ORDER BY` query in minutes; it is not part of the checksum. These
-timings are measured on GitHub Actions workflow runners, so they should be
-compared primarily relative to the underlying hardware of those runners, not
-treated as absolute performance measurements across different machines.
-
 **For maximum safety, use a builtin collation as your database default and
 assign linguistic collations at the column level in your table
 definitions. This reduces the number of objects that need to be rebuilt when
@@ -37,6 +31,12 @@ the linguistic sort order changes, and makes it far easier to identify
 everything that needs a rebuild.** *(If ICU is used, this also avoids the
 performance disaster of current glibc versions. However, it is critical to
 rebuild linguistic indexes after OS upgrades, even more so when using ICU.)*
+
+The italic value below each checksum is the time taken to execute the
+`SELECT ... ORDER BY` query in minutes; it is not part of the checksum. These
+timings are measured on GitHub Actions workflow runners, so they should be
+compared primarily relative to the underlying hardware of those runners, not
+treated as absolute performance measurements across different machines.
 
 ---
 
