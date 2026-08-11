@@ -105,6 +105,13 @@ collations available in each release. Every populated cell has checksum
 all these PostgreSQL versions, `pg_c_utf8` from 17, and `pg_unicode_fast` from
 18.
 
+The `C` and `ucs_basic` entries use PostgreSQL's bytewise comparison fast path,
+not glibc's `C.UTF-8` collation rules. We empirically verified this with the
+Debian 11 image: the libc `C.UTF-8` test produces checksum
+`073312d9eb92a53ceaafcd844a942944`, while these builtin collations produce
+`6f81f755c83c00057888f2f64ece6a1b`. If `ucs_basic` were using the Debian 11
+libc `C.UTF-8` rules, its checksum would match the former instead.
+
 | | PostgreSQL&nbsp;14 | PostgreSQL&nbsp;15 | PostgreSQL&nbsp;16 | PostgreSQL&nbsp;17 | PostgreSQL&nbsp;18 | PostgreSQL&nbsp;19 |
 |---|---|---|---|---|---|---|
 | **C** | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* |
