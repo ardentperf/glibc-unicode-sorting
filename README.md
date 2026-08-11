@@ -20,6 +20,10 @@ or ICU; the tables make changes in that behavior visible across versions. The
 italic value below it is the time taken to execute the `SELECT ... ORDER BY`
 query in minutes.
 
+These timings are measured on GitHub Actions workflow runners, so they should
+be compared primarily relative to the underlying hardware of those runners,
+not treated as absolute performance measurements across different machines.
+
 If PostgreSQL data files are moved to a different operating system (or the
 base container used to build PostgreSQL is changed) without rebuilding indexes
 and other persistent structures that depend on collation
