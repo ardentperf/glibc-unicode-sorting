@@ -19,11 +19,10 @@ indexes, and other comparisons can depend on the collation supplied by the OS
 or ICU; the tables make changes in that behavior visible across versions.
 
 The italic value below each checksum is the time taken to execute the
-`SELECT ... ORDER BY` query in minutes; it is not part of the checksum.
-
-These timings are measured on GitHub Actions workflow runners, so they should
-be compared primarily relative to the underlying hardware of those runners,
-not treated as absolute performance measurements across different machines.
+`SELECT ... ORDER BY` query in minutes; it is not part of the checksum. These
+timings are measured on GitHub Actions workflow runners, so they should be
+compared primarily relative to the underlying hardware of those runners, not
+treated as absolute performance measurements across different machines.
 
 If PostgreSQL data files are moved to a different operating system (or the
 base container used to build PostgreSQL is changed) without rebuilding indexes
