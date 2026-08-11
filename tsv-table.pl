@@ -6,6 +6,7 @@
 
 use strict;
 use warnings;
+binmode STDOUT, ':encoding(UTF-8)';
 my ($dataset, $engine, $architecture, $file) = @ARGV;
 if ($dataset eq 'rhel') {
     $file //= 'testdata/redhat-md5sums.tsv';
@@ -75,7 +76,11 @@ for my $version (@versions) {
 }
 print "\n|---" . ('|---' x scalar @versions) . "|\n";
 for my $lang (@languages) {
-    print '| **' . html_escape($lang) . '**';
+    my $display_lang = $engine eq 'glibc' && $lang eq 'C'
+        ? 'C' . chr(0x2060) . '.' . chr(0x2060)
+            . 'UTF' . chr(0x2060) . '-' . chr(0x2060) . '8'
+        : $lang;
+    print '| **' . html_escape($display_lang) . '**';
     for my $version (@versions) {
         my $value = $cell{$lang}{$version};
         if ($value) {
