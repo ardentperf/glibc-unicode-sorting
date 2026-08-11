@@ -1,0 +1,137 @@
+name: Builtin Unicode sorting
+
+on:
+  workflow_dispatch:
+    inputs:
+      pg:
+        description: PostgreSQL major version, or all
+        required: false
+        default: all
+        type: choice
+        options: [all, '14', '15', '16', '17', '18', '19']
+      locale:
+        description: Builtin collation, or all
+        required: false
+        default: all
+        type: choice
+        options: [all, C, ucs_basic, pg_c_utf8, pg_unicode_fast]
+      architecture:
+        description: Architecture, or all
+        required: false
+        default: all
+        type: choice
+        options: [all, x86_64]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+        - pg: '14'
+          locale: C
+          architecture: x86_64
+        - pg: '14'
+          locale: ucs_basic
+          architecture: x86_64
+        - pg: '15'
+          locale: C
+          architecture: x86_64
+        - pg: '15'
+          locale: ucs_basic
+          architecture: x86_64
+        - pg: '16'
+          locale: C
+          architecture: x86_64
+        - pg: '16'
+          locale: ucs_basic
+          architecture: x86_64
+        - pg: '17'
+          locale: C
+          architecture: x86_64
+        - pg: '17'
+          locale: ucs_basic
+          architecture: x86_64
+        - pg: '17'
+          locale: pg_c_utf8
+          architecture: x86_64
+        - pg: '18'
+          locale: C
+          architecture: x86_64
+        - pg: '18'
+          locale: ucs_basic
+          architecture: x86_64
+        - pg: '18'
+          locale: pg_c_utf8
+          architecture: x86_64
+        - pg: '18'
+          locale: pg_unicode_fast
+          architecture: x86_64
+        - pg: '19'
+          locale: C
+          architecture: x86_64
+        - pg: '19'
+          locale: ucs_basic
+          architecture: x86_64
+        - pg: '19'
+          locale: pg_c_utf8
+          architecture: x86_64
+        - pg: '19'
+          locale: pg_unicode_fast
+          architecture: x86_64
+    runs-on: ubuntu-latest
+    name: PostgreSQL ${{ matrix.pg }} / ${{ matrix.locale }} / ${{ matrix.architecture }}
+    steps:
+      - uses: actions/checkout@v4
+        if: (github.event.inputs.pg == '' || github.event.inputs.pg == 'all' || github.event.inputs.pg == matrix.pg) && (github.event.inputs.locale == '' || github.event.inputs.locale == 'all' || github.event.inputs.locale == matrix.locale) && (github.event.inputs.architecture == '' || github.event.inputs.architecture == 'all' || github.event.inputs.architecture == matrix.architecture)
+
+      - name: Read expected checksum
+        if: (github.event.inputs.pg == '' || github.event.inputs.pg == 'all' || github.event.inputs.pg == matrix.pg) && (github.event.inputs.locale == '' || github.event.inputs.locale == 'all' || github.event.inputs.locale == matrix.locale) && (github.event.inputs.architecture == '' || github.event.inputs.architecture == 'all' || github.event.inputs.architecture == matrix.architecture)
+        id: expected
+        run: |
+          value="$(PG='${{ matrix.pg }}' ARCHITECTURE='${{ matrix.architecture }}' LOCALE='${{ matrix.locale }}' python3 - <<'PY'
+          import os
+
+          requested = (
+              os.environ['PG'],
+              os.environ['ARCHITECTURE'],
+              os.environ['LOCALE'],
+          )
+          with open('testdata/builtin-md5sums.tsv', encoding='utf-8') as f:
+              for line in f:
+                  if line.strip() and not line.startswith('#'):
+                      fields = line.rstrip('\n').split('\t')
+                      if len(fields) >= 4 and tuple(fields[:3]) == requested:
+                          print(fields[3])
+                          break
+          PY
+          )"
+          if [ -z "$value" ]; then
+            echo "No expected checksum found for ${{ matrix.pg }}/${{ matrix.architecture }}/${{ matrix.locale }}" >&2
+            exit 1
+          fi
+          echo "md5=$value" >> "$GITHUB_OUTPUT"
+
+      - name: Build test image
+        if: (github.event.inputs.pg == '' || github.event.inputs.pg == 'all' || github.event.inputs.pg == matrix.pg) && (github.event.inputs.locale == '' || github.event.inputs.locale == 'all' || github.event.inputs.locale == matrix.locale) && (github.event.inputs.architecture == '' || github.event.inputs.architecture == 'all' || github.event.inputs.architecture == matrix.architecture)
+        run: |
+          docker build \
+            --platform linux/amd64 \
+            --file Dockerfile.builtin \
+            --build-arg PG_MAJOR="${{ matrix.pg }}" \
+            --build-arg LOCALE="${{ matrix.locale }}" \
+            --build-arg EXPECTED_MD5="${{ steps.expected.outputs.md5 }}" \
+            -t "unicode-sorting-builtin-${{ matrix.pg }}-${{ matrix.locale }}" .
+
+      - name: Run checksum test
+        if: (github.event.inputs.pg == '' || github.event.inputs.pg == 'all' || github.event.inputs.pg == matrix.pg) && (github.event.inputs.locale == '' || github.event.inputs.locale == 'all' || github.event.inputs.locale == matrix.locale) && (github.event.inputs.architecture == '' || github.event.inputs.architecture == 'all' || github.event.inputs.architecture == matrix.architecture)
+        run: |
+          set +e
+          docker run --rm "unicode-sorting-builtin-${{ matrix.pg }}-${{ matrix.locale }}" | tee docker-output.log
+          container_status=${PIPESTATUS[0]}
+          set -e
+          md5="$(sed -n 's/.* md5=\([0-9a-f][0-9a-f]*\) expected=.*/\1/p' docker-output.log | tail -1)"
+          test -n "$md5" || { echo 'Checksum was not emitted' >&2; exit 1; }
+          echo "Computed checksum: $md5" >> "$GITHUB_STEP_SUMMARY"
+          exit "$container_status"

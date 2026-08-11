@@ -97,6 +97,21 @@ suggestion to try a container approach.
 | **ko**| <img src="https://img.shields.io/badge/-052f47-052f47"><br>*0.4&nbsp;min*| <img src="https://img.shields.io/badge/-a29e2c-a29e2c"><br>*0.4&nbsp;min*| <img src="https://img.shields.io/badge/-0a911b-0a911b"><br>*0.4&nbsp;min*| <img src="https://img.shields.io/badge/-a830bc-a830bc"><br>*0.9&nbsp;min*|
 | **zh**| <img src="https://img.shields.io/badge/-043533-043533"><br>*0.4&nbsp;min*| <img src="https://img.shields.io/badge/-7dbd15-7dbd15"><br>*0.4&nbsp;min*| <img src="https://img.shields.io/badge/-c55f3c-c55f3c"><br>*0.3&nbsp;min*| <img src="https://img.shields.io/badge/-8218b2-8218b2"><br>*0.7&nbsp;min*|
 
+### PostgreSQL: builtin collations
+
+The Debian 11 test image uses PostgreSQL 14 through 19 and the builtin
+collations available in each release. Every populated cell has checksum
+`6f81f755c83c00057888f2f64ece6a1b` on `x86_64`. `ucs_basic` is available in
+all these PostgreSQL versions, `pg_c_utf8` from 17, and `pg_unicode_fast` from
+18.
+
+| | PostgreSQL&nbsp;14 | PostgreSQL&nbsp;15 | PostgreSQL&nbsp;16 | PostgreSQL&nbsp;17 | PostgreSQL&nbsp;18 | PostgreSQL&nbsp;19 |
+|---|---|---|---|---|---|---|
+| **C** | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* |
+| **ucs_basic** | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.8&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.8&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.5&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.7&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* |
+| **pg_c_utf8** | — | — | — | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.2&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* |
+| **pg_unicode_fast** | — | — | — | — | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.4&nbsp;min* | <img src="https://img.shields.io/badge/-ce6a1b-ce6a1b"><br>*0.3&nbsp;min* |
+
 ## Drill-Down Methodology
 
 ### GNU C Library
