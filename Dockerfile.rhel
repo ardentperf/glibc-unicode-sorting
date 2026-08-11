@@ -60,7 +60,7 @@ RUN mkdir -p /var/lib/pgsql/data \
 CMD set -eu; \
     if [ "${RHEL_MAJOR}" = 7 ]; then export LOCPATH=/usr/lib/locale; fi; \
     test_started="$(date +%s)"; \
-    libc_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' glibc)"; \
+    libc_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}' glibc)"; \
     pg_version="$(rpm -q --qf '%{VERSION}-%{RELEASE}.%{ARCH}' postgresql${PG_MAJOR}-server)"; \
     su postgres -c "/usr/pgsql-${PG_MAJOR}/bin/pg_ctl -D /var/lib/pgsql/data -l /tmp/postgresql.log start"; \
     curl -ks "https://www.unicode.org/Public/15.0.0/ucd/UnicodeData.txt" | cut -d';' -f1-3 > /opt/unicode-sorting/UnicodeData.txt; \
