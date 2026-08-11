@@ -16,9 +16,10 @@ the same ordering, while a changed checksum means that at least one string
 moved. Only the final six checksum characters are shown in each cell, with the
 same value used as its badge color. This matters because PostgreSQL `ORDER BY`,
 indexes, and other comparisons can depend on the collation supplied by the OS
-or ICU; the tables make changes in that behavior visible across versions. The
-italic value below it is the time taken to execute the `SELECT ... ORDER BY`
-query in minutes.
+or ICU; the tables make changes in that behavior visible across versions.
+
+The italic value below each checksum is the time taken to execute the
+`SELECT ... ORDER BY` query in minutes; it is not part of the checksum.
 
 These timings are measured on GitHub Actions workflow runners, so they should
 be compared primarily relative to the underlying hardware of those runners,
