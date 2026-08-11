@@ -49,7 +49,7 @@ close $fh;
 my @versions = sort {
     $a eq 'sid' ? -1 : $b eq 'sid' ? 1 : $b <=> $a
 } keys %debian;
-my $special_language = $dataset eq 'rhel' ? 'C/root' : ($engine eq 'glibc' ? 'C' : 'root');
+my $special_language = $engine eq 'glibc' ? 'C' : 'root';
 my @language_order = ($special_language, qw(de en fr ru ar es ja ko zh));
 my %language_rank = map { $language_order[$_] => $_ } 0 .. $#language_order;
 my @languages = sort {
